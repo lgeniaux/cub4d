@@ -6,7 +6,7 @@
 /*   By: hmarconn <hmarconn@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/23 16:28:38 by hmarconn          #+#    #+#             */
-/*   Updated: 2023/01/23 16:43:24 by hmarconn         ###   ########.fr       */
+/*   Updated: 2023/01/23 16:49:46 by hmarconn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,7 +114,7 @@ int	the_wall_parser(t_data	*data)
 		x = 0;
 		while (x < len)
 		{
-			if (!wall_parser_util(data,len, x, y))
+			if (!wall_parser_util(data, len, x, y))
 				return (0);
 			last_len = len;
 			x++;

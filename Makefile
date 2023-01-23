@@ -52,7 +52,8 @@ SRCS = ./srcs/parsing.c \
 	./srcs/pa_ceiling_utils.c \
 	./srcs/pa_floor_utils.c \
 	./srcs/pa_genmap_utils.c \
-	./srcs/pa_wall_parser_utils.c
+	./srcs/pa_wall_parser_utils.c \
+	./srcs/main.c
 
 MAKE = make
 

@@ -6,9 +6,11 @@
 /*   By: hmarconn <hmarconn@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/15 17:26:03 by hmarconn          #+#    #+#             */
-/*   Updated: 2023/01/23 11:52:08 by hmarconn         ###   ########.fr       */
+/*   Updated: 2023/01/23 18:25:35 by hmarconn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "../incs/cube.h"
 
 #include "../incs/cube.h"
 
@@ -29,7 +31,7 @@ int	pa_colors(t_data	*data, char	*buffer)
 	return (1);
 }
 
-static int	fd_check(char	*doc)
+int	fd_check(char	*doc)
 {
 	int	len;
 

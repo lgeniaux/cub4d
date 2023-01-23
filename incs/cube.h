@@ -6,7 +6,7 @@
 /*   By: hmarconn <hmarconn@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/15 17:26:35 by hmarconn          #+#    #+#             */
-/*   Updated: 2023/01/23 16:35:29 by hmarconn         ###   ########.fr       */
+/*   Updated: 2023/01/23 17:43:06 by hmarconn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,5 +92,8 @@ int		pa_secondfloor(t_data *data, char	*tmp);
 int		pa_thirdfloor(t_data *data, char	*tmp);
 int		the_map_filler(t_data	*data, char	*buffer);
 int		ft_strlen_parsing(char	*str);
+int		to_parse(t_data	*data, char	*buffer);
+int		fd_check(char	*doc);
+void	init_phase(t_data	*data);
 
 #endif
