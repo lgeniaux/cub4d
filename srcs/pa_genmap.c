@@ -6,7 +6,7 @@
 /*   By: hmarconn <hmarconn@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/22 11:37:43 by hmarconn          #+#    #+#             */
-/*   Updated: 2023/01/23 11:49:31 by hmarconn         ###   ########.fr       */
+/*   Updated: 2023/01/23 14:48:15 by hmarconn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -158,7 +158,11 @@ int	the_wall_parser(t_data	*data)
 					== 'E' || data->mapper->map[y][x] == 'W')
 			{
 				if (data->mapper->player == 0)
+				{
+					data->mapper->xplayer = x;
+					data->mapper->yplayer = y;
 					data->mapper->player = 1;
+				}
 				else
 					return (0);
 				if (x == 0 || x == len - 1 || y == 0 || y == \

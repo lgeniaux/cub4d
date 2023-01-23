@@ -6,7 +6,7 @@
 /*   By: hmarconn <hmarconn@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/18 16:32:47 by hmarconn          #+#    #+#             */
-/*   Updated: 2023/01/23 12:13:23 by hmarconn         ###   ########.fr       */
+/*   Updated: 2023/01/23 14:42:59 by hmarconn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,30 @@ int	pa_ceilingcolorcheck(t_data	*data, char	*tmp, int i)
 	return (1);
 }
 
+int pa_ceiling_stepone(t_data	*data, char	*buffer)
+{
+	int	len;
 
+	len = 0;
+	while (buffer[data->scroller] && (buffer[data->scroller] >= '0' && \
+		buffer[data->scroller] <= '9'))
+	{
+		len++;
+		data->scroller++;
+	}
+	return (len);
+}
+
+int	pa_ceiling_steptwo(t_data	*data, char	*buffer, int i)
+{
+	if (buffer[data->scroller] && (buffer[data->scroller] >= '0' && \
+		buffer[data->scroller] <= '9') && i == 3)
+		return (0);
+	else if (i < 3)
+		return (0);
+	data->mapper->ceilings = 1;
+	return (1);
+}
 
 int	pa_ceiling(t_data	*data, char	*buffer)
 {
@@ -45,7 +68,6 @@ int	pa_ceiling(t_data	*data, char	*buffer)
 	char	*tmp;
 
 	len = 0;
-	pan = 0;
 	i = 0;
 	if (data->mapper->ceilings == 1)
 	{
@@ -58,13 +80,7 @@ int	pa_ceiling(t_data	*data, char	*buffer)
 		buffer[data->scroller] <= '9') && i < 3)
 	{
 		pin = data->scroller;
-		len = 0;
-		while (buffer[data->scroller] && (buffer[data->scroller] >= '0' && \
-			buffer[data->scroller] <= '9'))
-		{
-			len++;
-			data->scroller++;
-		}
+		len = pa_ceiling_stepone(data, buffer);
 		tmp = ft_calloc(len + 1, sizeof(char));
 		if (!tmp)
 			exit (52);
@@ -79,11 +95,7 @@ int	pa_ceiling(t_data	*data, char	*buffer)
 			data->scroller++;
 		i++;
 	}
-	if (buffer[data->scroller] && (buffer[data->scroller] >= '0' && \
-		buffer[data->scroller] <= '9') && i == 3)
+	if (!pa_ceiling_steptwo(data, buffer, i))
 		return (0);
-	else if (i < 3)
-		return (0);
-	data->mapper->ceilings = 1;
 	return (1);
 }

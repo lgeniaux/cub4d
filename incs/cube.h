@@ -6,7 +6,7 @@
 /*   By: hmarconn <hmarconn@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/15 17:26:35 by hmarconn          #+#    #+#             */
-/*   Updated: 2023/01/23 12:10:27 by hmarconn         ###   ########.fr       */
+/*   Updated: 2023/01/23 14:47:44 by hmarconn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,8 @@ typedef struct	s_map
 	int		west_wall;
 	int		height;
 	int		player;
+	int		xplayer;
+	int		yplayer;
 	int		high_point;
 }	t_map;
 
