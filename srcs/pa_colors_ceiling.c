@@ -1,0 +1,89 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   pa_colors_ceiling.c                                :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: hmarconn <hmarconn@student.42lyon.fr>      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/11/18 16:32:47 by hmarconn          #+#    #+#             */
+/*   Updated: 2023/01/23 12:13:23 by hmarconn         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "../incs/cube.h"
+
+int	pa_ceilingcolorcheck(t_data	*data, char	*tmp, int i)
+{
+	if (i == 0)
+	{
+		if (!first_ceiling(data, tmp))
+			return (0);
+	}
+	else if (i == 1)
+	{
+		if (!second_ceiling(data, tmp))
+			return (0);
+	}
+	else
+	{
+		if (!third_ceiling(data, tmp))
+			return (0);
+	}
+	free(tmp);
+	tmp = NULL;
+	return (1);
+}
+
+
+
+int	pa_ceiling(t_data	*data, char	*buffer)
+{
+	int		len;
+	int		i;
+	int		pin;
+	int		pan;
+	char	*tmp;
+
+	len = 0;
+	pan = 0;
+	i = 0;
+	if (data->mapper->ceilings == 1)
+	{
+		free(buffer);
+		return (0);
+	}
+	while (buffer[data->scroller] < '0' || buffer[data->scroller] > '9')
+		data->scroller++;
+	while (buffer[data->scroller] && (buffer[data->scroller] >= '0' && \
+		buffer[data->scroller] <= '9') && i < 3)
+	{
+		pin = data->scroller;
+		len = 0;
+		while (buffer[data->scroller] && (buffer[data->scroller] >= '0' && \
+			buffer[data->scroller] <= '9'))
+		{
+			len++;
+			data->scroller++;
+		}
+		tmp = ft_calloc(len + 1, sizeof(char));
+		if (!tmp)
+			exit (52);
+		pan = 0;
+		while (pan < len)
+			tmp[pan++] = buffer[pin++];
+		tmp[pan] = '\0';
+		if (!pa_ceilingcolorcheck(data, tmp, i))
+			return (0);
+		tmp = NULL;
+		if (buffer[data->scroller] == ',')
+			data->scroller++;
+		i++;
+	}
+	if (buffer[data->scroller] && (buffer[data->scroller] >= '0' && \
+		buffer[data->scroller] <= '9') && i == 3)
+		return (0);
+	else if (i < 3)
+		return (0);
+	data->mapper->ceilings = 1;
+	return (1);
+}
