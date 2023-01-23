@@ -6,7 +6,7 @@
 /*   By: hmarconn <hmarconn@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/18 16:32:47 by hmarconn          #+#    #+#             */
-/*   Updated: 2023/01/23 14:42:59 by hmarconn         ###   ########.fr       */
+/*   Updated: 2023/01/23 14:50:06 by hmarconn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ int	pa_ceilingcolorcheck(t_data	*data, char	*tmp, int i)
 	return (1);
 }
 
-int pa_ceiling_stepone(t_data	*data, char	*buffer)
+int	pa_ceiling_stepone(t_data	*data, char	*buffer)
 {
 	int	len;
 

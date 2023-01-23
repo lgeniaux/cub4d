@@ -6,7 +6,7 @@
 /*   By: hmarconn <hmarconn@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 19:09:04 by hmarconn          #+#    #+#             */
-/*   Updated: 2023/01/23 11:49:42 by hmarconn         ###   ########.fr       */
+/*   Updated: 2023/01/23 15:57:54 by hmarconn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,12 @@ void	the_end(t_data	*data)
 	{
 		while (y < data->mapper->height)
 		{
-			free(data->mapper->map[y]);
+			if (data->mapper->map[y])
+			{
+				printf("ici\n");
+				free(data->mapper->map[y]);
+			}
+			printf("test %i\n", y);
 			y++;
 		}
 		free(data->mapper->map);

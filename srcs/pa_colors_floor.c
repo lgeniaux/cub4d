@@ -6,7 +6,7 @@
 /*   By: hmarconn <hmarconn@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 19:07:04 by hmarconn          #+#    #+#             */
-/*   Updated: 2023/01/23 11:46:31 by hmarconn         ###   ########.fr       */
+/*   Updated: 2023/01/23 16:01:27 by hmarconn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,46 +14,23 @@
 
 int	pa_floorcolorcheck(t_data	*data, char	*tmp, int i)
 {
-	char	*test;
-
 	if (i == 0)
 	{
-		test = ft_strdup(tmp);
-		data->mapper->floor[RED] = ft_atoi(test);
-		free(test);
-		if (data->mapper->floor[RED] > 255 || data->mapper->floor[RED] < 0)
-		{
-			free(tmp);
+		if (!pa_firstfloor(data, tmp))
 			return (0);
-		}
 	}
 	else if (i == 1)
 	{
-		test = ft_strdup(tmp);
-		data->mapper->floor[GREEN] = ft_atoi(test);
-		free(test);
-		if (data->mapper->floor[GREEN] > 255 || \
-			data->mapper->floor[GREEN] < 0)
-		{
-			free(tmp);
+		if (!pa_secondfloor(data, tmp))
 			return (0);
-		}
 	}
 	else
 	{
-		test = ft_strdup(tmp);
-		data->mapper->floor[BLUE] = ft_atoi(test);
-		free(test);
-		if (data->mapper->floor[BLUE] > 255 || \
-			data->mapper->floor[BLUE] < 0)
-		{
-			free(tmp);
+		if (!pa_thirdfloor(data, tmp))
 			return (0);
-		}
 	}
 	free(tmp);
 	tmp = NULL;
-	test = NULL;
 	return (1);
 }
 

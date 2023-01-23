@@ -33,8 +33,8 @@ DEPEXT      := d
 OBJEXT      := o
 
 #Flags, Libraries and Includes
-CFLAGS      := -Wall -Wextra -Werror
-# CFLAGS      := -Wall -Wextra -Werror -fsanitize=address -g3
+# CFLAGS      := -Wall -Wextra -Werror
+CFLAGS      := -Wall -Wextra -Werror -fsanitize=address -g3
 # SANITIZE    := -fsanitize=address
 # LLDBFLAG    := -g3
 LIBFT_PATH  := ./libs/libft/libft.a
@@ -49,7 +49,10 @@ SRCS = ./srcs/parsing.c \
 	./srcs/pa_colors_floor.c \
 	./srcs/pa_utils.c \
 	./srcs/pa_genmap.c \
-	./srcs/pa_ceiling_utils.c
+	./srcs/pa_ceiling_utils.c \
+	./srcs/pa_floor_utils.c \
+	./srcs/pa_genmap_utils.c \
+	./srcs/pa_wall_parser_utils.c
 
 MAKE = make
 
