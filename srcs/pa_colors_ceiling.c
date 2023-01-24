@@ -6,7 +6,7 @@
 /*   By: hmarconn <hmarconn@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/18 16:32:47 by hmarconn          #+#    #+#             */
-/*   Updated: 2023/01/23 14:50:06 by hmarconn         ###   ########.fr       */
+/*   Updated: 2023/01/24 14:50:36 by hmarconn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ int	pa_ceilingcolorcheck(t_data	*data, char	*tmp, int i)
 	return (1);
 }
 
-int	pa_ceiling_stepone(t_data	*data, char	*buffer)
+static int	pa_ceiling_length(t_data	*data, char	*buffer)
 {
 	int	len;
 
@@ -80,7 +80,7 @@ int	pa_ceiling(t_data	*data, char	*buffer)
 		buffer[data->scroller] <= '9') && i < 3)
 	{
 		pin = data->scroller;
-		len = pa_ceiling_stepone(data, buffer);
+		len = pa_ceiling_length(data, buffer);
 		tmp = ft_calloc(len + 1, sizeof(char));
 		if (!tmp)
 			exit (52);

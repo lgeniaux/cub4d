@@ -6,7 +6,7 @@
 /*   By: hmarconn <hmarconn@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/15 17:26:03 by hmarconn          #+#    #+#             */
-/*   Updated: 2023/01/24 11:03:44 by hmarconn         ###   ########.fr       */
+/*   Updated: 2023/01/24 14:14:14 by hmarconn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ int	pa_colors(t_data	*data, char	*buffer)
 		data->scroller++;
 		if (!pa_floors(data, buffer))
 			return (0);
+		data->mapper->floors = 1;
 	}
 	else if (buffer[data->scroller] == 'C')
 	{

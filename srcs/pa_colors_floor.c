@@ -6,7 +6,7 @@
 /*   By: hmarconn <hmarconn@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 19:07:04 by hmarconn          #+#    #+#             */
-/*   Updated: 2023/01/23 16:01:27 by hmarconn         ###   ########.fr       */
+/*   Updated: 2023/01/24 14:52:46 by hmarconn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,30 @@ int	pa_floorcolorcheck(t_data	*data, char	*tmp, int i)
 	return (1);
 }
 
+static int	pa_floors_length(t_data	*data, char	*buffer)
+{
+	int	len;
+
+	len = 0;
+	while (buffer[data->scroller] && (buffer[data->scroller] >= '0' && \
+			buffer[data->scroller] <= '9'))
+	{
+		len++;
+		data->scroller++;
+	}
+	return (len);
+}
+
+static int	pa_floors_step(t_data	*data, char	*buffer, int i)
+{
+	if (buffer[data->scroller] && (buffer[data->scroller] >= '0' && \
+		buffer[data->scroller] <= '9') && i == 3)
+		return (0);
+	else if (i < 3)
+		return (0);
+	return (1);
+}
+
 int	pa_floors(t_data	*data, char	*buffer)
 {
 	int		len;
@@ -42,8 +66,6 @@ int	pa_floors(t_data	*data, char	*buffer)
 	char	*tmp;
 	int		i;
 
-	len = 0;
-	pan = 0;
 	i = 0;
 	if (data->mapper->floors == 1)
 	{
@@ -56,13 +78,7 @@ int	pa_floors(t_data	*data, char	*buffer)
 		buffer[data->scroller] <= '9') && i < 3)
 	{
 		pin = data->scroller;
-		len = 0;
-		while (buffer[data->scroller] && (buffer[data->scroller] >= '0' && \
-			buffer[data->scroller] <= '9'))
-		{
-			len++;
-			data->scroller++;
-		}
+		len = pa_floors_length(data, buffer);
 		tmp = ft_calloc(len + 1, sizeof(char));
 		if (!tmp)
 			exit (52);
@@ -77,11 +93,7 @@ int	pa_floors(t_data	*data, char	*buffer)
 			data->scroller++;
 		i++;
 	}
-	if (buffer[data->scroller] && (buffer[data->scroller] >= '0' && \
-		buffer[data->scroller] <= '9') && i == 3)
+	if (!pa_floors_step(data, buffer, i))
 		return (0);
-	else if (i < 3)
-		return (0);
-	data->mapper->floors = 1;
 	return (1);
 }
