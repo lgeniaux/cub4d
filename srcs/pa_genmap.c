@@ -6,7 +6,7 @@
 /*   By: hmarconn <hmarconn@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/22 11:37:43 by hmarconn          #+#    #+#             */
-/*   Updated: 2023/01/23 16:35:41 by hmarconn         ###   ########.fr       */
+/*   Updated: 2023/01/24 18:44:28 by hmarconn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,31 +60,18 @@ int	ft_strlen_parsing(char	*str)
 	return (i);
 }
 
-int	the_map_parser(t_data	*data)
+static int	tmp_util(t_data	*data)
 {
 	int	i;
 
 	i = 1;
-	if (!the_map_maker(data))
-	{
-		printf("test3\n");
-		return (0);
-	}
-	data->buff = NULL;
-	data->fd = 0;
-	data->fd = open(data->doc, O_RDONLY);
-	if (data->fd <= 0)
-		return (0);
 	data->buff = get_next_line(data->fd);
 	while (data->buff)
 	{
 		if (i >= data->i)
 		{
 			if (!the_map_filler(data, data->buff))
-			{
-				printf("test2\n");
 				return (0);
-			}
 		}
 		free(data->buff);
 		data->buff = get_next_line(data->fd);
@@ -93,10 +80,21 @@ int	the_map_parser(t_data	*data)
 	if (data->buff != NULL)
 		free(data->buff);
 	close(data->fd);
-	if (!the_wall_parser(data))
-	{
-		printf("test1\n");
+	return (1);
+}
+
+int	the_map_parser(t_data	*data)
+{
+	if (!the_map_maker(data))
 		return (0);
-	}
+	data->buff = NULL;
+	data->fd = 0;
+	data->fd = open(data->doc, O_RDONLY);
+	if (data->fd <= 0)
+		return (0);
+	if (!tmp_util(data))
+		return (0);
+	if (!the_wall_parser(data))
+		return (0);
 	return (1);
 }

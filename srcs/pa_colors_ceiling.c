@@ -6,7 +6,7 @@
 /*   By: hmarconn <hmarconn@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/18 16:32:47 by hmarconn          #+#    #+#             */
-/*   Updated: 2023/01/24 14:50:36 by hmarconn         ###   ########.fr       */
+/*   Updated: 2023/01/24 17:38:57 by hmarconn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,18 @@ int	pa_ceiling_steptwo(t_data	*data, char	*buffer, int i)
 	return (1);
 }
 
+static int	pa_ceiling_saveplace(t_data	*data, char	*buffer)
+{
+	if (data->mapper->ceilings == 1)
+	{
+		free(buffer);
+		return (0);
+	}
+	while (buffer[data->scroller] < '0' || buffer[data->scroller] > '9')
+		data->scroller++;
+	return (1);
+}
+
 int	pa_ceiling(t_data	*data, char	*buffer)
 {
 	int		len;
@@ -69,22 +81,17 @@ int	pa_ceiling(t_data	*data, char	*buffer)
 
 	len = 0;
 	i = 0;
-	if (data->mapper->ceilings == 1)
-	{
-		free(buffer);
+	if (!pa_ceiling_saveplace(data, buffer))
 		return (0);
-	}
-	while (buffer[data->scroller] < '0' || buffer[data->scroller] > '9')
-		data->scroller++;
 	while (buffer[data->scroller] && (buffer[data->scroller] >= '0' && \
 		buffer[data->scroller] <= '9') && i < 3)
 	{
+		pan = 0;
 		pin = data->scroller;
 		len = pa_ceiling_length(data, buffer);
 		tmp = ft_calloc(len + 1, sizeof(char));
 		if (!tmp)
 			exit (52);
-		pan = 0;
 		while (pan < len)
 			tmp[pan++] = buffer[pin++];
 		tmp[pan] = '\0';
