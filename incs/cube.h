@@ -6,7 +6,7 @@
 /*   By: hmarconn <hmarconn@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/15 17:26:35 by hmarconn          #+#    #+#             */
-/*   Updated: 2023/01/23 17:43:06 by hmarconn         ###   ########.fr       */
+/*   Updated: 2023/01/24 11:44:17 by hmarconn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ int		pa_getlen(t_data	*data, char	*buffer);
 int		pa_walls(t_data	*data, char	*buffer, int wall);
 int		the_wall_parser(t_data	*data);
 int		the_map_parser(t_data	*data);
-void	the_end(t_data	*data);
+void	the_end(t_data	*data, int type);
 int		first_ceiling(t_data *data, char	*tmp);
 int		second_ceiling(t_data *data, char	*tmp);
 int		third_ceiling(t_data *data, char	*tmp);

@@ -6,7 +6,7 @@
 /*   By: hmarconn <hmarconn@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 19:09:04 by hmarconn          #+#    #+#             */
-/*   Updated: 2023/01/23 15:57:54 by hmarconn         ###   ########.fr       */
+/*   Updated: 2023/01/24 11:46:54 by hmarconn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,23 +26,32 @@ int	pa_getlen(t_data	*data, char	*buffer)
 	return (len);
 }
 
-void	the_end(t_data	*data)
+void	print_type(int type)
+{
+	if (type == 0)
+		return ;
+	if (type == 1)
+		printf("Error\nInvalid document\n");
+	else if (type == 2)
+		printf("Error\nInvalid elements\n");
+	else if (type == 3)
+		printf("Error\nInvalid Map\n");
+	else if (type == 4)
+		printf("Error\nMissing informations\n");
+}
+
+void	the_end(t_data	*data, int type)
 {
 	int	y;
 
 	y = 0;
-	printf("%d\n", data->mapper->height);
-	printf("%i\n", data->map_exists);
+	print_type(type);
 	if (data->map_exists == 1)
 	{
 		while (y < data->mapper->height)
 		{
 			if (data->mapper->map[y])
-			{
-				printf("ici\n");
 				free(data->mapper->map[y]);
-			}
-			printf("test %i\n", y);
 			y++;
 		}
 		free(data->mapper->map);
