@@ -6,7 +6,7 @@
 /*   By: hmarconn <hmarconn@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/15 17:26:35 by hmarconn          #+#    #+#             */
-/*   Updated: 2023/01/24 11:44:17 by hmarconn         ###   ########.fr       */
+/*   Updated: 2023/01/24 13:45:05 by hmarconn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,5 +95,6 @@ int		ft_strlen_parsing(char	*str);
 int		to_parse(t_data	*data, char	*buffer);
 int		fd_check(char	*doc);
 void	init_phase(t_data	*data);
+int		wall_parser_first(t_data	*data, int len, int x, int y);
 
 #endif

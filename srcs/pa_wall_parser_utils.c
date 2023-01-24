@@ -6,116 +6,11 @@
 /*   By: hmarconn <hmarconn@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/23 16:28:38 by hmarconn          #+#    #+#             */
-/*   Updated: 2023/01/24 13:37:04 by hmarconn         ###   ########.fr       */
+/*   Updated: 2023/01/24 13:45:31 by hmarconn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../incs/cube.h"
-
-static int	wp_one(t_data	*data, int x, int y)
-{
-	if (data->mapper->map[y][x - 1] != '1' && \
-		data->mapper->map[y][x - 1] != '0' && \
-			data->mapper->map[y][x - 1] \
-			!= 'N' && data->mapper->map[y][x - 1] != 'S' && \
-				data->mapper->map[y][x - 1] != 'E' && \
-					data->mapper->map[y][x - 1] != 'W')
-	{
-		printf("miam\n");
-		return (0);
-	}
-	return (1);
-}
-
-static int	wp_two(t_data	*data, int x, int y)
-{
-	if (data->mapper->map[y][x + 1] != '1' && \
-		data->mapper->map[y][x + 1] != '0' && \
-			data->mapper->map[y][x + 1] \
-			!= 'N' && data->mapper->map[y][x + 1] != 'S' && \
-				data->mapper->map[y][x + 1] != 'E' && \
-					data->mapper->map[y][x + 1] != 'W')
-	{
-		printf("youpi\n");					
-		return (0);
-	}
-	return (1);
-}
-
-static int	wp_three(t_data	*data, int x, int y)
-{
-	if (data->mapper->map[y - 1][x] != '1' && \
-		data->mapper->map[y - 1][x] != '0' && \
-			data->mapper->map[y - 1][x] \
-			!= 'N' && data->mapper->map[y - 1][x] != 'S' && \
-				data->mapper->map[y - 1][x] != 'E' && \
-					data->mapper->map[y - 1][x] != 'W')
-	{
-		printf("zoubizou\n");				
-		return (0);
-	}
-	return (1);
-}
-
-static int wp_fourth(t_data	*data, int x, int y)
-{
-	if (data->mapper->map[y + 1][x] != '1' && \
-		data->mapper->map[y + 1][x] != '0' && \
-			data->mapper->map[y + 1][x] \
-			!= 'N' && data->mapper->map[y + 1][x] != 'S' && \
-				data->mapper->map[y + 1][x] != 'E' && \
-					data->mapper->map[y + 1][x] != 'W')
-	{
-		printf("tralala\n");
-		return (0);
-	}
-	return (1);
-}
-
-static int	wall_parser_first(t_data	*data, int len, int x, int y)
-{
-	if (x == 0 || x == len - 1 || y == 0 || y == \
-		data->mapper->height - 1)
-		return (0);
-	printf("toutou\n");
-	if (!wp_one(data, x, y))
-		return (0);
-	else if(!wp_two(data, x, y))
-		return (0);
-	// if (data->mapper->map[y][x - 1] != '1' && \
-	// 	data->mapper->map[y][x - 1] != '0' && \
-	// 		data->mapper->map[y][x - 1] \
-	// 		!= 'N' && data->mapper->map[y][x - 1] != 'S' && \
-	// 			data->mapper->map[y][x - 1] != 'E' && \
-	// 				data->mapper->map[y][x - 1] != 'W')
-	// 	return (0);
-	// else if (data->mapper->map[y][x + 1] != '1' && \
-	// 	data->mapper->map[y][x + 1] != '0' && \
-	// 		data->mapper->map[y][x + 1] \
-	// 		!= 'N' && data->mapper->map[y][x + 1] != 'S' && \
-	// 			data->mapper->map[y][x + 1] != 'E' && \
-	// 				data->mapper->map[y][x + 1] != 'W')
-	// 	return (0);
-	else if(!wp_three(data, x, y))
-		return (0);
-	// else if (data->mapper->map[y - 1][x] != '1' && \
-	// 	data->mapper->map[y - 1][x] != '0' && \
-	// 		data->mapper->map[y - 1][x] \
-	// 		!= 'N' && data->mapper->map[y - 1][x] != 'S' && \
-	// 			data->mapper->map[y - 1][x] != 'E' && \
-	// 				data->mapper->map[y - 1][x] != 'W')
-	// 	return (0);
-	else if (!wp_fourth(data, x, y))
-		return (0);
-	// else if (data->mapper->map[y + 1][x] != '1' && \
-	// 	data->mapper->map[y + 1][x] != '0' && \
-	// 		data->mapper->map[y + 1][x] \
-	// 		!= 'N' && data->mapper->map[y + 1][x] != 'S' && \
-	// 			data->mapper->map[y + 1][x] != 'E' && \
-	// 				data->mapper->map[y + 1][x] != 'W')
-	// 	return (0);
-	return (1);
-}
 
 static int	wall_parser_second(t_data	*data, int len, int x, int y)
 {
@@ -151,7 +46,6 @@ static int	wall_parser_util(t_data	*data, int len, int x, int y)
 	{
 		if (!wall_parser_first(data, len, x, y))
 		{
-			printf("top1\n");	
 			return (0);
 		}
 	}
@@ -161,7 +55,6 @@ static int	wall_parser_util(t_data	*data, int len, int x, int y)
 	{
 		if (!wall_parser_second(data, len, x, y))
 		{
-			printf("top3\n");
 			return (0);
 		}
 	}
@@ -169,7 +62,6 @@ static int	wall_parser_util(t_data	*data, int len, int x, int y)
 		!= '\n' && data->mapper->map[y][x] != '\0' && \
 			data->mapper->map[y][x] != ' ')
 	{
-		printf("top2\n");
 		return (0);
 	}
 	return (1);
