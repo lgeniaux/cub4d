@@ -43,20 +43,7 @@ LIB         := $(LIBFT_PATH) $(LIBX)
 INC         := -I$(INCDIR)
 INCDEP      := -I$(INCDIR)
 
-SRCS = $(patsubst %, srcs/%, parsing.c \
-	pa_wallpapers.c \
-	pa_colors_ceiling.c \
-	pa_colors_floor.c \
-	pa_utils.c \
-	pa_genmap.c \
-	pa_ceiling_utils.c \
-	pa_floor_utils.c \
-	pa_genmap_utils.c \
-	pa_wall_parser_utils.c \
-	main.c \
-	wp_utils.c)
-
-#SRCS = ./srcs/parsing.c \
+SRCS = ./srcs/parsing.c \
 	./srcs/pa_wallpapers.c \
 	./srcs/pa_colors_ceiling.c \
 	./srcs/pa_colors_floor.c \
