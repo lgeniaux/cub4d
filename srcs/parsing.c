@@ -6,7 +6,7 @@
 /*   By: hmarconn <hmarconn@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/15 17:26:03 by hmarconn          #+#    #+#             */
-/*   Updated: 2023/01/24 14:14:14 by hmarconn         ###   ########.fr       */
+/*   Updated: 2023/01/25 13:29:24 by hmarconn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,42 @@ void	init_phase(t_data	*data)
 	data->map_exists = 0;
 }
 
+static int	to_parse_one(t_data	*data, char	*buffer)
+{
+	if (buffer[data->scroller] == 'N' || buffer[data->scroller] \
+		== 'S' \
+		|| buffer[data->scroller] == 'E' || \
+			buffer[data->scroller] == 'W')
+	{
+		if (!pa_wallpapers(data, buffer))
+			return (0);
+	}
+	return (1);
+}
+
+static int	to_parse_two(t_data	*data, char	*buffer)
+{
+	if (buffer[data->scroller] == 'F' || \
+		buffer[data->scroller] == 'C')
+	{
+		if (!pa_colors(data, buffer))
+			return (0);
+	}
+	return (1);
+}
+
+static int	to_parse_three(t_data	*data, char	*buffer)
+{
+	printf("test\n");
+	if (buffer[data->scroller] >= '0' && \
+		buffer[data->scroller] <= '9')
+	{
+		data->fd_section = 1;
+		return (1);
+	}
+	return (0);
+}
+
 int	to_parse(t_data	*data, char	*buffer)
 {
 	data->scroller = 0;
@@ -60,26 +96,32 @@ int	to_parse(t_data	*data, char	*buffer)
 			while (buffer[data->scroller] && (buffer[data->scroller] >= 33 && \
 				buffer[data->scroller] <= 126) && data->fd_section == 0)
 			{
-				if (buffer[data->scroller] == 'N' || buffer[data->scroller] \
-					== 'S' \
-					|| buffer[data->scroller] == 'E' || \
-						buffer[data->scroller] == 'W')
-				{
-					if (!pa_wallpapers(data, buffer))
-						return (0);
-				}
-				else if (buffer[data->scroller] == 'F' || \
-					buffer[data->scroller] == 'C')
-				{
-					if (!pa_colors(data, buffer))
-						return (0);
-				}
-				else if (buffer[data->scroller] >= '0' && \
-					buffer[data->scroller] <= '9')
-				{
-					data->fd_section = 1;
+				if (!to_parse_one(data, buffer))
+					return (0);
+				// if (buffer[data->scroller] == 'N' || buffer[data->scroller] \
+				// 	== 'S' \
+				// 	|| buffer[data->scroller] == 'E' || \
+				// 		buffer[data->scroller] == 'W')
+				// {
+				// 	if (!pa_wallpapers(data, buffer))
+				// 		return (0);
+				// }
+				else if (!to_parse_two(data, buffer))
+					return (0);
+				// else if (buffer[data->scroller] == 'F' || \
+				// 	buffer[data->scroller] == 'C')
+				// {
+				// 	if (!pa_colors(data, buffer))
+				// 		return (0);
+				// }
+				else if (to_parse_three(data, buffer))
 					return (1);
-				}
+				// else if (buffer[data->scroller] >= '0' && \
+				// 	buffer[data->scroller] <= '9')
+				// {
+				// 	data->fd_section = 1;
+				// 	return (1);
+				// }
 				else if (buffer[data->scroller] >= 33 && \
 					buffer[data->scroller] <= 126)
 					return (0);

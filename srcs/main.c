@@ -82,6 +82,7 @@ int	main(int argc, char	**argv)
 		the_end(&data, 4);
 		return (0);
 	}
+	
 	the_end(&data, 0);
 	printf("bravo\n");
 	return (0);
