@@ -6,7 +6,7 @@
 /*   By: hmarconn <hmarconn@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/23 16:24:30 by hmarconn          #+#    #+#             */
-/*   Updated: 2023/01/23 16:26:03 by hmarconn         ###   ########.fr       */
+/*   Updated: 2023/01/25 15:48:08 by hmarconn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ static int	the_map_filler_util(t_data	*data, char	*buffer, int len)
 	}
 	if (len == 1 && (buffer[0] == '\n' && data->mapper->high_point == 0))
 		data->mapper->high_point = data->y;
-	x = 0;
+	// x = 0;
 	if (len == 1)
 		data->mapper->height = x;
 	data->mapper->map[data->y] = ft_calloc(len + 1, sizeof(char));

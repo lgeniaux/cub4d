@@ -6,7 +6,7 @@
 /*   By: hmarconn <hmarconn@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 19:07:04 by hmarconn          #+#    #+#             */
-/*   Updated: 2023/01/24 14:52:46 by hmarconn         ###   ########.fr       */
+/*   Updated: 2023/01/25 14:57:19 by hmarconn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,20 @@ static int	pa_floors_step(t_data	*data, char	*buffer, int i)
 	return (1);
 }
 
+static int	pa_floors_firstphase(t_data	*data, char	*buffer)
+{
+	if (data->mapper->floors == 1)
+	{
+		free(buffer);
+		return (0);
+	}
+	while (buffer[data->scroller] < '0' || buffer[data->scroller] > '9')
+		data->scroller++;
+	return (1);
+}
+
+
+
 int	pa_floors(t_data	*data, char	*buffer)
 {
 	int		len;
@@ -67,13 +81,8 @@ int	pa_floors(t_data	*data, char	*buffer)
 	int		i;
 
 	i = 0;
-	if (data->mapper->floors == 1)
-	{
-		free(buffer);
+	if (!pa_floors_firstphase(data, buffer))
 		return (0);
-	}
-	while (buffer[data->scroller] < '0' || buffer[data->scroller] > '9')
-		data->scroller++;
 	while (buffer[data->scroller] && (buffer[data->scroller] >= '0' && \
 		buffer[data->scroller] <= '9') && i < 3)
 	{
