@@ -57,6 +57,19 @@ int	secondhand_main(t_data	*data, char	*doc)
 	return (1);
 }
 
+static int	elements_verification(t_data	*data)
+{
+	if (data->mapper->floors == 0 || data->mapper->ceilings == 0 || \
+		data->mapper->north_wall == 0 || data->mapper->south_wall == 0 || \
+			data->mapper->east_wall == 0 || data->mapper->west_wall == 0 || \
+				data->mapper->player == 0)
+	{
+		the_end(data, 4);
+		return (0);
+	}
+	return (1);
+}
+
 int	main(int argc, char	**argv)
 {
 	t_data	data;
@@ -74,15 +87,8 @@ int	main(int argc, char	**argv)
 		the_end(&data, 3);
 		exit (42);
 	}
-	if (data.mapper->floors == 0 || data.mapper->ceilings == 0 || \
-		data.mapper->north_wall == 0 || data.mapper->south_wall == 0 || \
-			data.mapper->east_wall == 0 || data.mapper->west_wall == 0 || \
-				data.mapper->player == 0)
-	{
-		the_end(&data, 4);
+	if (!elements_verification(&data))
 		return (0);
-	}
-	
 	the_end(&data, 0);
 	printf("bravo\n");
 	return (0);

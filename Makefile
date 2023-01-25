@@ -54,7 +54,8 @@ SRCS = ./srcs/parsing.c \
 	./srcs/pa_genmap_utils.c \
 	./srcs/pa_wall_parser_utils.c \
 	./srcs/main.c \
-	./srcs/wp_utils.c
+	./srcs/wp_utils.c \
+	./srcs/parsing_complementaries.c
 
 MAKE = make
 
