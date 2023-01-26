@@ -6,7 +6,7 @@
 /*   By: hmarconn <hmarconn@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/23 16:24:30 by hmarconn          #+#    #+#             */
-/*   Updated: 2023/01/26 17:47:46 by hmarconn         ###   ########.fr       */
+/*   Updated: 2023/01/26 18:55:39 by hmarconn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ static void	filler_secondutil(t_data	*data, char	*buffer, int x)
 	data->y++;
 }
 
-static int	the_map_filler_util(t_data	*data, char	*buffer, int len)
+static int	the_map_filler_util(t_data	*data, char	*buffer, int len) //TODO mettre le premier while dans une fonction a part
 {
 	int	x;
 
@@ -40,7 +40,7 @@ static int	the_map_filler_util(t_data	*data, char	*buffer, int len)
 	}
 	if (len == 1 && (buffer[0] == '\n' && data->mapper->high_point == 0))
 		data->mapper->high_point = data->y;
-	// x = 0; //! je ne sais plus ce que ç fait, je n'ose pas le supprimer
+	// x = 0; //! je ne sais plus ce que ça fait, je n'ose pas le supprimer
 	if (len == 1)
 		data->mapper->height = x;
 	data->mapper->map[data->y] = ft_calloc(len + 1, sizeof(char));

@@ -6,7 +6,7 @@
 /*   By: hmarconn <hmarconn@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/25 14:00:24 by hmarconn          #+#    #+#             */
-/*   Updated: 2023/01/26 17:45:53 by hmarconn         ###   ########.fr       */
+/*   Updated: 2023/01/26 18:54:36 by hmarconn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ static int	to_parse_three(t_data	*data, char	*buffer)
 	return (0);
 }
 
-int	to_parse(t_data	*data, char	*buffer)
+int	to_parse(t_data	*data, char	*buffer) //TODO mettre le while d début dans une fonction a part
 {
 	data->scroller = 0;
 	data->i++;

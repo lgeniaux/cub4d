@@ -6,7 +6,7 @@
 /*   By: hmarconn <hmarconn@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/18 16:32:47 by hmarconn          #+#    #+#             */
-/*   Updated: 2023/01/26 17:36:36 by hmarconn         ###   ########.fr       */
+/*   Updated: 2023/01/26 18:53:20 by hmarconn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ static int	pa_ceiling_saveplace(t_data	*data, char	*buffer)
 	return (1);
 }
 
-int	pa_ceiling(t_data	*data, char	*buffer)
+int	pa_ceiling(t_data	*data, char	*buffer) //! 36 lignes
 {
 	int		len;
 	int		i;
@@ -109,4 +109,4 @@ int	pa_ceiling(t_data	*data, char	*buffer)
 	if (!pa_ceiling_steptwo(data, buffer, i))
 		return (0);
 	return (1);
-}
+} //! 36 Lignes

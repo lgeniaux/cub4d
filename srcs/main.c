@@ -28,7 +28,7 @@ int	fd_check(char	*doc)
 	return (1);
 }
 
-int	secondhand_main(t_data	*data, char	*doc)
+int	secondhand_main(t_data	*data, char	*doc) //TODO Mettre le GnL a part pour réduire un peu la fonction
 {
 	int		fd;
 	char	*buff;
