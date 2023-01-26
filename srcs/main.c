@@ -55,6 +55,11 @@ int	secondhand_main(t_data	*data, char	*doc)
 	}
 	free(buff);
 	close(fd);
+	if (data->fd_section == 0)
+	{
+		the_end(data, 5);
+		return (0);
+	}
 	return (1);
 }
 
@@ -82,7 +87,6 @@ int	main(int argc, char	**argv)
 	init_phase(&data);
 	if (!secondhand_main(&data, argv[1]))
 		return (0);
-	// data.map_exists = 1; 
 	if (!the_map_parser(&data))
 	{
 		the_end(&data, 3);

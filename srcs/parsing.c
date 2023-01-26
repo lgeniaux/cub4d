@@ -6,7 +6,7 @@
 /*   By: hmarconn <hmarconn@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/15 17:26:03 by hmarconn          #+#    #+#             */
-/*   Updated: 2023/01/25 14:02:40 by hmarconn         ###   ########.fr       */
+/*   Updated: 2023/01/26 17:46:39 by hmarconn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,21 +44,4 @@ void	init_phase(t_data	*data)
 	data->mapper->player = 0;
 	data->mapper->high_point = 0;
 	data->map_exists = 0;
-}
-
-void	the_tester(t_data	*data)
-{
-	int	y;
-
-	y = 0;
-	printf("F :%d %d %d\nC :%d %d %d\n", data->mapper->floor[0], \
-		data->mapper->floor[1], data->mapper->floor[2], \
-			data->mapper->ceiling[0], data->mapper->ceiling[1], \
-				data->mapper->ceiling[2]);
-	printf("%d\n", data->mapper->height);
-	while (y < data->mapper->high_point)
-	{
-		printf("%s\n", data->mapper->map[y]);
-		y++;
-	}
 }

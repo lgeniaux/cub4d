@@ -6,7 +6,7 @@
 /*   By: hmarconn <hmarconn@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 19:09:04 by hmarconn          #+#    #+#             */
-/*   Updated: 2023/01/26 14:42:45 by hmarconn         ###   ########.fr       */
+/*   Updated: 2023/01/26 17:46:59 by hmarconn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,8 @@ void	print_type(int type)
 		printf("Error\nInvalid Map\n");
 	else if (type == 4)
 		printf("Error\nMissing informations\n");
+	else if (type == 5)
+		printf("Error\nMap not found\n");
 }
 
 void	the_end(t_data	*data, int type)
@@ -45,26 +47,13 @@ void	the_end(t_data	*data, int type)
 	int	y;
 
 	y = 0;
-	printf("bonjour\n");
-	while (y < data->mapper->height)
-	{
-		printf("%s\n", data->mapper->map[y]);
-		y++;
-	}
-	y = 0;
 	print_type(type);
 	if (data->map_exists == 1)
 	{
-		printf("tester %i, %i\n", data->mapper->height, data->mapper->high_point);
-		while (y <= data->mapper->high_point)
+		while (y < data->mapper->high_point)
 		{
-			printf("ici %i\n", y);
 			if (data->mapper->map[y] != NULL)
-			{
-				printf("la %i\n", y);
 				free(data->mapper->map[y]);
-			}
-			printf("cool\n");
 			y++;
 		}
 		free(data->mapper->map);

@@ -6,7 +6,7 @@
 /*   By: hmarconn <hmarconn@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/25 14:00:24 by hmarconn          #+#    #+#             */
-/*   Updated: 2023/01/26 15:06:57 by hmarconn         ###   ########.fr       */
+/*   Updated: 2023/01/26 17:45:53 by hmarconn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,6 @@ static int	to_parse_two(t_data	*data, char	*buffer)
 
 static int	to_parse_three(t_data	*data, char	*buffer)
 {
-	printf("test\n");
 	if (buffer[data->scroller] >= '0' && \
 		buffer[data->scroller] <= '9')
 	{
@@ -63,22 +62,15 @@ int	to_parse(t_data	*data, char	*buffer)
 				buffer[data->scroller] <= 126) && data->fd_section == 0)
 			{
 				if (!to_parse_one(data, buffer))
-				{
-					printf("chat\n");
 					return (0);
-				}
 				else if (!to_parse_two(data, buffer))
-				{
-					printf("chien\n");
 					return (0);
-				}
 				else if (to_parse_three(data, buffer))
 					return (1);
 				else if (buffer[data->scroller] >= 33 && \
 					buffer[data->scroller] <= 126)
 				{
-					printf("chouchou\n");
-					free(buffer);		
+					free(buffer);
 					return (0);
 				}
 			}

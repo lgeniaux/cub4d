@@ -33,7 +33,7 @@ DEPEXT      := d
 OBJEXT      := o
 
 #Flags, Libraries and Includes
-# CFLAGS      := -Wall -Wextra -Werror
+#CFLAGS      := -Wall -Wextra -Werror
 CFLAGS      := -Wall -Wextra -Werror -fsanitize=address -g3
 # SANITIZE    := -fsanitize=address
 # LLDBFLAG    := -g3

@@ -6,7 +6,7 @@
 /*   By: hmarconn <hmarconn@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 19:07:04 by hmarconn          #+#    #+#             */
-/*   Updated: 2023/01/26 14:57:55 by hmarconn         ###   ########.fr       */
+/*   Updated: 2023/01/26 17:47:55 by hmarconn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,8 +70,6 @@ static int	pa_floors_firstphase(t_data	*data, char	*buffer)
 	return (1);
 }
 
-
-
 int	pa_floors(t_data	*data, char	*buffer)
 {
 	int		len;
@@ -88,7 +86,6 @@ int	pa_floors(t_data	*data, char	*buffer)
 	{
 		pin = data->scroller;
 		len = pa_floors_length(data, buffer);
-		printf("2\n");
 		tmp = ft_calloc(len + 1, sizeof(char));
 		if (!tmp)
 			exit (52);
@@ -96,7 +93,6 @@ int	pa_floors(t_data	*data, char	*buffer)
 		while (pan < len)
 			tmp[pan++] = buffer[pin++];
 		tmp[pan] = '\0';
-		printf("%s\n", tmp);
 		if (!pa_floorcolorcheck(data, tmp, i))
 		{
 			if (buffer != NULL)

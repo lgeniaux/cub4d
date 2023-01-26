@@ -6,7 +6,7 @@
 /*   By: hmarconn <hmarconn@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/23 16:24:30 by hmarconn          #+#    #+#             */
-/*   Updated: 2023/01/26 14:06:18 by hmarconn         ###   ########.fr       */
+/*   Updated: 2023/01/26 17:47:46 by hmarconn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,6 @@ static int	the_map_filler_util(t_data	*data, char	*buffer, int len)
 	int	x;
 
 	x = 0;
-	printf("ici les valeurs sont x= %i, height= %i, len=%i\n", x, data->mapper->height, len);
 	if ((buffer[0] < 33 || buffer[0] > 126) && (buffer[0] != '\0' && \
 		buffer[0] != '\n'))
 	{
@@ -41,14 +40,12 @@ static int	the_map_filler_util(t_data	*data, char	*buffer, int len)
 	}
 	if (len == 1 && (buffer[0] == '\n' && data->mapper->high_point == 0))
 		data->mapper->high_point = data->y;
-	// x = 0;
+	// x = 0; //! je ne sais plus ce que ç fait, je n'ose pas le supprimer
 	if (len == 1)
 		data->mapper->height = x;
-	printf("4\n");
 	data->mapper->map[data->y] = ft_calloc(len + 1, sizeof(char));
 	if (!data->mapper->map[data->y])
 		return (0);
-	printf("%s\n", data->mapper->map[data->y]);
 	filler_secondutil(data, buffer, x);
 	return (1);
 }
