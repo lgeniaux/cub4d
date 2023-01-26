@@ -6,7 +6,7 @@
 /*   By: hmarconn <hmarconn@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 16:54:45 by hmarconn          #+#    #+#             */
-/*   Updated: 2023/01/23 11:49:55 by hmarconn         ###   ########.fr       */
+/*   Updated: 2023/01/26 14:20:55 by hmarconn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ void	pa_wallbuilder(t_data	*data, char	*buffer, int wall)
 	pan = 0;
 	pin = data->scroller;
 	len = pa_getlen(data, buffer);
+	printf("3\n");
 	tmp = ft_calloc(len + 1, sizeof(char));
 	if (!tmp)
 		exit (52);
@@ -54,6 +55,7 @@ void	pa_wallbuilder(t_data	*data, char	*buffer, int wall)
 		tmp[pan++] = buffer[pin++];
 	tmp[pan] = '\0';
 	data->mapper->walls[wall] = ft_strdup(tmp);
+	printf("%s\n", tmp);
 	free(tmp);
 	pa_wallsupervision(data, wall);
 }

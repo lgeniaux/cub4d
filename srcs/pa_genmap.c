@@ -6,7 +6,7 @@
 /*   By: hmarconn <hmarconn@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/22 11:37:43 by hmarconn          #+#    #+#             */
-/*   Updated: 2023/01/25 15:14:17 by hmarconn         ###   ########.fr       */
+/*   Updated: 2023/01/26 14:45:51 by hmarconn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,10 +44,11 @@ static int	the_map_maker(t_data *data)
 	i = the_map_maker_util(data, i);
 	free(data->buff);
 	close(data->fd);
-	printf("%i\n", data->mapper->height);
+	printf("ypupi %i\n", data->mapper->height);
 	data->mapper->map = malloc(sizeof(char *) * data->mapper->height + 1);
 	if (!data->mapper->map)
 		return (0);
+	data->map_exists = 1;
 	data->mapper->map[data->mapper->height - 1] = NULL;
 	return (1);
 }

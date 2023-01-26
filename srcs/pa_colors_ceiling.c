@@ -6,7 +6,7 @@
 /*   By: hmarconn <hmarconn@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/18 16:32:47 by hmarconn          #+#    #+#             */
-/*   Updated: 2023/01/24 17:38:57 by hmarconn         ###   ########.fr       */
+/*   Updated: 2023/01/26 14:58:27 by hmarconn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ int	pa_ceilingcolorcheck(t_data	*data, char	*tmp, int i)
 		if (!third_ceiling(data, tmp))
 			return (0);
 	}
+	printf("message %s\n", tmp);
 	free(tmp);
 	tmp = NULL;
 	return (1);
@@ -89,14 +90,20 @@ int	pa_ceiling(t_data	*data, char	*buffer)
 		pan = 0;
 		pin = data->scroller;
 		len = pa_ceiling_length(data, buffer);
+		printf("1\n");
 		tmp = ft_calloc(len + 1, sizeof(char));
 		if (!tmp)
 			exit (52);
+		printf("bille\n");
 		while (pan < len)
 			tmp[pan++] = buffer[pin++];
 		tmp[pan] = '\0';
 		if (!pa_ceilingcolorcheck(data, tmp, i))
+		{
+			if (buffer != NULL)
+				free(buffer);
 			return (0);
+		}
 		tmp = NULL;
 		if (buffer[data->scroller] == ',')
 			data->scroller++;

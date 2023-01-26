@@ -6,7 +6,7 @@
 /*   By: hmarconn <hmarconn@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 19:09:04 by hmarconn          #+#    #+#             */
-/*   Updated: 2023/01/25 19:03:39 by hmarconn         ###   ########.fr       */
+/*   Updated: 2023/01/26 14:42:45 by hmarconn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ void	the_end(t_data	*data, int type)
 	int	y;
 
 	y = 0;
+	printf("bonjour\n");
 	while (y < data->mapper->height)
 	{
 		printf("%s\n", data->mapper->map[y]);
@@ -55,9 +56,9 @@ void	the_end(t_data	*data, int type)
 	if (data->map_exists == 1)
 	{
 		printf("tester %i, %i\n", data->mapper->height, data->mapper->high_point);
-		while (y < data->mapper->high_point)
+		while (y <= data->mapper->high_point)
 		{
-			printf("ici\n");
+			printf("ici %i\n", y);
 			if (data->mapper->map[y] != NULL)
 			{
 				printf("la %i\n", y);

@@ -33,7 +33,8 @@ int	secondhand_main(t_data	*data, char	*doc)
 	int		fd;
 	char	*buff;
 
-	fd_check(doc);
+	if (!fd_check(doc))
+		return (0);
 	data->doc = doc;
 	fd = open(doc, O_RDONLY);
 	if (fd <= 0)
@@ -81,7 +82,7 @@ int	main(int argc, char	**argv)
 	init_phase(&data);
 	if (!secondhand_main(&data, argv[1]))
 		return (0);
-	data.map_exists = 1;
+	// data.map_exists = 1; 
 	if (!the_map_parser(&data))
 	{
 		the_end(&data, 3);
