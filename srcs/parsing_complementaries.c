@@ -6,7 +6,7 @@
 /*   By: hmarconn <hmarconn@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/25 14:00:24 by hmarconn          #+#    #+#             */
-/*   Updated: 2023/01/26 18:54:36 by hmarconn         ###   ########.fr       */
+/*   Updated: 2023/01/30 18:13:19 by hmarconn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,18 @@ static int	to_parse_three(t_data	*data, char	*buffer)
 	return (0);
 }
 
-int	to_parse(t_data	*data, char	*buffer) //TODO mettre le while d début dans une fonction a part
+static int	to_parse_four(t_data	*data, char	*buffer)
+{
+	if (buffer[data->scroller] >= 33 && \
+		buffer[data->scroller] <= 126)
+	{
+		free(buffer);
+		return (0);
+	}
+	return (1);
+}
+
+int	to_parse(t_data	*data, char	*buffer)
 {
 	data->scroller = 0;
 	data->i++;
@@ -55,9 +66,7 @@ int	to_parse(t_data	*data, char	*buffer) //TODO mettre le while d début dans un
 	{
 		if (data->fd_section == 0)
 		{
-			while (buffer[data->scroller] && buffer[data->scroller] != '\0' && \
-				(buffer[data->scroller] < 33 || buffer[data->scroller] > 126))
-				data->scroller++;
+			toparse_scroll(data, buffer);
 			while (buffer[data->scroller] && (buffer[data->scroller] >= 33 && \
 				buffer[data->scroller] <= 126) && data->fd_section == 0)
 			{
@@ -67,12 +76,8 @@ int	to_parse(t_data	*data, char	*buffer) //TODO mettre le while d début dans un
 					return (0);
 				else if (to_parse_three(data, buffer))
 					return (1);
-				else if (buffer[data->scroller] >= 33 && \
-					buffer[data->scroller] <= 126)
-				{
-					free(buffer);
+				else if (!to_parse_four(data, buffer))
 					return (0);
-				}
 			}
 		}
 	}

@@ -6,7 +6,7 @@
 /*   By: hmarconn <hmarconn@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/15 17:26:35 by hmarconn          #+#    #+#             */
-/*   Updated: 2023/01/25 14:05:06 by hmarconn         ###   ########.fr       */
+/*   Updated: 2023/01/30 18:13:33 by hmarconn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,5 +96,6 @@ int		third_ceiling(t_data *data, char	*tmp);
 int		the_map_parser(t_data	*data);
 int		the_map_filler(t_data	*data, char	*buffer);
 void	the_end(t_data	*data, int type);
+void	toparse_scroll(t_data	*data, char	*buffer);
 
 #endif

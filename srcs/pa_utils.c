@@ -6,11 +6,18 @@
 /*   By: hmarconn <hmarconn@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 19:09:04 by hmarconn          #+#    #+#             */
-/*   Updated: 2023/01/26 17:46:59 by hmarconn         ###   ########.fr       */
+/*   Updated: 2023/01/30 18:13:15 by hmarconn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../incs/cube.h"
+
+void	toparse_scroll(t_data	*data, char	*buffer)
+{
+	while (buffer[data->scroller] && buffer[data->scroller] != '\0' && \
+		(buffer[data->scroller] < 33 || buffer[data->scroller] > 126))
+		data->scroller++;
+}
 
 int	pa_getlen(t_data	*data, char	*buffer)
 {

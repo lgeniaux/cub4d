@@ -6,7 +6,7 @@
 /*   By: hmarconn <hmarconn@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/23 16:24:30 by hmarconn          #+#    #+#             */
-/*   Updated: 2023/01/26 18:55:39 by hmarconn         ###   ########.fr       */
+/*   Updated: 2023/01/30 17:02:36 by hmarconn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,19 @@ static void	filler_secondutil(t_data	*data, char	*buffer, int x)
 	data->y++;
 }
 
-static int	the_map_filler_util(t_data	*data, char	*buffer, int len) //TODO mettre le premier while dans une fonction a part
+static int	mapfiller_scroller(char	*buffer, int len)
+{
+	int	x;
+
+	x = 0;
+	while (x < len && buffer[x] != '1' && buffer[x] != '0' && \
+		buffer[x] != 'N' && buffer[x] != 'S' && buffer[x] != 'E' && \
+			buffer[x] != 'W')
+		x++;
+	return (x);
+}
+
+static int	the_map_filler_util(t_data	*data, char	*buffer, int len)
 {
 	int	x;
 
@@ -31,10 +43,7 @@ static int	the_map_filler_util(t_data	*data, char	*buffer, int len) //TODO mettr
 	if ((buffer[0] < 33 || buffer[0] > 126) && (buffer[0] != '\0' && \
 		buffer[0] != '\n'))
 	{
-		while (x < len && buffer[x] != '1' && buffer[x] != '0' && \
-			buffer[x] != 'N' && buffer[x] != 'S' && buffer[x] != 'E' && \
-				buffer[x] != 'W')
-			x++;
+		x = mapfiller_scroller(buffer, len);
 		if (x == len && data->mapper->high_point == 0)
 			data->mapper->high_point = data->y;
 	}

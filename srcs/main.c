@@ -28,20 +28,8 @@ int	fd_check(char	*doc)
 	return (1);
 }
 
-int	secondhand_main(t_data	*data, char	*doc) //TODO Mettre le GnL a part pour rÃ©duire un peu la fonction
+int	read_fd(t_data	*data, char	*buff, int fd)
 {
-	int		fd;
-	char	*buff;
-
-	if (!fd_check(doc))
-		return (0);
-	data->doc = doc;
-	fd = open(doc, O_RDONLY);
-	if (fd <= 0)
-	{
-		the_end(data, 1);
-		exit (42);
-	}
 	buff = get_next_line(fd);
 	while (buff && data->fd_section == 0)
 	{	
@@ -55,6 +43,27 @@ int	secondhand_main(t_data	*data, char	*doc) //TODO Mettre le GnL a part pour rÃ
 	}
 	free(buff);
 	close(fd);
+	data->y = 0;
+	return (1);
+}
+
+int	secondhand_main(t_data	*data, char	*doc)
+{
+	int		fd;
+	char	*buff;
+
+	buff = NULL;
+	if (!fd_check(doc))
+		return (0);
+	data->doc = doc;
+	fd = open(doc, O_RDONLY);
+	if (fd <= 0)
+	{
+		the_end(data, 1);
+		exit (42);
+	}
+	if (!read_fd(data, buff, fd))
+		return (0);
 	if (data->fd_section == 0)
 	{
 		the_end(data, 5);
