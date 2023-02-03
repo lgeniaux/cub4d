@@ -33,8 +33,8 @@ DEPEXT      := d
 OBJEXT      := o
 
 #Flags, Libraries and Includes
-#CFLAGS      := -Wall -Wextra -Werror
-CFLAGS      := -Wall -Wextra -Werror -fsanitize=address -g3
+CFLAGS      := -Wall -Wextra -Werror
+#CFLAGS      := -Wall -Wextra -Werror -fsanitize=address -g3
 # SANITIZE    := -fsanitize=address
 # LLDBFLAG    := -g3
 LIBFT_PATH  := ./libs/libft/libft.a
@@ -75,7 +75,7 @@ git:
 	@git push
 
 $(NAME): $(OBJS) $(HEADER) Makefile
-		$(CC) $(CFLAGS) $(LIBFT_PATH) $(OBJS) -o $(NAME)
+		$(CC) $(CFLAGS) $(OBJS) $(LIBFT_PATH) -o $(NAME)
 		@echo "\x1b[35m\x1b[34m**********\t\tDONE\t\t**********"
 
 # $(NAME): $(OBJS) $(HEADER) Makefile

@@ -72,7 +72,6 @@ int	the_wall_parser(t_data	*data)
 	int	y;
 	int	x;
 	int	len;
-	int	last_len;
 
 	y = 0;
 	len = 0;
@@ -86,7 +85,6 @@ int	the_wall_parser(t_data	*data)
 		{
 			if (!wall_parser_util(data, len, x, y))
 				return (0);
-			last_len = len;
 			x++;
 		}	
 		y++;

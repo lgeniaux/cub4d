@@ -70,41 +70,69 @@ static int	pa_floors_firstphase(t_data	*data, char	*buffer)
 	return (1);
 }
 
-int	pa_floors(t_data	*data, char	*buffer)
+int	test(t_data	*data, char	*buffer, int	*points, char	*tmp)
 {
-	int		len;
-	int		pin;
-	int		pan;
-	char	*tmp;
-	int		i;
+	int	len;
 
-	i = 0;
-	if (!pa_floors_firstphase(data, buffer))
-		return (0);
 	while (buffer[data->scroller] && (buffer[data->scroller] >= '0' && \
-		buffer[data->scroller] <= '9') && i < 3)
+		buffer[data->scroller] <= '9') && points[2] < 3)
 	{
-		pin = data->scroller;
+		points[0] = data->scroller;
 		len = pa_floors_length(data, buffer);
 		tmp = ft_calloc(len + 1, sizeof(char));
 		if (!tmp)
 			exit (52);
-		pan = 0;
-		while (pan < len)
-			tmp[pan++] = buffer[pin++];
-		tmp[pan] = '\0';
-		if (!pa_floorcolorcheck(data, tmp, i))
+		points[1] = 0;
+		while (points[1] < len)
+			tmp[points[1]++] = buffer[points[0]++];
+		tmp[points[1]] = '\0';
+		if (!pa_floorcolorcheck(data, tmp, points[2]))
 		{
-			if (buffer != NULL)
-				free(buffer);
+			free(buffer);
 			return (0);
 		}
 		tmp = NULL;
-		if (buffer[data->scroller] == ',')
-			data->scroller++;
-		i++;
+		data->scroller += buffer[data->scroller] == ',';
+		points[2]++;
 	}
-	if (!pa_floors_step(data, buffer, i))
+	return (1);
+}
+
+int	pa_floors(t_data	*data, char	*buffer)
+{
+	int		points[3];
+	char	*tmp;
+
+	points[0] = 0;
+	points[1] = 0;
+	points[2] = 0;
+	tmp = NULL;
+	if (!pa_floors_firstphase(data, buffer))
+		return (0);
+	if (!test(data, buffer, points, tmp))
+		return (0);
+	// while (buffer[data->scroller] && (buffer[data->scroller] >= '0' && \
+	// 	buffer[data->scroller] <= '9') && i < 3)
+	// {
+	// 	pin = data->scroller;
+	// 	len = pa_floors_length(data, buffer);
+	// 	tmp = ft_calloc(len + 1, sizeof(char));
+	// 	if (!tmp)
+	// 		exit (52);
+	// 	pan = 0;
+	// 	while (pan < len)
+	// 		tmp[pan++] = buffer[pin++];
+	// 	tmp[pan] = '\0';
+	// 	if (!pa_floorcolorcheck(data, tmp, i))
+	// 	{
+	// 		free(buffer);
+	// 		return (0);
+	// 	}
+	// 	tmp = NULL;
+	// 	data->scroller += buffer[data->scroller] == ',';
+	// 	i++;
+	// }
+	if (!pa_floors_step(data, buffer, points[2]))
 		return (0);
 	return (1);
 }

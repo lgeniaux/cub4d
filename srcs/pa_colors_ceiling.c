@@ -71,22 +71,22 @@ static int	pa_ceiling_saveplace(t_data	*data, char	*buffer)
 	return (1);
 }
 
-static int	test(t_data	*data, char	*buffer, int pin, int pan, char	*tmp)
+static int	test(t_data	*data, char	*buffer, int *points, char	*tmp)
 {
 	int	len;
-	
+
 	while (buffer[data->scroller] && (buffer[data->scroller] >= '0' && \
 		buffer[data->scroller] <= '9') && data->y < 3)
 	{
-		pan = 0;
-		pin = data->scroller;
+		points[1] = 0;
+		points[0] = data->scroller;
 		len = pa_ceiling_length(data, buffer);
 		tmp = ft_calloc(len + 1, sizeof(char));
 		if (!tmp)
 			exit (52);
-		while (pan < len)
-			tmp[pan++] = buffer[pin++];
-		tmp[pan] = '\0';
+		while (points[1] < len)
+			tmp[points[1]++] = buffer[points[0]++];
+		tmp[points[1]] = '\0';
 		if (!pa_ceilingcolorcheck(data, tmp, data->y))
 		{
 			if (buffer != NULL)
@@ -94,95 +94,27 @@ static int	test(t_data	*data, char	*buffer, int pin, int pan, char	*tmp)
 			return (0);
 		}
 		tmp = NULL;
-		if (buffer[data->scroller] == ',')
-			data->scroller++;
+		data->scroller += buffer[data->scroller] == ',';
 		data->y++;
 	}
 	return (1);
 }
 
-int	pa_ceiling(t_data	*data, char	*buffer) //! 36 lignes
+int	pa_ceiling(t_data	*data, char	*buffer)
 {
-	int		len;
-	int		pin;
-	int		pan;
 	char	*tmp;
+	int		points[2];
 
-	len = 0;
-	pin = 0;
-	pan = 0;
+	points[0] = 0;
+	points[1] = 0;
 	tmp = NULL;
 	printf("%i, %i, %i\n", data->scroller, data->i, data->y);
 	if (!pa_ceiling_saveplace(data, buffer))
 		return (0);
-	if (!test(data, buffer, pin, pan, tmp))
+	if (!test(data, buffer, points, tmp))
 		return (0);
-	// while (buffer[data->scroller] && (buffer[data->scroller] >= '0' && \
-	// 	buffer[data->scroller] <= '9') && i < 3)
-	// {
-	// 	pan = 0;
-	// 	pin = data->scroller;
-	// 	len = pa_ceiling_length(data, buffer);
-	// 	tmp = ft_calloc(len + 1, sizeof(char));
-	// 	if (!tmp)
-	// 		exit (52);
-	// 	while (pan < len)
-	// 		tmp[pan++] = buffer[pin++];
-	// 	tmp[pan] = '\0';
-	// 	if (!pa_ceilingcolorcheck(data, tmp, i))
-	// 	{
-	// 		if (buffer != NULL)
-	// 			free(buffer);
-	// 		return (0);
-	// 	}
-	// 	tmp = NULL;
-	// 	if (buffer[data->scroller] == ',')
-	// 		data->scroller++;
-	// 	i++;
-	// }
 	if (!pa_ceiling_steptwo(data, buffer, data->y))
 		return (0);
 	data->y = 0;
 	return (1);
 }
-
-// int	pa_ceiling(t_data	*data, char	*buffer) //! 36 lignes
-// {
-// 	int		len;
-// 	int		i;
-// 	int		pin;
-// 	int		pan;
-// 	char	*tmp;
-
-// 	len = 0;
-// 	i = 0;
-// 	printf("%i, %i, %i\n", data->scroller, data->i, data->y);
-// 	if (!pa_ceiling_saveplace(data, buffer))
-// 		return (0);
-// 	while (buffer[data->scroller] && (buffer[data->scroller] >= '0' && \
-// 		buffer[data->scroller] <= '9') && i < 3)
-// 	{
-// 		pan = 0;
-// 		pin = data->scroller;
-// 		len = pa_ceiling_length(data, buffer);
-// 		tmp = ft_calloc(len + 1, sizeof(char));
-// 		if (!tmp)
-// 			exit (52);
-// 		while (pan < len)
-// 			tmp[pan++] = buffer[pin++];
-// 		tmp[pan] = '\0';
-// 		if (!pa_ceilingcolorcheck(data, tmp, i))
-// 		{
-// 			if (buffer != NULL)
-// 				free(buffer);
-// 			return (0);
-// 		}
-// 		tmp = NULL;
-// 		if (buffer[data->scroller] == ',')
-// 			data->scroller++;
-// 		i++;
-// 	}
-// 	if (!pa_ceiling_steptwo(data, buffer, i))
-// 		return (0);
-// 	return (1);
-// } //! 36 Lignes

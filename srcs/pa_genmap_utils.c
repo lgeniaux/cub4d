@@ -49,7 +49,6 @@ static int	the_map_filler_util(t_data	*data, char	*buffer, int len)
 	}
 	if (len == 1 && (buffer[0] == '\n' && data->mapper->high_point == 0))
 		data->mapper->high_point = data->y;
-	// x = 0; //! je ne sais plus ce que ça fait, je n'ose pas le supprimer
 	if (len == 1)
 		data->mapper->height = x;
 	data->mapper->map[data->y] = ft_calloc(len + 1, sizeof(char));

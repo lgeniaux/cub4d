@@ -27,13 +27,9 @@ static	int	the_map_maker_util(t_data	*data, int i)
 
 static int	the_map_maker(t_data *data)
 {
-	int	x;
-	int	y;
 	int	i;
 
 	i = 0;
-	x = 0;
-	y = 0;
 	data->buff = 0;
 	data->fd = 0;
 	data->mapper->height = 1;
