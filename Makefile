@@ -52,8 +52,7 @@ SRCS = ./srcs/parsing.c \
 	./srcs/pa_ceiling_utils.c \
 	./srcs/pa_floor_utils.c \
 	./srcs/pa_genmap_utils.c \
-	./srcs/pa_wall_parser_utils.c \
-	./srcs/main.c
+	./srcs/pa_wall_parser_utils.c
 
 MAKE = make
 
@@ -73,7 +72,7 @@ git:
 	@git push
 
 $(NAME): $(OBJS) $(HEADER) Makefile
-		$(CC) $(CFLAGS) $(LIBFT_PATH) $(OBJS) -o $(NAME)
+		$(CC) $(CFLAGS) $(OBJS) $(LIBFT_PATH) -o $(NAME) 
 		@echo "\x1b[35m\x1b[34m**********\t\tDONE\t\t**********"
 
 # $(NAME): $(OBJS) $(HEADER) Makefile
