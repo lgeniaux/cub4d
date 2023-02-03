@@ -37,7 +37,7 @@ char	*get_next_line(int fd)
 	while (!ft_strchr(gnl.stock, '\n') && gnl.file_size > 0)
 	{
 		gnl.file_size = read(fd, gnl.buff, BUFFER_SIZE);
-		if (gnl.file_size < 0)
+		if (gnl.file_size <= 0)
 			return (NULL);
 		gnl.buff[gnl.file_size] = '\0';
 		gnl.stock = ft_strjoingen(gnl.stock, gnl.buff);
