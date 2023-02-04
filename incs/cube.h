@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cube.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hmarconn <hmarconn@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: hmarconn <hmarconn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/15 17:26:35 by hmarconn          #+#    #+#             */
-/*   Updated: 2023/01/30 18:13:33 by hmarconn         ###   ########.fr       */
+/*   Updated: 2023/02/04 16:33:59 by hmarconn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,10 @@
 # include "../libs/mlx/mlx.h"
 # include "../libs/libft/libft.h"
 
-# define NORTH	0
-# define SOUTH	1
-# define EAST	2
-# define WEST	3
+# define NORTH	1
+# define SOUTH	2
+# define EAST	3
+# define WEST	4
 
 # define RED 0
 # define GREEN 1

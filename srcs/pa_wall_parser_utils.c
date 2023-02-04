@@ -3,14 +3,26 @@
 /*                                                        :::      ::::::::   */
 /*   pa_wall_parser_utils.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hmarconn <hmarconn@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: hmarconn <hmarconn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/23 16:28:38 by hmarconn          #+#    #+#             */
-/*   Updated: 2023/01/24 13:45:31 by hmarconn         ###   ########.fr       */
+/*   Updated: 2023/02/04 16:45:24 by hmarconn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../incs/cube.h"
+
+static void	set_player(t_data	*data, int x, int y)
+{
+	if (data->mapper->map[y][x] == 'N')
+		data->mapper->player = 1;
+	else if (data->mapper->map[y][x] == 'S')
+		data->mapper->player = 2;
+	else if (data->mapper->map[y][x] == 'E')
+		data->mapper->player = 3;
+	else if (data->mapper->player == 'W')
+		data->mapper->player = 4;
+}
 
 static int	wall_parser_second(t_data	*data, int len, int x, int y)
 {
@@ -54,9 +66,9 @@ static int	wall_parser_util(t_data	*data, int len, int x, int y)
 			== 'E' || data->mapper->map[y][x] == 'W')
 	{
 		if (!wall_parser_second(data, len, x, y))
-		{
 			return (0);
-		}
+		set_player(data, x, y);
+		
 	}
 	else if (data->mapper->map[y][x] != '1' && data->mapper->map[y][x] \
 		!= '\n' && data->mapper->map[y][x] != '\0' && \
