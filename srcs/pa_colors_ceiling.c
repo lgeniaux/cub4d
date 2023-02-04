@@ -3,36 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   pa_colors_ceiling.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hmarconn <hmarconn@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: hmarconn <hmarconn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/18 16:32:47 by hmarconn          #+#    #+#             */
-/*   Updated: 2023/01/30 18:21:31 by hmarconn         ###   ########.fr       */
+/*   Updated: 2023/02/04 16:53:09 by hmarconn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../incs/cube.h"
-
-int	pa_ceilingcolorcheck(t_data	*data, char	*tmp, int i)
-{
-	if (i == 0)
-	{
-		if (!first_ceiling(data, tmp))
-			return (0);
-	}
-	else if (i == 1)
-	{
-		if (!second_ceiling(data, tmp))
-			return (0);
-	}
-	else
-	{
-		if (!third_ceiling(data, tmp))
-			return (0);
-	}
-	free(tmp);
-	tmp = NULL;
-	return (1);
-}
 
 static int	pa_ceiling_length(t_data	*data, char	*buffer)
 {
