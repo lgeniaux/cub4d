@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_complementaries.c                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hmarconn <hmarconn@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: hmarconn <hmarconn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/25 14:00:24 by hmarconn          #+#    #+#             */
-/*   Updated: 2023/01/30 18:13:19 by hmarconn         ###   ########.fr       */
+/*   Updated: 2023/02/04 18:59:51 by hmarconn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ static int	to_parse_three(t_data	*data, char	*buffer)
 		buffer[data->scroller] <= '9')
 	{
 		data->fd_section = 1;
+		printf("scroller %i\n", data->i);
 		return (1);
 	}
 	return (0);

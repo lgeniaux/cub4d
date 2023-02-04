@@ -33,8 +33,8 @@ DEPEXT      := d
 OBJEXT      := o
 
 #Flags, Libraries and Includes
-CFLAGS      := -Wall -Wextra -Werror
-#CFLAGS      := -Wall -Wextra -Werror -fsanitize=address -g3
+#CFLAGS      := -Wall -Wextra -Werror
+CFLAGS      := -Wall -Wextra -Werror -fsanitize=address -g3
 # SANITIZE    := -fsanitize=address
 # LLDBFLAG    := -g3
 LIBFT_PATH  := ./libs/libft/libft.a
@@ -77,7 +77,7 @@ git:
 
 $(NAME): $(OBJS) $(HEADER) Makefile
 		$(CC) $(CFLAGS) $(OBJS) $(LIBFT_PATH) -o $(NAME)
-		@echo "\x1b[35m\x1b[34m**********\t\tDONE\t\t**********"
+		/bin/echo -e "\x1b[35m\x1b[34m**********\t\tDONE\t\t**********"
 
 # $(NAME): $(OBJS) $(HEADER) Makefile
 # 		$(CC) $(CFLAGS) $(LIBX) $(LIBFT_PATH) $(OBJS) -o $(NAME)
@@ -97,7 +97,7 @@ leslib:
 clean:
 		${MAKE} clean -C libs/libft/
 		${RM} ${OBJS}
-		@echo "\x1b[35m\x1b[36m**********\t\tCLEANED\t\t**********"
+		/bin/echo -e "\x1b[35m\x1b[36m**********\t\tCLEANED\t\t**********"
 
 # clean:
 # 		${MAKE} clean -C libs/libft/

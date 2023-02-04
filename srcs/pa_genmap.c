@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pa_genmap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hmarconn <hmarconn@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: hmarconn <hmarconn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/22 11:37:43 by hmarconn          #+#    #+#             */
-/*   Updated: 2023/01/26 17:36:01 by hmarconn         ###   ########.fr       */
+/*   Updated: 2023/02/04 19:06:24 by hmarconn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,18 @@
 
 static	int	the_map_maker_util(t_data	*data, int i)
 {
+	printf("T_T T_T %d\n", data->i);
 	while (data->buff)
 	{
 		free(data->buff);
 		data->buff = get_next_line(data->fd);
+		printf("Line: %s\n", data->buff);
+		// printf("%i, %i, %i\n", i, data->i, data->mapper->height);
 		if (i >= data->i)
+		{
+			printf("OUIIIII\n");
 			data->mapper->height++;
+		}
 		i++;
 	}
 	return (i);
@@ -40,11 +46,13 @@ static int	the_map_maker(t_data *data)
 	i = the_map_maker_util(data, i);
 	free(data->buff);
 	close(data->fd);
-	data->mapper->map = malloc(sizeof(char *) * data->mapper->height + 1);
+	printf("height %i %i\n", data->mapper->height, data->mapper->high_point);
+	data->mapper->map = malloc(sizeof(char *) * (data->mapper->height + 2));
 	if (!data->mapper->map)
 		return (0);
 	data->map_exists = 1;
-	data->mapper->map[data->mapper->height - 1] = NULL;
+	data->mapper->map[data->mapper->height + 1] = NULL;
+	printf("%i\n", data->mapper->height - 1);
 	return (1);
 }
 

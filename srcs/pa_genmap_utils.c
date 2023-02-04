@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pa_genmap_utils.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hmarconn <hmarconn@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: hmarconn <hmarconn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/23 16:24:30 by hmarconn          #+#    #+#             */
-/*   Updated: 2023/01/30 17:02:36 by hmarconn         ###   ########.fr       */
+/*   Updated: 2023/02/04 19:45:14 by hmarconn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@ static int	the_map_filler_util(t_data	*data, char	*buffer, int len)
 		data->mapper->high_point = data->y;
 	if (len == 1)
 		data->mapper->height = x;
+	printf("%i %i, %i\n", data->y, len, x);
 	data->mapper->map[data->y] = ft_calloc(len + 1, sizeof(char));
 	if (!data->mapper->map[data->y])
 		return (0);

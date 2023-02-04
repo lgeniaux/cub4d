@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   wp_utils.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hmarconn <hmarconn@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: hmarconn <hmarconn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/24 13:44:18 by hmarconn          #+#    #+#             */
-/*   Updated: 2023/01/24 13:46:05 by hmarconn         ###   ########.fr       */
+/*   Updated: 2023/02/04 18:47:15 by hmarconn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,10 @@ static int	wp_three(t_data	*data, int x, int y)
 
 static int	wp_fourth(t_data	*data, int x, int y)
 {
+	printf("data->mapper->map[y] %s\n", data->mapper->map[y]);
+	printf("wp: %i, %i %i \n", y, x, data->mapper->high_point);
+	if (data->mapper->map[y + 1] == NULL)
+		printf("pb\n"); 
 	if (data->mapper->map[y + 1][x] != '1' && \
 		data->mapper->map[y + 1][x] != '0' && \
 			data->mapper->map[y + 1][x] \
@@ -65,6 +69,7 @@ static int	wp_fourth(t_data	*data, int x, int y)
 	{
 		return (0);
 	}
+	printf("passe\n");
 	return (1);
 }
 

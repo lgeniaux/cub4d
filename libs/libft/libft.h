@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hmarconn <hmarconn@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: hmarconn <hmarconn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/02 16:57:27 by hmarconn          #+#    #+#             */
-/*   Updated: 2022/03/15 16:03:04 by hmarconn         ###   ########.fr       */
+/*   Updated: 2023/02/04 19:14:17 by hmarconn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ typedef struct s_list
 
 typedef struct s_gnl
 {
-	size_t	file_size;
+	ssize_t	file_size;
 	char	buff[BUFFER_SIZE + 1];
 	char	*stock;
 }t_gnl;

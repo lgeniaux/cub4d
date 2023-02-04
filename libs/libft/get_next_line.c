@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hmarconn <hmarconn@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: hmarconn <hmarconn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/17 15:07:07 by hmarconn          #+#    #+#             */
-/*   Updated: 2022/02/18 15:52:42 by hmarconn         ###   ########.fr       */
+/*   Updated: 2023/02/04 19:13:41 by hmarconn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,10 @@ char	*get_next_line(int fd)
 	while (!ft_strchr(gnl.stock, '\n') && gnl.file_size > 0)
 	{
 		gnl.file_size = read(fd, gnl.buff, BUFFER_SIZE);
-		if (gnl.file_size <= 0)
+		if (gnl.file_size < 0)
 			return (NULL);
+		if (gnl.file_size == 0)
+			break ;
 		gnl.buff[gnl.file_size] = '\0';
 		gnl.stock = ft_strjoingen(gnl.stock, gnl.buff);
 		if (gnl.stock == NULL)

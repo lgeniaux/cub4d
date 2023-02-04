@@ -6,7 +6,7 @@
 /*   By: hmarconn <hmarconn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/23 16:28:38 by hmarconn          #+#    #+#             */
-/*   Updated: 2023/02/04 16:47:09 by hmarconn         ###   ########.fr       */
+/*   Updated: 2023/02/04 17:31:55 by hmarconn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,9 @@ static void	set_player(t_data	*data, int x, int y)
 		data->mapper->player = 2;
 	else if (data->mapper->map[y][x] == 'E')
 		data->mapper->player = 3;
-	else if (data->mapper->player == 'W')
+	else if (data->mapper->map[y][x] == 'W')
 		data->mapper->player = 4;
+	printf("%i\n", data->mapper->player);
 }
 
 static int	wall_parser_second(t_data	*data, int len, int x, int y)
