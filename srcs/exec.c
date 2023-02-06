@@ -8,6 +8,38 @@
 #define mapWidth 24
 #define mapHeight 24
 
+static void player_direction(t_data *data)
+{
+	if (data->mapper->player == NORTH) {
+		data->info->dirX = 0.0;
+		data->info->dirY = -1.0;
+		data->info->planeX = 0.66;
+		data->info->planeY = 0.0;
+		data->info->rotSpeed = -0.05;
+	}
+	else if (data->mapper->player == SOUTH) {
+		data->info->dirX = 0.0;
+		data->info->dirY = 1.0;
+		data->info->planeX = -0.66;
+		data->info->planeY = 0.0;
+		data->info->rotSpeed = -0.05;
+	}
+	else if (data->mapper->player == WEST) {
+		data->info->dirX = -1.0;
+		data->info->dirY = 0.0;
+		data->info->planeX = 0.0;
+		data->info->planeY = 0.66;
+		data->info->rotSpeed = 0.05;
+	}
+	else if (data->mapper->player == EAST) {
+		data->info->dirX = 1.0;
+		data->info->dirY = 0.0;
+		data->info->planeX = 0.0;
+		data->info->planeY = -0.66;
+		data->info->rotSpeed = 0.05;
+	}
+}
+
 void print_map(char** map, int size) {
     for (int i = 0; i < size; i++) {
         for (int j = 0; j < size; j++) {
@@ -252,6 +284,7 @@ void move_backward(t_data *data)
 
 void rotate_left(t_data *data)
 {
+
     double oldDirX = data->info->dirX;
     data->info->dirX = data->info->dirX * cos(data->info->rotSpeed) - data->info->dirY * sin(data->info->rotSpeed);
     data->info->dirY = oldDirX * sin(data->info->rotSpeed) + data->info->dirY * cos(data->info->rotSpeed);
@@ -329,10 +362,8 @@ int	exec_start(t_data *data)
 
 	data->info->posX = data->mapper->xplayer + 0.5;
 	data->info->posY = data->mapper->yplayer + 0.5;
-	data->info->dirX = -1.0;
-	data->info->dirY = 0.0;
-	data->info->planeX = 0.0;
-	data->info->planeY = 0.66;
+	data->mapper->player = EAST;
+	player_direction(data);
 	data->info->re_buf = 0;
     //data->mapper->map = square_map(data);
     //print_map(data->mapper->map, find_greatest_dimension(data->mapper->map));
@@ -363,7 +394,6 @@ int	exec_start(t_data *data)
 	load_texture(data);
 
 	data->info->moveSpeed = 0.05;
-	data->info->rotSpeed = 0.05;
 	
 	data->info->win = mlx_new_window(data->info->mlx, WINDOW_W, WINDOW_H, "mlx");
 
