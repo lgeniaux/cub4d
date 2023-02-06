@@ -54,7 +54,7 @@ static int	wall_parser_second(t_data	*data, int len, int x, int y)
 	{
 		data->mapper->xplayer = x;
 		data->mapper->yplayer = y;
-		data->mapper->player = 1;
+		data->mapper->player = data->mapper->map[y][x];
 	}
 	else
 		return (0);

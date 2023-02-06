@@ -5,33 +5,30 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#define mapWidth 24
-#define mapHeight 24
-
 static void player_direction(t_data *data)
 {
-	if (data->mapper->player == NORTH) {
+	if (data->mapper->player == 'N') {
 		data->info->dirX = 0.0;
 		data->info->dirY = -1.0;
 		data->info->planeX = 0.66;
 		data->info->planeY = 0.0;
 		data->info->rotSpeed = -0.05;
 	}
-	else if (data->mapper->player == SOUTH) {
+	else if (data->mapper->player == 'S') {
 		data->info->dirX = 0.0;
 		data->info->dirY = 1.0;
 		data->info->planeX = -0.66;
 		data->info->planeY = 0.0;
 		data->info->rotSpeed = -0.05;
 	}
-	else if (data->mapper->player == WEST) {
+	else if (data->mapper->player == 'E') {
 		data->info->dirX = -1.0;
 		data->info->dirY = 0.0;
 		data->info->planeX = 0.0;
 		data->info->planeY = 0.66;
 		data->info->rotSpeed = 0.05;
 	}
-	else if (data->mapper->player == EAST) {
+	else if (data->mapper->player == 'W') {
 		data->info->dirX = 1.0;
 		data->info->dirY = 0.0;
 		data->info->planeX = 0.0;
@@ -136,6 +133,7 @@ void	draw(t_data *data)
 void	calc(t_data *data)
 {
 	int	x;
+	int y;
 	int texNum;
 
 	x = 0;
@@ -360,9 +358,8 @@ int	exec_start(t_data *data)
     
 	data->info->mlx = mlx_init();
 
-	data->info->posX = data->mapper->xplayer + 0.5;
-	data->info->posY = data->mapper->yplayer + 0.5;
-	data->mapper->player = EAST;
+	data->info->posX = data->mapper->xplayer + 0.55;
+	data->info->posY = data->mapper->yplayer + 0.55;
 	player_direction(data);
 	data->info->re_buf = 0;
     //data->mapper->map = square_map(data);

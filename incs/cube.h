@@ -20,8 +20,6 @@
 # include "../mlx_linux/mlx.h"
 # include "../libs/libft/libft.h"
 
-# define mapWidth 24
-# define mapHeight 24
 # define K_A 97
 # define K_D 100
 # define K_S 115
@@ -37,8 +35,8 @@
 # define GREEN 1
 # define BLUE 2
 
-# define WINDOW_W 700
-# define WINDOW_H 480
+# define WINDOW_W 1920
+# define WINDOW_H 1080
 
 #define TEXTURE_WIDTH 64
 #define TEXTURE_HEIGHT 64
