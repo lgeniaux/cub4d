@@ -11,10 +11,10 @@
 /* ************************************************************************** */
 
 #include "../incs/cube.h"
-
+#include <math.h>
 #include "../incs/cube.h"
 
-int	pa_colors(t_data	*data, char	*buffer)
+int pa_colors(t_data *data, char *buffer)
 {
 	if (buffer[data->scroller] == 'F')
 	{
@@ -31,14 +31,14 @@ int	pa_colors(t_data	*data, char	*buffer)
 	return (1);
 }
 
-int	fd_check(char	*doc)
+int fd_check(char *doc)
 {
-	int	len;
+	int len;
 
 	if (!doc)
 		exit(0);
 	len = ft_strlen(doc);
-	if (doc[len - 1] != 'b' || doc[len - 2] != 'u' || doc[len - 3] != 'c' || \
+	if (doc[len - 1] != 'b' || doc[len - 2] != 'u' || doc[len - 3] != 'c' ||
 		doc[len - 4] != '.')
 	{
 		ft_printf("ERROR\nTHE MAP IS NOT .CUB\n");
@@ -47,7 +47,7 @@ int	fd_check(char	*doc)
 	return (1);
 }
 
-void	init_phase(t_data	*data)
+void init_phase(t_data *data)
 {
 	data->mapper->ceilings = 0;
 	data->mapper->floors = 0;
@@ -63,7 +63,7 @@ void	init_phase(t_data	*data)
 	data->map_exists = 0;
 }
 
-int	to_parse(t_data	*data, char	*buffer)
+int to_parse(t_data *data, char *buffer)
 {
 	data->scroller = 0;
 	data->i++;
@@ -71,34 +71,31 @@ int	to_parse(t_data	*data, char	*buffer)
 	{
 		if (data->fd_section == 0)
 		{
-			while (buffer[data->scroller] && buffer[data->scroller] != '\0' && \
-				(buffer[data->scroller] < 33 || buffer[data->scroller] > 126))
+			while (buffer[data->scroller] && buffer[data->scroller] != '\0' &&
+				   (buffer[data->scroller] < 33 || buffer[data->scroller] > 126))
 				data->scroller++;
-			while (buffer[data->scroller] && (buffer[data->scroller] >= 33 && \
-				buffer[data->scroller] <= 126) && data->fd_section == 0)
+			while (buffer[data->scroller] && (buffer[data->scroller] >= 33 && buffer[data->scroller] <= 126) && data->fd_section == 0)
 			{
-				if (buffer[data->scroller] == 'N' || buffer[data->scroller] \
-					== 'S' \
-					|| buffer[data->scroller] == 'E' || \
-						buffer[data->scroller] == 'W')
+				if (buffer[data->scroller] == 'N' || buffer[data->scroller] == 'S' || buffer[data->scroller] == 'E' ||
+					buffer[data->scroller] == 'W')
 				{
 					if (!pa_wallpapers(data, buffer))
 						return (0);
 				}
-				else if (buffer[data->scroller] == 'F' || \
-					buffer[data->scroller] == 'C')
+				else if (buffer[data->scroller] == 'F' ||
+						 buffer[data->scroller] == 'C')
 				{
 					if (!pa_colors(data, buffer))
 						return (0);
 				}
-				else if (buffer[data->scroller] >= '0' && \
-					buffer[data->scroller] <= '9')
+				else if (buffer[data->scroller] >= '0' &&
+						 buffer[data->scroller] <= '9')
 				{
 					data->fd_section = 1;
 					return (1);
 				}
-				else if (buffer[data->scroller] >= 33 && \
-					buffer[data->scroller] <= 126)
+				else if (buffer[data->scroller] >= 33 &&
+						 buffer[data->scroller] <= 126)
 					return (0);
 			}
 		}
@@ -106,15 +103,15 @@ int	to_parse(t_data	*data, char	*buffer)
 	return (1);
 }
 
-void	the_tester(t_data	*data)
+void the_tester(t_data *data)
 {
-	int	y;
+	int y;
 
 	y = 0;
-	printf("F :%d %d %d\nC :%d %d %d\n", data->mapper->floor[0], \
-		data->mapper->floor[1], data->mapper->floor[2], \
-			data->mapper->ceiling[0], data->mapper->ceiling[1], \
-				data->mapper->ceiling[2]);
+	printf("F :%d %d %d\nC :%d %d %d\n", data->mapper->floor[0],
+		   data->mapper->floor[1], data->mapper->floor[2],
+		   data->mapper->ceiling[0], data->mapper->ceiling[1],
+		   data->mapper->ceiling[2]);
 	printf("%d\n", data->mapper->height);
 	while (y < data->mapper->high_point)
 	{
@@ -123,12 +120,12 @@ void	the_tester(t_data	*data)
 	}
 }
 
-int	main(int argc, char	**argv)
+int main(int argc, char **argv)
 {
-	t_data	data;
-	t_map	mapper;
-	int		fd;
-	char	*buff;
+	t_data data;
+	t_map mapper;
+	int fd;
+	char *buff;
 
 	data.mapper = &mapper;
 	if (argc != 2)
@@ -141,11 +138,11 @@ int	main(int argc, char	**argv)
 	{
 		printf("Error\nInvalid document\n");
 		the_end(&data);
-		exit (42);
+		exit(42);
 	}
 	buff = get_next_line(fd);
 	while (buff && data.fd_section == 0)
-	{	
+	{
 		if (!to_parse(&data, buff))
 		{
 			printf("Error\nInvalid elements\n");
@@ -162,18 +159,19 @@ int	main(int argc, char	**argv)
 	{
 		printf("Error\nInvalid Map\n");
 		the_end(&data);
-		exit (42);
+		exit(42);
 	}
-	if (data.mapper->floors == 0 || data.mapper->ceilings == 0 || \
-		data.mapper->north_wall == 0 || data.mapper->south_wall == 0 || \
-			data.mapper->east_wall == 0 || data.mapper->west_wall == 0 || \
-				data.mapper->player == 0)
+	if (data.mapper->floors == 0 || data.mapper->ceilings == 0 ||
+		data.mapper->north_wall == 0 || data.mapper->south_wall == 0 ||
+		data.mapper->east_wall == 0 || data.mapper->west_wall == 0 ||
+		data.mapper->player == 0)
 	{
 		printf("Error\nMissing informations\n");
 		the_end(&data);
 		return (0);
 	}
 	printf("bravo\n");
+	exec_start(&data);
 	the_end(&data);
 	return (0);
 }
