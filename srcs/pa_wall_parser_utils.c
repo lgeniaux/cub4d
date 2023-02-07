@@ -22,7 +22,6 @@ static void	set_player(t_data	*data, int x, int y)
 		data->mapper->player = 3;
 	else if (data->mapper->map[y][x] == 'W')
 		data->mapper->player = 4;
-	printf("%i\n", data->mapper->player);
 }
 
 static int	wall_parser_second(t_data	*data, int len, int x, int y)

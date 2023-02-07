@@ -6,7 +6,7 @@
 /*   By: lgeniaux <lgeniaux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/06 13:48:04 by lgeniaux          #+#    #+#             */
-/*   Updated: 2023/02/07 16:21:52 by lgeniaux         ###   ########.fr       */
+/*   Updated: 2023/02/07 16:24:59 by lgeniaux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -146,7 +146,8 @@ int	exec_start(t_data *data)
 			&data->info->img.bpp,
 			&data->info->img.size_l,
 			&data->info->img.endian);
-	mlx_hook(data->info->mlx, 33, 1L << 17, &ft_exit, data);
+    mlx_hook(data->info->win, 33, 1L << 17, ft_exit_bis, data);
+    mlx_hook(data->info->mlx, 33, 1L << 17, &ft_exit, data);
 	mlx_hook(data->info->win, 2, 1L << 0, &key_press, data);
 	mlx_loop_hook(data->info->mlx, &main_loop, data);
 	mlx_loop(data->info->mlx);

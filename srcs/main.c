@@ -79,7 +79,6 @@ static int	elements_verification(t_data	*data)
 			data->mapper->east_wall == 0 || data->mapper->west_wall == 0 || \
 				data->mapper->player == 0)
 	{
-		printf("ici %i\n", data->mapper->player);
 		the_end(data, 4);
 		return (0);
 	}
@@ -105,7 +104,7 @@ int	main(int argc, char	**argv)
 	if (!elements_verification(&data))
 		return (0);
 	exec_start(&data);
-	the_end(&data, 0);
+	the_end(&data, 6);
 	printf("bravo\n");
 	return (0);
 }

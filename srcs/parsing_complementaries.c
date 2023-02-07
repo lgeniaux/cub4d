@@ -42,7 +42,6 @@ static int	to_parse_three(t_data	*data, char	*buffer)
 		buffer[data->scroller] <= '9')
 	{
 		data->fd_section = 1;
-		printf("scroller %i\n", data->i);
 		return (1);
 	}
 	return (0);

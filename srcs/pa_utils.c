@@ -71,4 +71,18 @@ void	the_end(t_data	*data, int type)
 		free(data->mapper->walls[y]);
 		y++;
 	}
+    free(data->info);
+    free(data->info->texture);
+    if (type == 6)
+    {
+        printf("ici");
+        y = 0;
+        while (y < 8)
+        {
+            free(data->info->texture[y]);
+            y++;
+        }
+    }
+    printf("test\n");
+    exit(18);
 }
