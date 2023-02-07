@@ -6,7 +6,7 @@
 /*   By: lgeniaux <lgeniaux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/06 13:48:04 by lgeniaux          #+#    #+#             */
-/*   Updated: 2023/02/07 16:24:59 by lgeniaux         ###   ########.fr       */
+/*   Updated: 2023/02/07 17:10:27 by lgeniaux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,8 +67,8 @@ void	draw_wall_floor_ceiling(t_data *data, t_raycast *ray)
 void	calc(t_data *data)
 {
 	t_raycast	*ray;
-
-	ray = malloc(sizeof(t_raycast));
+	
+	ray = data->raycast;
 	if (!ray)
 		return ;
 	ray->x = 0;
@@ -100,9 +100,10 @@ static int ft_exit_bis(t_data   *data)
 
 int	exec_start(t_data *data)
 {
-	int	i;
-	int	j;
+	int			i;
+	int			j;
 
+	data->raycast = malloc(sizeof(t_raycast));
 	data->info = malloc(sizeof(t_info));
 	data->info->mlx = mlx_init();
 	data->info->posX = data->mapper->xplayer + 0.55;

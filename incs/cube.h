@@ -6,7 +6,7 @@
 /*   By: lgeniaux <lgeniaux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/15 17:26:35 by hmarconn          #+#    #+#             */
-/*   Updated: 2023/02/07 16:25:09 by lgeniaux         ###   ########.fr       */
+/*   Updated: 2023/02/07 17:04:23 by lgeniaux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,17 +126,17 @@ typedef struct	s_info
 
 typedef struct s_data
 {
-	// t_glib	*glib;
-	int		map_exists;
-	int		fd;
-	int		y;
-	char	*doc;
-	int		fd_section;
-	int		scroller;
-	int		i;
-	t_map	*mapper;
-	char	*buff;
-    t_info	*info;
+	int			map_exists;
+	int			fd;
+	int			y;
+	char		*doc;
+	int			fd_section;
+	int			scroller;
+	int			i;
+	t_map		*mapper;
+	char		*buff;
+    t_info		*info;
+	t_raycast	*raycast;
 }	t_data;
 
 /*PARSING*/
