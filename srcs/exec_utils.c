@@ -6,7 +6,7 @@
 /*   By: lgeniaux <lgeniaux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/07 15:20:20 by lgeniaux          #+#    #+#             */
-/*   Updated: 2023/02/07 15:24:08 by lgeniaux         ###   ########.fr       */
+/*   Updated: 2023/02/07 16:34:42 by lgeniaux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,5 +80,5 @@ void	draw(t_data *data)
 		y++;
 	}
 	mlx_put_image_to_window(data->info->mlx, data->info->win,
-			data->info->img.img, 0, 0);
+		data->info->img.img, 0, 0);
 }
