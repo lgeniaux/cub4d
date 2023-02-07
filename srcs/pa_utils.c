@@ -82,6 +82,8 @@ void	the_end(t_data	*data, int type)
         }
         free(data->info->texture);
         free(data->info);
+        free(data->raycast);
+
 //        ft_exit(data);
     }
     printf("test\n");

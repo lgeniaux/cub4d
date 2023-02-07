@@ -45,12 +45,6 @@ void	load_texture(t_data *data)
 	load_image(data, data->info->texture[3], data->mapper->walls[0], &img);
 }
 
-int	ft_exit(t_data *data)
-{
-	mlx_destroy_window(data->info->mlx, data->info->win);
-	exit(0);
-}
-
 int	convert_rgb_int(int *rgb)
 {
 	int	r;
