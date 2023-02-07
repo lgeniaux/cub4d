@@ -6,7 +6,7 @@
 /*   By: lgeniaux <lgeniaux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/06 13:48:04 by lgeniaux          #+#    #+#             */
-/*   Updated: 2023/02/07 14:11:10 by lgeniaux         ###   ########.fr       */
+/*   Updated: 2023/02/07 14:37:28 by lgeniaux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,13 +55,13 @@ static void	west(t_data *data)
 
 static void	player_direction(t_data *data)
 {
-	if (data->mapper->player == 'N')
+	if (data->mapper->player == NORTH)
 		north(data);
-	else if (data->mapper->player == 'S')
+	else if (data->mapper->player == SOUTH)
 		south(data);
-	else if (data->mapper->player == 'E')
+	else if (data->mapper->player == EAST)
 		east(data);
-	else if (data->mapper->player == 'W')
+	else if (data->mapper->player == WEST)
 		west(data);
 }
 
