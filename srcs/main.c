@@ -104,6 +104,7 @@ int	main(int argc, char	**argv)
 	}
 	if (!elements_verification(&data))
 		return (0);
+	exec_start(&data);
 	the_end(&data, 0);
 	printf("bravo\n");
 	return (0);
