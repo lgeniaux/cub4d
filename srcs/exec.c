@@ -6,7 +6,7 @@
 /*   By: lgeniaux <lgeniaux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/06 13:48:04 by lgeniaux          #+#    #+#             */
-/*   Updated: 2023/02/06 14:59:46 by lgeniaux         ###   ########.fr       */
+/*   Updated: 2023/02/07 14:11:10 by lgeniaux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -222,35 +222,10 @@ void	calc(t_data *data)
 			data->info->buf[y][x] = color;
 			data->info->re_buf = 1;
 		}
-		double floorXWall, floorYWall;
-		if (side == 0 && ray_dir_x > 0)
-		{
-			floorXWall = map_x;
-			floorYWall = map_y + wall_x;
-		}
-		else if (side == 0 && ray_dir_x < 0)
-		{
-			floorXWall = map_x + 1.0;
-			floorYWall = map_y + wall_x;
-		}
-		else if (side == 1 && ray_dir_y > 0)
-		{
-			floorXWall = map_x + wall_x;
-			floorYWall = map_y;
-		}
-		else
-		{
-			floorXWall = map_x + wall_x;
-			floorYWall = map_y + 1.0;
-		}
-		double distWall, distPlayer, currentDist;
-		distWall = perp_wall_dist;
-		distPlayer = 0.0;
 		if (draw_end < 0)
 			draw_end = WINDOW_H;
 		for (int y = draw_end + 1; y < WINDOW_H; y++)
 		{
-			currentDist = WINDOW_H / (2.0 * y - WINDOW_H);
 			data->info->buf[y][x] = convert_rgb_int(data->mapper->floor);
 			data->info->buf[WINDOW_H
 				- y][x] = convert_rgb_int(data->mapper->ceiling);
@@ -411,4 +386,5 @@ int	exec_start(t_data *data)
 	mlx_hook(data->info->win, 2, 1L << 0, &key_press, data);
 	mlx_loop_hook(data->info->mlx, &main_loop, data);
 	mlx_loop(data->info->mlx);
+	return (0);
 }
