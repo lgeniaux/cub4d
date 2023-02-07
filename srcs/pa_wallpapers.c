@@ -49,7 +49,7 @@ void	pa_wallbuilder(t_data	*data, char	*buffer, int wall)
 	len = pa_getlen(data, buffer);
 	tmp = ft_calloc(len + 1, sizeof(char));
 	if (!tmp)
-		exit (52);
+		the_end(data, 0);
 	while (pan < len)
 		tmp[pan++] = buffer[pin++];
 	tmp[pan] = '\0';

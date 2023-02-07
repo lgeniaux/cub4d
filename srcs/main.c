@@ -17,7 +17,7 @@ int	fd_check(char	*doc)
 	int	len;
 
 	if (!doc)
-		exit(0);
+		return (0);
 	len = ft_strlen(doc);
 	if (doc[len - 1] != 'b' || doc[len - 2] != 'u' || doc[len - 3] != 'c' || \
 		doc[len - 4] != '.')
@@ -28,20 +28,20 @@ int	fd_check(char	*doc)
 	return (1);
 }
 
-int	read_fd(t_data	*data, char	*buff, int fd)
+int	read_fd(t_data	*data, int fd)
 {
-	buff = get_next_line(fd);
-	while (buff && data->fd_section == 0)
+	data->buffer = get_next_line(fd);
+	while (data->buffer && data->fd_section == 0)
 	{	
-		if (!to_parse(data, buff))
-		{
+		if (!to_parse(data, data->buffer))
+        {
 			the_end(data, 2);
 			return (0);
 		}
-		free(buff);
-		buff = get_next_line(fd);
+		free (data->buffer);
+		data->buffer = get_next_line(fd);
 	}
-	free(buff);
+	free(data->buffer);
 	close(fd);
 	data->y = 0;
 	return (1);
@@ -50,9 +50,8 @@ int	read_fd(t_data	*data, char	*buff, int fd)
 int	secondhand_main(t_data	*data, char	*doc)
 {
 	int		fd;
-	char	*buff;
 
-	buff = NULL;
+	data->buffer = NULL;
 	if (!fd_check(doc))
 		return (0);
 	data->doc = doc;
@@ -62,8 +61,8 @@ int	secondhand_main(t_data	*data, char	*doc)
 		the_end(data, 1);
 		exit (42);
 	}
-	if (!read_fd(data, buff, fd))
-		return (0);
+	if (!read_fd(data, fd))
+        return (0);
 	if (data->fd_section == 0)
 	{
 		the_end(data, 5);
@@ -95,16 +94,15 @@ int	main(int argc, char	**argv)
 		return (0);
 	init_phase(&data);
 	if (!secondhand_main(&data, argv[1]))
-		return (0);
+		the_end(&data, 0);
 	if (!the_map_parser(&data))
 	{
 		the_end(&data, 3);
 		exit (42);
 	}
 	if (!elements_verification(&data))
-		return (0);
+		the_end(&data, 0);
 	exec_start(&data);
 	the_end(&data, 6);
-	printf("bravo\n");
 	return (0);
 }

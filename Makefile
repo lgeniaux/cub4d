@@ -1,5 +1,5 @@
 #target name
-NAME = cub3D
+NAME = Cub3D
 
 #SILENT THE RECIPE
 ifndef VERBOSE

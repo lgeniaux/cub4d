@@ -77,7 +77,7 @@ int	key_press(int key, t_data *data)
 	if (key == K_A)
 		rotate_left(data);
 	if (key == K_ESC)
-		exit(0);
+		ft_exit(data);
 	mlx_clear_window(data->info->mlx, data->info->win);
 	main_loop(data);
 	return (0);

@@ -55,6 +55,10 @@ void	the_end(t_data	*data, int type)
 
 	y = 0;
 	print_type(type);
+    if (data->buff != NULL)
+    {
+        free(data->buff);
+    }
 	if (data->map_exists == 1)
 	{
 		while (y < data->mapper->high_point)
@@ -68,12 +72,14 @@ void	the_end(t_data	*data, int type)
 	y = 0;
 	while (y < 4)
 	{
-		free(data->mapper->walls[y]);
+        if (data->mapper->walls[y] != NULL)
+		    free(data->mapper->walls[y]);
 		y++;
 	}
+    if (data->mapper->walls)
+            free(data->mapper->walls);
     if (type == 6)
     {
-        printf("ici");
         y = 0;
         while (y < 8)
         {
@@ -83,8 +89,6 @@ void	the_end(t_data	*data, int type)
         }
         if (data->info->texture != NULL)
             free(data->info->texture);
-        if (data->info->mlx->xvar)
-            free(data->info->mlx->xvar);
         if (data->info->mlx)
             free (data->info->mlx);
         if (data->info != NULL) {
@@ -93,9 +97,6 @@ void	the_end(t_data	*data, int type)
         if (data->raycast != NULL) {
             free(data->raycast);
         }
-
-//        ft_exit(data);
     }
-    printf("test\n");
     exit(18);
 }

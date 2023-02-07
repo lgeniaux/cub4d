@@ -32,6 +32,11 @@ int	pa_colors(t_data	*data, char	*buffer)
 
 void	init_phase(t_data	*data)
 {
+    data->mapper->walls = ft_calloc(sizeof(char *), 4);
+    if (!data->mapper->walls)
+    {
+        the_end(data, 0);
+    }
 	data->mapper->ceilings = 0;
 	data->mapper->floors = 0;
 	data->mapper->north_wall = 0;

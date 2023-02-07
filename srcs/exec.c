@@ -96,6 +96,7 @@ int ft_exit(t_data   *data)
 {
     mlx_destroy_image(data->info->mlx, data->info->img.img);
     mlx_destroy_window(data->info->mlx, data->info->win);
+    mlx_destroy_display(data->info->mlx);
     the_end(data, 6);
     return (0);
 }

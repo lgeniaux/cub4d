@@ -77,7 +77,7 @@ typedef struct	s_raycast
 typedef struct	s_map
 {
 	char	**map;
-	char	*walls[4];
+	char	**walls;
 	int		floor[3];
 	int		ceiling[3];
 	int		floors;
@@ -135,6 +135,7 @@ typedef struct s_data
 	int			i;
 	t_map		*mapper;
 	char		*buff;
+    char        *buffer;
     t_info		*info;
 	t_raycast	*raycast;
 }	t_data;
