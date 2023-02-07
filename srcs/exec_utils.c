@@ -6,11 +6,13 @@
 /*   By: lgeniaux <lgeniaux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/07 15:20:20 by lgeniaux          #+#    #+#             */
-/*   Updated: 2023/02/07 16:34:42 by lgeniaux         ###   ########.fr       */
+/*   Updated: 2023/02/07 19:51:40 by lgeniaux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../incs/cube.h"
+
+
 
 void	load_image(t_data *data, int *texture, char *path, t_img *img)
 {

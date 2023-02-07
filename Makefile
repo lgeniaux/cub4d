@@ -46,6 +46,7 @@ SRCS = ./srcs/parsing.c \
 	./srcs/movement_handler.c \
 	./srcs/exec_utils.c \
 	./srcs/exec_utils_2.c \
+	./srcs/exec_utils_3.c \
 	
 MAKE = make
 
