@@ -71,8 +71,6 @@ void	the_end(t_data	*data, int type)
 		free(data->mapper->walls[y]);
 		y++;
 	}
-    free(data->info);
-    free(data->info->texture);
     if (type == 6)
     {
         printf("ici");
@@ -82,6 +80,9 @@ void	the_end(t_data	*data, int type)
             free(data->info->texture[y]);
             y++;
         }
+        free(data->info->texture);
+        free(data->info);
+//        ft_exit(data);
     }
     printf("test\n");
     exit(18);

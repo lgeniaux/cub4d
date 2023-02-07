@@ -17,8 +17,8 @@ DEPEXT      := d
 OBJEXT      := o
 
 #Flags, Libraries and Includes
-CFLAGS      := -Wall -Wextra -Werror -g3 -O3 
-#CFLAGS      := -Wall -Wextra -Werror -fsanitize=address -g3
+#CFLAGS      := -Wall -Wextra -Werror -g3 -O3
+CFLAGS      := -Wall -Wextra -Werror -fsanitize=address -g3
 # SANITIZE    := -fsanitize=address
 # LLDBFLAG    := -g3
 LIBFT_PATH  := ./libs/libft/libft.a
@@ -75,20 +75,20 @@ git:
 #		/bin/echo -e "\x1b[35m\x1b[34m**********\t\tDONE\t\t**********"
 
 $(NAME): $(OBJS) $(HEADER) Makefile
-		$(CC) $(CFLAGS) $(LIBX) $(OBJS) $(LIBFT_PATH) -o $(NAME) -Imlx_linux -Lmlx_linux -lmlx -lmlx_Linux -L/usr/lib -lXext -lX11 -lm
+		$(CC) $(CFLAGS) $(LIBX) $(OBJS) $(LIBFT_PATH) -o $(NAME) -Ilibs/mlx_linux -Llibs/mlx_linux -lmlx -lmlx_Linux -L/usr/lib -lXext -lX11 -lm
 		@echo "\x1b[35m\x1b[34m**********\t\tDONE\t\t**********"
 
 %.o: %.c ${HEADER} Makefile
 		${CC} ${CFLAGS} -c $< -o ${<:.c=.o}
 
 leslib:
-		$(MAKE) -C mlx_linux/
-		cp mlx_linux/libmlx.a ./
+		$(MAKE) -C libs/mlx_linux/
+		cp libs/mlx_linux/libmlx.a ./
 		${MAKE} -C libs/libft/
 
 clean:
 		${MAKE} clean -C libs/libft/
-		${MAKE} clean -C mlx_linux/
+		${MAKE} clean -C libs/mlx_linux/
 		${RM} ${OBJS}
 		@echo "\x1b[35m\x1b[36m**********\t\tCLEANED\t\t**********"
 
