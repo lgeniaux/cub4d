@@ -56,10 +56,6 @@ static int	wp_three(t_data	*data, int x, int y)
 
 static int	wp_fourth(t_data	*data, int x, int y)
 {
-	printf("data->mapper->map[y] %s\n", data->mapper->map[y]);
-	printf("wp: %i, %i %i \n", y, x, data->mapper->high_point);
-	if (data->mapper->map[y + 1] == NULL)
-		printf("pb\n"); 
 	if (data->mapper->map[y + 1][x] != '1' && \
 		data->mapper->map[y + 1][x] != '0' && \
 			data->mapper->map[y + 1][x] \
@@ -69,7 +65,6 @@ static int	wp_fourth(t_data	*data, int x, int y)
 	{
 		return (0);
 	}
-	printf("passe\n");
 	return (1);
 }
 

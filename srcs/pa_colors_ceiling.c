@@ -86,7 +86,6 @@ int	pa_ceiling(t_data	*data, char	*buffer)
 	points[0] = 0;
 	points[1] = 0;
 	tmp = NULL;
-	printf("%i, %i, %i\n", data->scroller, data->i, data->y);
 	if (!pa_ceiling_saveplace(data, buffer))
 		return (0);
 	if (!test(data, buffer, points, tmp))

@@ -79,7 +79,6 @@ static int	elements_verification(t_data	*data)
 			data->mapper->east_wall == 0 || data->mapper->west_wall == 0 || \
 				data->mapper->player == 0)
 	{
-		printf("ici %i\n", data->mapper->player);
 		the_end(data, 4);
 		return (0);
 	}
