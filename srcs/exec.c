@@ -297,6 +297,7 @@ void	rotate_right(t_data *data)
 
 int	key_press(int key, t_data *data)
 {
+    printf("%d\n", key);
 	if (key == K_W)
 		move_forward(data);
 	if (key == K_S)
@@ -307,6 +308,10 @@ int	key_press(int key, t_data *data)
 		rotate_left(data);
 	if (key == K_ESC)
 		exit(0);
+    if (key == 65307)
+    {
+        the_end(data, 6);
+    }
 	mlx_clear_window(data->info->mlx, data->info->win);
 	main_loop(data);
 	return (0);
@@ -342,6 +347,12 @@ int	ft_exit(t_data *data)
 {
 	mlx_destroy_window(data->info->mlx, data->info->win);
 	exit(0);
+}
+
+static int    ft_exit_bis(t_data *data)
+{
+    the_end(data, 6);
+    return (0);
 }
 
 int	exec_start(t_data *data)
@@ -382,7 +393,8 @@ int	exec_start(t_data *data)
 	data->info->img.data = (int *)mlx_get_data_addr(data->info->img.img,
 			&data->info->img.bpp, &data->info->img.size_l,
 			&data->info->img.endian);
-	mlx_hook(data->info->mlx, 33, 1L << 17, &ft_exit, data);
+    mlx_hook(data->info->win, 33, 1L << 17, ft_exit_bis, data);
+    mlx_hook(data->info->mlx, 33, 1L << 17, &ft_exit, data);
 	mlx_hook(data->info->win, 2, 1L << 0, &key_press, data);
 	mlx_loop_hook(data->info->mlx, &main_loop, data);
 	mlx_loop(data->info->mlx);
