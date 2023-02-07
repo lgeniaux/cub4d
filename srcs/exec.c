@@ -6,7 +6,7 @@
 /*   By: lgeniaux <lgeniaux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/06 13:48:04 by lgeniaux          #+#    #+#             */
-/*   Updated: 2023/02/07 17:10:27 by lgeniaux         ###   ########.fr       */
+/*   Updated: 2023/02/07 19:57:13 by lgeniaux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ void	draw_wall_floor_ceiling(t_data *data, t_raycast *ray)
 void	calc(t_data *data)
 {
 	t_raycast	*ray;
-	
+
 	ray = data->raycast;
 	if (!ray)
 		return ;
@@ -92,20 +92,17 @@ int	main_loop(t_data *data)
 	return (0);
 }
 
-int ft_exit(t_data   *data)
+int	ft_exit(t_data *data)
 {
-    mlx_destroy_image(data->info->mlx, data->info->img.img);
-    mlx_destroy_window(data->info->mlx, data->info->win);
-    mlx_destroy_display(data->info->mlx);
-    the_end(data, 6);
-    return (0);
+	mlx_destroy_image(data->info->mlx, data->info->img.img);
+	mlx_destroy_window(data->info->mlx, data->info->win);
+	mlx_destroy_display(data->info->mlx);
+	the_end(data, 6);
+	return (0);
 }
 
 int	exec_start(t_data *data)
 {
-	int			i;
-	int			j;
-
 	data->raycast = malloc(sizeof(t_raycast));
 	data->info = malloc(sizeof(t_info));
 	data->info->mlx = mlx_init();
@@ -113,40 +110,8 @@ int	exec_start(t_data *data)
 	data->info->posY = data->mapper->yplayer + 0.55;
 	player_direction(data);
 	data->info->re_buf = 0;
-	i = 0;
-	while (i < WINDOW_H)
-	{
-		j = 0;
-		while (j < WINDOW_W)
-		{
-			data->info->buf[i][j] = 0;
-			j++;
-		}
-		i++;
-	}
-	data->info->texture = (int **)malloc(sizeof(int *) * 8);
-	if (!data->info->texture)
+	if(fill_buffer(data) == -1)
 		return (-1);
-	i = 0;
-	while (i < 8)
-	{
-		data->info->texture[i] = (int *)malloc(sizeof(int) * (TEXTURE_HEIGHT
-					* TEXTURE_WIDTH));
-		if (!data->info->texture[i])
-			return (-1);
-		i++;
-	}
-	i = 0;
-	while (i < 8)
-	{
-		j = 0;
-		while (j < TEXTURE_HEIGHT * TEXTURE_WIDTH)
-		{
-			data->info->texture[i][j] = 0;
-			j++;
-		}
-		i++;
-	}
 	load_texture(data);
 	data->info->moveSpeed = 0.05;
 	data->info->win = mlx_new_window(data->info->mlx, WINDOW_W, WINDOW_H,
@@ -156,8 +121,8 @@ int	exec_start(t_data *data)
 			&data->info->img.bpp,
 			&data->info->img.size_l,
 			&data->info->img.endian);
-    mlx_hook(data->info->win, 17, 1L << 0, &ft_exit, data);
-    mlx_hook(data->info->mlx, 33, 1L << 17, &ft_exit, data);
+	mlx_hook(data->info->win, 17, 1L << 0, &ft_exit, data);
+	mlx_hook(data->info->mlx, 33, 1L << 17, &ft_exit, data);
 	mlx_hook(data->info->win, 2, 1L << 0, &key_press, data);
 	mlx_loop_hook(data->info->mlx, &main_loop, data);
 	mlx_loop(data->info->mlx);

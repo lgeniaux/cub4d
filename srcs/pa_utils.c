@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pa_utils.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hmarconn <hmarconn@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: lgeniaux <lgeniaux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 19:09:04 by hmarconn          #+#    #+#             */
-/*   Updated: 2023/01/30 18:13:15 by hmarconn         ###   ########.fr       */
+/*   Updated: 2023/02/07 19:42:30 by lgeniaux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,10 +55,6 @@ void	the_end(t_data	*data, int type)
 
 	y = 0;
 	print_type(type);
-    if (data->buff != NULL)
-    {
-        free(data->buff);
-    }
 	if (data->map_exists == 1)
 	{
 		while (y < data->mapper->high_point)

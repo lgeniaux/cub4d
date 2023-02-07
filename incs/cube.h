@@ -6,7 +6,7 @@
 /*   By: lgeniaux <lgeniaux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/15 17:26:35 by hmarconn          #+#    #+#             */
-/*   Updated: 2023/02/07 17:04:23 by lgeniaux         ###   ########.fr       */
+/*   Updated: 2023/02/07 19:54:57 by lgeniaux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -195,5 +195,6 @@ void	buffer_clear(t_data *data, t_raycast *ray);
 void	texturing_calc(t_data *data, t_raycast *ray);
 void	init_ray(t_data *data, t_raycast *ray);
 void	wall_hit(t_data *data, t_raycast *ray);
+int		fill_buffer(t_data *data);
 
 #endif
