@@ -92,6 +92,12 @@ int	main_loop(t_data *data)
 	return (0);
 }
 
+static int ft_exit_bis(t_data   *data)
+{
+    the_end(data, 6);
+    return (0);
+}
+
 int	exec_start(t_data *data)
 {
 	int	i;
@@ -146,7 +152,7 @@ int	exec_start(t_data *data)
 			&data->info->img.bpp,
 			&data->info->img.size_l,
 			&data->info->img.endian);
-    mlx_hook(data->info->win, 33, 1L << 17, ft_exit_bis, data);
+    mlx_hook(data->info->win, 17, 1L << 0, ft_exit_bis, data);
     mlx_hook(data->info->mlx, 33, 1L << 17, &ft_exit, data);
 	mlx_hook(data->info->win, 2, 1L << 0, &key_press, data);
 	mlx_loop_hook(data->info->mlx, &main_loop, data);
