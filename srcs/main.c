@@ -35,6 +35,7 @@ int	read_fd(t_data	*data, int fd)
 	{	
 		if (!to_parse(data, data->buffer))
         {
+            free(data->buffer);
 			the_end(data, 2);
 			return (0);
 		}

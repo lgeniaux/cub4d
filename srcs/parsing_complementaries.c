@@ -52,7 +52,7 @@ static int	to_parse_four(t_data	*data, char	*buffer)
 	if (buffer[data->scroller] >= 33 && \
 		buffer[data->scroller] <= 126)
 	{
-		free(buffer);
+		//free(buffer);
 		return (0);
 	}
 	return (1);

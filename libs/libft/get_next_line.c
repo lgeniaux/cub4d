@@ -24,7 +24,18 @@ static char	*cut_line(char	**tab)
 	return (line);
 }
 
-char	*get_next_line(int fd)
+char *get_next_line(int fd) {
+    (void)BUFFER_SIZE;
+    char *s = malloc(10000), *c = s;
+    while(read(fd, c, 1) > 0 && *c++ != 'n');
+    if (c > s) {
+        (*c = 0);
+        return s;
+    }
+    free(s);
+    return 0;
+}
+char	*get_next_line2(int fd)
 {
 	static t_gnl	gnl;
 	char			*tierce;
