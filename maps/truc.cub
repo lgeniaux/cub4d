@@ -1,8 +1,8 @@
 
-	NO ./textures/north.xpm
-           SO ./textures/south.xpm      
-WE ./textures/west.xpm
-EA 	./textures/east.xpm
+	NO ./textures/barrel.xpm
+           SO ./textures/eagle.xpm
+WE ./textures/mossy.xpm
+EA 	./textures/wood.xpm
 
 
 		F	 220,100,0 		
@@ -10,8 +10,7 @@ EA 	./textures/east.xpm
   
 		
 
-
 11111111111
 10000000001
-10000000001
+100N0000001
 11111111111

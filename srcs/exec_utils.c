@@ -19,6 +19,10 @@ void	load_image(t_data *data, int *texture, char *path, t_img *img)
 
 	img->img = mlx_xpm_file_to_image(data->info->mlx, path, &img->img_width,
 			&img->img_height);
+    if (!img->img){
+        mlx_destroy_display(data->info->mlx);
+        the_end(data, 6);
+    }
 	img->data = (int *)mlx_get_data_addr(img->img, &img->bpp, &img->size_l,
 			&img->endian);
 	y = 0;
