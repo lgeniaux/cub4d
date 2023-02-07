@@ -16,8 +16,10 @@
 # include <stdio.h>
 # include <stdlib.h>
 # include <unistd.h>
-# include "../libs/mlx/mlx.h"
+//# include "../libs/mlx/mlx.h"
+# include "../mlx_linux/mlx.h"
 # include "../libs/libft/libft.h"
+# include <math.h>
 
 # define NORTH	1
 # define SOUTH	2
@@ -27,6 +29,18 @@
 # define RED 0
 # define GREEN 1
 # define BLUE 2
+
+# define K_A 97
+# define K_D 100
+# define K_S 115
+# define K_W 119
+# define K_ESC 65307
+
+# define WINDOW_W 1920
+# define WINDOW_H 1080
+
+#define TEXTURE_WIDTH 64
+#define TEXTURE_HEIGHT 64
 
 typedef struct	s_map
 {
@@ -47,18 +61,36 @@ typedef struct	s_map
 	int		high_point;
 }	t_map;
 
-// typedef struct s_glib
-// {
-// 	void	*mlx;
-// 	void	*mlx_win;
-// 	void	*img_water;
-// 	void	*img_grass;
-// 	void	*img_guy;
-// 	void	*img_collectible;
-// 	void	*img_exit;
-// 	int		img_height;
-// 	int		img_width;
-// }t_glib;
+typedef struct	s_img
+{
+    void	*img;
+    int		*data;
+    int		size_l;
+    int		bpp;
+    int		endian;
+    int		img_width;
+    int		img_height;
+}				t_img;
+
+typedef struct	s_info
+{
+    double posX;
+    double posY;
+    double dirX;
+    double dirY;
+    double planeX;
+    double planeY;
+    void	*mlx;
+    void	*win;
+    t_img	img;
+    int		buf[WINDOW_H][WINDOW_W];
+    int		**texture;
+    double	moveSpeed;
+    double	rotSpeed;
+    int		re_buf;
+
+
+}				t_info;
 
 typedef struct s_data
 {
@@ -72,6 +104,7 @@ typedef struct s_data
 	int		i;
 	t_map	*mapper;
 	char	*buff;
+    t_info	*info;
 }	t_data;
 
 /*PARSING*/
@@ -99,5 +132,21 @@ void	the_end(t_data	*data, int type);
 void	toparse_scroll(t_data	*data, char	*buffer);
 int		pa_floorcolorcheck(t_data	*data, char	*tmp, int i);
 int		pa_ceilingcolorcheck(t_data	*data, char	*tmp, int i);
+
+/* EXECUTION */
+int	    exec_start(t_data *data);
+int	    ft_exit(t_data *data);
+void	load_texture(t_data *data);
+void	load_image(t_data *data, int *texture, char *path, t_img *img);
+int	    key_press(int key, t_data *data);
+void	rotate_left(t_data *data);
+void	rotate_right(t_data *data);
+void	move_backward(t_data *data);
+void	move_forward(t_data *data);
+int	    main_loop(t_data *data);
+void	calc(t_data *data);
+void	draw(t_data *data);
+int	    convert_rgb_int(int *rgb);
+
 
 #endif
