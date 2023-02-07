@@ -17,7 +17,7 @@ DEPEXT      := d
 OBJEXT      := o
 
 #Flags, Libraries and Includes
-CFLAGS      := -Wall -Wextra -Werror -g3
+CFLAGS      := -Wall -Wextra -Werror -g3 -O3 
 #CFLAGS      := -Wall -Wextra -Werror -fsanitize=address -g3
 # SANITIZE    := -fsanitize=address
 # LLDBFLAG    := -g3
@@ -41,7 +41,11 @@ SRCS = ./srcs/parsing.c \
 	./srcs/wp_utils.c \
 	./srcs/parsing_complementaries.c \
 	./srcs/pa_color_utils.c \
-	./srcs/exec.c
+	./srcs/exec.c \
+	./srcs/orientation_handler.c \
+	./srcs/movement_handler.c \
+	./srcs/exec_utils.c \
+	./srcs/exec_utils_2.c \
 
 MAKE = make
 

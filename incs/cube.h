@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cube.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hmarconn <hmarconn@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lgeniaux <lgeniaux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/15 17:26:35 by hmarconn          #+#    #+#             */
-/*   Updated: 2023/02/04 16:53:02 by hmarconn         ###   ########.fr       */
+/*   Updated: 2023/02/07 16:13:22 by lgeniaux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@
 # include <stdio.h>
 # include <stdlib.h>
 # include <unistd.h>
-//# include "../libs/mlx/mlx.h"
 # include "../mlx_linux/mlx.h"
 # include "../libs/libft/libft.h"
 # include <math.h>
@@ -36,11 +35,44 @@
 # define K_W 119
 # define K_ESC 65307
 
-# define WINDOW_W 1920
-# define WINDOW_H 1080
+# define WINDOW_W 720
+# define WINDOW_H 720
 
 #define TEXTURE_WIDTH 64
 #define TEXTURE_HEIGHT 64
+
+typedef struct	s_raycast
+{
+	int		x;
+	int		i;
+	int		j;
+	int		y;
+	int		texture_num;
+	double	camera_x;
+	double	ray_dir_x;
+	double	ray_dir_y;
+	int		map_x;
+	int		map_y;
+	double	side_dist_x;
+	double	side_dist_y;
+	double	delta_dist_x;
+	double	delta_dist_y;
+	double	perp_wall_dist;
+	int		step_x;
+	int		step_y;
+	int		hit;
+	int		side;
+	int		line_height;
+	int		draw_start;
+	int		draw_end;
+	double	wall_x;
+	int		texture_x;
+	double	step;
+	double	texture_pos;
+	int		texture_y;
+	int		color;
+
+}			t_raycast;
 
 typedef struct	s_map
 {
@@ -147,6 +179,20 @@ int	    main_loop(t_data *data);
 void	calc(t_data *data);
 void	draw(t_data *data);
 int	    convert_rgb_int(int *rgb);
-
+void	player_direction(t_data *data);
+void	draw(t_data *data);
+int		convert_rgb_int(int *rgb);
+void	move_forward(t_data *data);
+void	move_backward(t_data *data);
+void	rotate_left(t_data *data);
+void	rotate_right(t_data *data);
+int		key_press(int key, t_data *data);
+void	load_image(t_data *data, int *texture, char *path, t_img *img);
+void	load_texture(t_data *data);
+int		ft_exit(t_data *data);
+void	buffer_clear(t_data *data, t_raycast *ray);
+void	texturing_calc(t_data *data, t_raycast *ray);
+void	init_ray(t_data *data, t_raycast *ray);
+void	wall_hit(t_data *data, t_raycast *ray);
 
 #endif
