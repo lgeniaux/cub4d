@@ -77,12 +77,22 @@ void	the_end(t_data	*data, int type)
         y = 0;
         while (y < 8)
         {
-            free(data->info->texture[y]);
+            if (data->info->texture[y] != NULL)
+                free(data->info->texture[y]);
             y++;
         }
-        free(data->info->texture);
-        free(data->info);
-        free(data->raycast);
+        if (data->info->texture != NULL)
+            free(data->info->texture);
+        if (data->info->mlx->xvar)
+            free(data->info->mlx->xvar);
+        if (data->info->mlx)
+            free (data->info->mlx);
+        if (data->info != NULL) {
+            free(data->info);
+        }
+        if (data->raycast != NULL) {
+            free(data->raycast);
+        }
 
 //        ft_exit(data);
     }
