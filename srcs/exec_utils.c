@@ -22,7 +22,7 @@ void	load_image(t_data *data, int *texture, char *path, t_img *img)
 	if (!img->img)
 	{
 		mlx_destroy_display(data->info->mlx);
-		the_end(data, 6);
+		the_end(data, 7);
 	}
 	img->data = (int *)mlx_get_data_addr(img->img, &img->bpp, &img->size_l,
 			&img->endian);

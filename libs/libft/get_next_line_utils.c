@@ -31,7 +31,7 @@ size_t	ft_strlcpy_gnl(char *dst, const char *src, size_t dstsize)
 	return (ft_strlen(src));
 }
 
-char	*ft_strdup2(const char *s1)
+char	*ft_strdup_gnl(const char *s1)
 {
 	char		*str;
 	size_t		len;

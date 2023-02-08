@@ -35,6 +35,8 @@ void	print_type(int type)
 		printf("Error\nMissing informations\n");
 	else if (type == 5)
 		printf("Error\nMap not found\n");
+	else if (type == 7)
+		printf("Error\nInvalid texture\n");
 }
 
 void	free_execution(t_data *data)
@@ -98,7 +100,7 @@ void	the_end(t_data *data, int type)
 	}
 	if (data->mapper->walls)
 		free(data->mapper->walls);
-	if (type == 6)
+	if (type >= 6)
 		free_execution(data);
 	exit(18);
 }
