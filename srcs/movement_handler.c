@@ -6,31 +6,11 @@
 /*   By: lgeniaux <lgeniaux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/07 15:22:33 by lgeniaux          #+#    #+#             */
-/*   Updated: 2023/02/08 15:32:49 by lgeniaux         ###   ########.fr       */
+/*   Updated: 2023/02/08 16:26:53 by lgeniaux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../incs/cube.h"
-
-void	move_forward(t_data *data)
-{
-	if (data->mapper->map[(int)(data->info->pos_y)][(int)(data->info->pos_x
-			+ data->info->dir_x * data->info->move_speed)] != '1')
-		data->info->pos_x += data->info->dir_x * data->info->move_speed;
-	if (data->mapper->map[(int)(data->info->pos_y + data->info->dir_y
-			* data->info->move_speed)][(int)(data->info->pos_x)] != '1')
-		data->info->pos_y += data->info->dir_y * data->info->move_speed;
-}
-
-void	move_backward(t_data *data)
-{
-	if (data->mapper->map[(int)(data->info->pos_y)][(int)(data->info->pos_x
-			- data->info->dir_x * data->info->move_speed)] != '1')
-		data->info->pos_x -= data->info->dir_x * data->info->move_speed;
-	if (data->mapper->map[(int)(data->info->pos_y - data->info->dir_y
-			* data->info->move_speed)][(int)(data->info->pos_x)] != '1')
-		data->info->pos_y -= data->info->dir_y * data->info->move_speed;
-}
 
 void	rotate_left(t_data *data)
 {
@@ -70,14 +50,18 @@ void	rotate_right(t_data *data)
 
 int	key_press(int key, t_data *data)
 {
-	if (key == K_W)
+	if (key == K_W || key == K_UP)
 		move_forward(data);
-	if (key == K_S)
+	if (key == K_S || key == K_DOWN)
 		move_backward(data);
 	if (key == K_D)
 		rotate_right(data);
 	if (key == K_A)
 		rotate_left(data);
+	if (key == K_LEFT)
+		move_left(data);
+	if (key == K_RIGHT)
+		move_right(data);
 	if (key == K_ESC)
 		ft_exit(data);
 	mlx_clear_window(data->info->mlx, data->info->win);

@@ -6,7 +6,7 @@
 /*   By: lgeniaux <lgeniaux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/15 17:26:35 by hmarconn          #+#    #+#             */
-/*   Updated: 2023/02/08 15:31:02 by lgeniaux         ###   ########.fr       */
+/*   Updated: 2023/02/08 16:26:36 by lgeniaux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,9 +35,13 @@
 # define K_S 115
 # define K_W 119
 # define K_ESC 65307
+# define K_LEFT 65361
+# define K_RIGHT 65363
+# define K_UP 65362
+# define K_DOWN 65364
 
-# define WINDOW_W 720
-# define WINDOW_H 720
+# define WINDOW_W 1920
+# define WINDOW_H 1080
 
 # define TEXTURE_WIDTH 64
 # define TEXTURE_HEIGHT 64
@@ -200,5 +204,9 @@ void			wall_hit(t_data *data, t_raycast *ray);
 int				fill_buffer(t_data *data);
 int				test_utils(t_data *data, int *points, char *tmp);
 int				pa_floors_length(t_data	*data);
+void			move_forward(t_data *data);
+void			move_backward(t_data *data);
+void			move_left(t_data *data);
+void			move_right(t_data *data);
 
 #endif
