@@ -40,6 +40,7 @@ static int	the_map_maker(t_data *data)
 	i = the_map_maker_util(data, i);
 	free(data->buff);
 	close(data->fd);
+    printf("%d %d\n", data->mapper->height, data->mapper->height);
 	data->mapper->map = malloc(sizeof(char *) * (data->mapper->height + 2));
 	if (!data->mapper->map)
 		return (0);
@@ -63,36 +64,56 @@ static int	tmp_util(t_data	*data)
 	int	i;
 
 	i = 1;
+    data->buff = NULL;
 	data->buff = get_next_line(data->fd);
 	while (data->buff)
 	{
 		if (i >= data->i)
-		{
-			if (!the_map_filler(data, data->buff))
-				return (0);
+        {
+            if (!the_map_filler(data, data->buff))
+            {
+                free(data->buff);
+                return (0);
+            }
 		}
 		free(data->buff);
 		data->buff = get_next_line(data->fd);
 		i++;
 	}
-	if (data->buff != NULL)
-		free(data->buff);
+    free(data->buff);
 	close(data->fd);
 	return (1);
 }
 
 int	the_map_parser(t_data	*data)
 {
+//    int i;
+//
+//    i = 0;
 	if (!the_map_maker(data))
 		return (0);
 	data->buff = NULL;
 	data->fd = 0;
 	data->fd = open(data->doc, O_RDONLY);
 	if (data->fd <= 0)
-		return (0);
+    {
+        printf("1\n");
+        return (0);
+    }
 	if (!tmp_util(data))
-		return (0);
+    {
+        printf("2\n");
+        return (0);
+    }
+//    while (data->mapper->map[i])
+//    {
+//        printf("%s\n", data->mapper->map[i]);
+//        i++;
+//    }
 	if (!the_wall_parser(data))
-		return (0);
+    {
+        printf("3\n");
+        return (0);
+    }
 	return (1);
 }

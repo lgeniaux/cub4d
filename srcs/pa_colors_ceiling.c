@@ -41,11 +41,17 @@ static int	pa_ceiling_saveplace(t_data	*data, char	*buffer)
 {
 	if (data->mapper->ceilings == 1)
 	{
-		free(buffer);
+        free(buffer);
 		return (0);
 	}
-	while (buffer[data->scroller] < '0' || buffer[data->scroller] > '9')
-		data->scroller++;
+    if (buffer[data->scroller] >= 'A' && buffer[data->scroller] <= 'Z')
+    {
+        return (0);
+    }
+	while (buffer[data->scroller] && (buffer[data->scroller] < '0' || buffer[data->scroller] > '9'))
+    {
+        data->scroller++;
+    }
 	return (1);
 }
 
@@ -67,8 +73,8 @@ static int	test(t_data	*data, char	*buffer, int *points, char	*tmp)
 		tmp[points[1]] = '\0';
 		if (!pa_ceilingcolorcheck(data, tmp, data->y))
 		{
-			if (buffer != NULL)
-				free(buffer);
+            free(buffer);
+            buffer = NULL;
 			return (0);
 		}
 		tmp = NULL;

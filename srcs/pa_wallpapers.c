@@ -63,7 +63,8 @@ int	pa_walls(t_data	*data, char	*buffer, int wall)
 	data->scroller += 2;
 	if (!pa_wallsupervision_prequel(data, wall))
 	{
-		free (buffer);
+		free (data->buffer);
+        data->buffer = NULL;
 		return (0);
 	}
 	while (buffer[data->scroller] && (buffer[data->scroller] < 33 || \

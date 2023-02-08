@@ -19,6 +19,7 @@
 # include "../libs//mlx_linux/mlx.h"
 # include "../libs/libft/libft.h"
 # include <math.h>
+# include <ctype.h>
 
 # define NORTH	1
 # define SOUTH	2
@@ -133,6 +134,7 @@ typedef struct s_data
 	int			fd_section;
 	int			scroller;
 	int			i;
+    int         index;
 	t_map		*mapper;
 	char		*buff;
     char        *buffer;

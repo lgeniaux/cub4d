@@ -30,19 +30,23 @@ int	fd_check(char *doc)
 
 int	read_fd(t_data *data, int fd)
 {
+    int i;
+
+    i = 0;
 	data->buffer = get_next_line(fd);
 	while (data->buffer && data->fd_section == 0)
 	{
 		if (!to_parse(data, data->buffer))
 		{
-			free(data->buffer);
 			the_end(data, 2);
 			return (0);
 		}
+        i++;
 		free(data->buffer);
 		data->buffer = get_next_line(fd);
 	}
 	free(data->buffer);
+    data->buffer = NULL;
 	close(fd);
 	data->y = 0;
 	return (1);
@@ -89,20 +93,29 @@ int	main(int argc, char **argv)
 {
 	t_data	data;
 	t_map	mapper;
-
+//    int     i;
+//
+//    i = 0;
 	data.mapper = &mapper;
 	if (argc != 2)
 		return (0);
+    data.index = 0;
 	init_phase(&data);
 	if (!secondhand_main(&data, argv[1]))
 		the_end(&data, 0);
 	if (!the_map_parser(&data))
 	{
+
+        printf("test\n");
 		the_end(&data, 3);
 		exit(42);
 	}
 	if (!elements_verification(&data))
 		the_end(&data, 0);
+//    while (data.mapper->map[i++])
+//    {
+//        printf("%s", data.mapper->map[i]);
+//    }
 	exec_start(&data);
 	the_end(&data, 6);
 	return (0);

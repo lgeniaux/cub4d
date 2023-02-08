@@ -57,6 +57,7 @@ static int	wall_parser_util(t_data	*data, int len, int x, int y)
 	{
 		if (!wall_parser_first(data, len, x, y))
 		{
+            printf("a\n");
 			return (0);
 		}
 	}
@@ -65,7 +66,10 @@ static int	wall_parser_util(t_data	*data, int len, int x, int y)
 			== 'E' || data->mapper->map[y][x] == 'W')
 	{
 		if (!wall_parser_second(data, len, x, y))
-			return (0);
+        {
+            printf("b\n");
+            return (0);
+        }
 		set_player(data, x, y);
 	}
 	else if (data->mapper->map[y][x] != '1' && data->mapper->map[y][x] \
@@ -87,6 +91,7 @@ int	the_wall_parser(t_data	*data)
 	len = 0;
 	if (data->mapper->high_point == 0)
 		data->mapper->high_point = data->y;
+    y = 0;
 	while (y < data->mapper->high_point)
 	{
 		len = ft_strlen_parsing(data->mapper->map[y]);

@@ -31,7 +31,9 @@ static int	mapfiller_scroller(char	*buffer, int len)
 	while (x < len && buffer[x] != '1' && buffer[x] != '0' && \
 		buffer[x] != 'N' && buffer[x] != 'S' && buffer[x] != 'E' && \
 			buffer[x] != 'W')
-		x++;
+    {
+        x++;
+    }
 	return (x);
 }
 
@@ -49,11 +51,13 @@ static int	the_map_filler_util(t_data	*data, char	*buffer, int len)
 	}
 	if (len == 1 && (buffer[0] == '\n' && data->mapper->high_point == 0))
 		data->mapper->high_point = data->y;
+    x = 0;
 	if (len == 1)
 		data->mapper->height = x;
 	data->mapper->map[data->y] = ft_calloc(len + 1, sizeof(char));
 	if (!data->mapper->map[data->y])
 		return (0);
+    data->index++;
 	filler_secondutil(data, buffer, x);
 	return (1);
 }

@@ -43,7 +43,11 @@ static int	pa_floors_firstphase(t_data	*data, char	*buffer)
 		free(buffer);
 		return (0);
 	}
-	while (buffer[data->scroller] < '0' || buffer[data->scroller] > '9')
+    if (buffer[data->scroller] >= 'A' && buffer[data->scroller] <= 'Z')
+    {
+        return (0);
+    }
+	while (buffer[data->scroller] && (buffer[data->scroller] < '0' || buffer[data->scroller] > '9'))
 		data->scroller++;
 	return (1);
 }
@@ -66,7 +70,8 @@ int	test(t_data	*data, char	*buffer, int	*points, char	*tmp)
 		tmp[points[1]] = '\0';
 		if (!pa_floorcolorcheck(data, tmp, points[2]))
 		{
-			free(buffer);
+            free(buffer);
+            buffer = NULL;
 			return (0);
 		}
 		tmp = NULL;
