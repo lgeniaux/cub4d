@@ -55,7 +55,7 @@ void	free_execution(t_data *data)
 
 void	free_map(t_data	*data)
 {
-	int y;
+	int	y;
 
 	y = 0;
 	if (data->map_exists == 1)

@@ -76,12 +76,11 @@ int	pa_getlen(t_data *data, char *buffer)
 	int	len;
 
 	len = 0;
-	while (buffer[data->scroller] && (buffer[data->scroller] >= 33
-									  && buffer[data->scroller] <= 126))
+	while (buffer[data->scroller] && (buffer[data->scroller] >= 33 \
+		&& buffer[data->scroller] <= 126))
 	{
 		len++;
 		data->scroller++;
 	}
 	return (len);
 }
-
