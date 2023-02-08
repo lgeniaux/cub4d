@@ -6,7 +6,7 @@
 /*   By: lgeniaux <lgeniaux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/07 15:41:50 by lgeniaux          #+#    #+#             */
-/*   Updated: 2023/02/08 14:54:38 by lgeniaux         ###   ########.fr       */
+/*   Updated: 2023/02/08 15:33:10 by lgeniaux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,9 @@ void	buffer_clear(t_data *data, t_raycast *ray)
 void	texturing_calc_2(t_data *data, t_raycast *ray)
 {
 	if (ray->side == 0)
-		ray->wall_x = data->info->posY + ray->perp_wall_dist * ray->ray_dir_y;
+		ray->wall_x = data->info->pos_y + ray->perp_wall_dist * ray->ray_dir_y;
 	else
-		ray->wall_x = data->info->posX + ray->perp_wall_dist * ray->ray_dir_x;
+		ray->wall_x = data->info->pos_x + ray->perp_wall_dist * ray->ray_dir_x;
 	ray->wall_x -= floor(ray->wall_x);
 	ray->texture_x = (int)(ray->wall_x * (double)TEXTURE_WIDTH);
 	if (ray->side == 0 && ray->ray_dir_x > 0)
@@ -76,10 +76,10 @@ void	texturing_calc(t_data *data, t_raycast *ray)
 void	init_ray(t_data *data, t_raycast *ray)
 {
 	ray->camera_x = 2 * ray->x / (double)WINDOW_W - 1;
-	ray->ray_dir_x = data->info->dirX + data->info->planeX * ray->camera_x;
-	ray->ray_dir_y = data->info->dirY + data->info->planeY * ray->camera_x;
-	ray->map_x = (int)data->info->posX;
-	ray->map_y = (int)data->info->posY;
+	ray->ray_dir_x = data->info->dir_x + data->info->plane_x * ray->camera_x;
+	ray->ray_dir_y = data->info->dir_y + data->info->plane_y * ray->camera_x;
+	ray->map_x = (int)data->info->pos_x;
+	ray->map_y = (int)data->info->pos_y;
 	ray->delta_dist_x = fabs(1 / ray->ray_dir_x);
 	ray->delta_dist_y = fabs(1 / ray->ray_dir_y);
 	ray->hit = 0;
@@ -105,9 +105,11 @@ void	wall_hit(t_data *data, t_raycast *ray)
 			ray->hit = 1;
 	}
 	if (ray->side == 0)
-		ray->perp_wall_dist = (ray->map_x - data->info->posX + (1 - ray->step_x)
+		ray->perp_wall_dist = (ray->map_x - data->info->pos_x
+				+ (1 - ray->step_x)
 				/ 2) / ray->ray_dir_x;
 	else
-		ray->perp_wall_dist = (ray->map_y - data->info->posY + (1 - ray->step_y)
+		ray->perp_wall_dist = (ray->map_y - data->info->pos_y
+				+ (1 - ray->step_y)
 				/ 2) / ray->ray_dir_y;
 }
