@@ -3,22 +3,22 @@
 /*                                                        :::      ::::::::   */
 /*   pa_colors_ceiling.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hmarconn <hmarconn@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lgeniaux <lgeniaux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/18 16:32:47 by hmarconn          #+#    #+#             */
-/*   Updated: 2023/02/08 13:25:45 by hmarconn         ###   ########.fr       */
+/*   Updated: 2023/02/08 13:52:08 by lgeniaux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../incs/cube.h"
 
-static int	pa_ceiling_length(t_data	*data, char	*buffer)
+static int	pa_ceiling_length(t_data	*data)
 {
 	int	len;
 
 	len = 0;
-	while (buffer[data->scroller] && (buffer[data->scroller] >= '0' && \
-		buffer[data->scroller] <= '9'))
+	while (data->buffer[data->scroller] && (data->buffer[data->scroller] >= '0' && \
+		data->buffer[data->scroller] <= '9'))
 	{
 		len++;
 		data->scroller++;
@@ -26,10 +26,10 @@ static int	pa_ceiling_length(t_data	*data, char	*buffer)
 	return (len);
 }
 
-int	pa_ceiling_steptwo(t_data	*data, char	*buffer, int i)
+int	pa_ceiling_steptwo(t_data	*data, int i)
 {
-	if (buffer[data->scroller] && (buffer[data->scroller] >= '0' && \
-		buffer[data->scroller] <= '9') && i == 3)
+	if (data->buffer[data->scroller] && (data->buffer[data->scroller] >= '0' && \
+		data->buffer[data->scroller] <= '9') && i == 3)
 		return (0);
 	else if (i < 3)
 		return (0);
@@ -37,55 +37,55 @@ int	pa_ceiling_steptwo(t_data	*data, char	*buffer, int i)
 	return (1);
 }
 
-static int	pa_ceiling_saveplace(t_data	*data, char	*buffer)
+static int	pa_ceiling_saveplace(t_data	*data)
 {
 	if (data->mapper->ceilings == 1)
 	{
-		free(buffer);
+		free(data->buffer);
 		return (0);
 	}
-	if (buffer[data->scroller] >= 'A' && buffer[data->scroller] <= 'Z')
+	if (data->buffer[data->scroller] >= 'A' && data->buffer[data->scroller] <= 'Z')
 	{
 		return (0);
 	}
-	while (buffer[data->scroller] && (buffer[data->scroller] < '0' || \
-		buffer[data->scroller] > '9'))
+	while (data->buffer[data->scroller] && (data->buffer[data->scroller] < '0' || \
+		data->buffer[data->scroller] > '9'))
 	{
 		data->scroller++;
 	}
 	return (1);
 }
 
-static int	test(t_data	*data, char	*buffer, int *points, char	*tmp)
+static int	test(t_data	*data, int *points, char	*tmp)
 {
 	int	len;
 
-	while (buffer[data->scroller] && (buffer[data->scroller] >= '0' && \
-		buffer[data->scroller] <= '9') && data->y < 3)
+	while (data->buffer[data->scroller] && (data->buffer[data->scroller] >= '0' && \
+		data->buffer[data->scroller] <= '9') && data->y < 3)
 	{
 		points[1] = 0;
 		points[0] = data->scroller;
-		len = pa_ceiling_length(data, buffer);
+		len = pa_ceiling_length(data);
 		tmp = ft_calloc(len + 1, sizeof(char));
 		if (!tmp)
 			exit (52);
 		while (points[1] < len)
-			tmp[points[1]++] = buffer[points[0]++];
+			tmp[points[1]++] = data->buffer[points[0]++];
 		tmp[points[1]] = '\0';
 		if (!pa_ceilingcolorcheck(data, tmp, data->y))
 		{
-			free(buffer);
-			buffer = NULL;
+			free(data->buffer);
+			data->buffer = NULL;
 			return (0);
 		}
 		tmp = NULL;
-		data->scroller += buffer[data->scroller] == ',';
+		data->scroller += data->buffer[data->scroller] == ',';
 		data->y++;
 	}
 	return (1);
 }
 
-int	pa_ceiling(t_data	*data, char	*buffer)
+int	pa_ceiling(t_data	*data)
 {
 	char	*tmp;
 	int		points[2];
@@ -93,11 +93,11 @@ int	pa_ceiling(t_data	*data, char	*buffer)
 	points[0] = 0;
 	points[1] = 0;
 	tmp = NULL;
-	if (!pa_ceiling_saveplace(data, buffer))
+	if (!pa_ceiling_saveplace(data))
 		return (0);
-	if (!test(data, buffer, points, tmp))
+	if (!test(data, points, tmp))
 		return (0);
-	if (!pa_ceiling_steptwo(data, buffer, data->y))
+	if (!pa_ceiling_steptwo(data, data->y))
 		return (0);
 	data->y = 0;
 	return (1);

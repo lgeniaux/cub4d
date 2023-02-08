@@ -6,7 +6,7 @@
 /*   By: lgeniaux <lgeniaux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/15 17:26:35 by hmarconn          #+#    #+#             */
-/*   Updated: 2023/02/07 19:54:57 by lgeniaux         ###   ########.fr       */
+/*   Updated: 2023/02/08 14:06:51 by lgeniaux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -146,25 +146,25 @@ typedef struct s_data
 void	init_phase(t_data	*data);
 int		fd_check(char	*doc);
 int		ft_strlen_parsing(char	*str);
-int		pa_getlen(t_data	*data, char	*buffer);
-int		to_parse(t_data	*data, char	*buffer);
-int		pa_wallpapers(t_data	*data, char	*buffer);
+int		pa_getlen(t_data	*data);
+int		to_parse(t_data	*data);
+int		pa_wallpapers(t_data	*data);
 int		the_wall_parser(t_data	*data);
 int		wall_parser_first(t_data	*data, int len, int x, int y);
-int		pa_walls(t_data	*data, char	*buffer, int wall);
-int		pa_colors(t_data	*data, char	*buffer);
-int		pa_floors(t_data	*data, char	*buffer);
+int		pa_walls(t_data	*data, int wall);
+int		pa_colors(t_data	*data);
+int		pa_floors(t_data	*data);
 int		pa_firstfloor(t_data *data, char	*tmp);
 int		pa_secondfloor(t_data *data, char	*tmp);
 int		pa_thirdfloor(t_data *data, char	*tmp);
-int		pa_ceiling(t_data	*data, char	*buffer);
+int		pa_ceiling(t_data	*data);
 int		first_ceiling(t_data *data, char	*tmp);
 int		second_ceiling(t_data *data, char	*tmp);
 int		third_ceiling(t_data *data, char	*tmp);
 int		the_map_parser(t_data	*data);
-int		the_map_filler(t_data	*data, char	*buffer);
+int		the_map_filler(t_data	*data);
 void	the_end(t_data	*data, int type);
-void	toparse_scroll(t_data	*data, char	*buffer);
+void	toparse_scroll(t_data	*data);
 int		pa_floorcolorcheck(t_data	*data, char	*tmp, int i);
 int		pa_ceilingcolorcheck(t_data	*data, char	*tmp, int i);
 

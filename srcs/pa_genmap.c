@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pa_genmap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hmarconn <hmarconn@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lgeniaux <lgeniaux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/22 11:37:43 by hmarconn          #+#    #+#             */
-/*   Updated: 2023/02/08 13:34:56 by hmarconn         ###   ########.fr       */
+/*   Updated: 2023/02/08 14:40:25 by lgeniaux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,23 +64,24 @@ static int	tmp_util(t_data	*data)
 	int	i;
 
 	i = 1;
-	data->buff = NULL;
-	data->buff = get_next_line(data->fd);
-	while (data->buff)
+	data->buffer = NULL;
+	data->buffer = get_next_line(data->fd);
+	while (data->buffer)
 	{
 		if (i >= data->i)
 		{
-			if (!the_map_filler(data, data->buff))
+			if (!the_map_filler(data))
 			{
-				free(data->buff);
+				free(data->buffer);
+				data->buffer = NULL;
 				return (0);
 			}
 		}
-		free(data->buff);
-		data->buff = get_next_line(data->fd);
+		free(data->buffer);
+		data->buffer = get_next_line(data->fd);
 		i++;
 	}
-	free(data->buff);
+	free(data->buffer);
 	close(data->fd);
 	return (1);
 }

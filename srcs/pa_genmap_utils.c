@@ -3,53 +3,53 @@
 /*                                                        :::      ::::::::   */
 /*   pa_genmap_utils.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hmarconn <hmarconn@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lgeniaux <lgeniaux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/23 16:24:30 by hmarconn          #+#    #+#             */
-/*   Updated: 2023/02/08 13:32:45 by hmarconn         ###   ########.fr       */
+/*   Updated: 2023/02/08 13:57:54 by lgeniaux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../incs/cube.h"
 
-static void	filler_secondutil(t_data	*data, char	*buffer, int x)
+static void	filler_secondutil(t_data	*data, int x)
 {
-	while (buffer[x] != '\0')
+	while (data->buffer[x] != '\0')
 	{
-		data->mapper->map[data->y][x] = buffer[x];
+		data->mapper->map[data->y][x] = data->buffer[x];
 		x++;
 	}
 	data->mapper->map[data->y][x] = '\0';
 	data->y++;
 }
 
-static int	mapfiller_scroller(char	*buffer, int len)
+static int	mapfiller_scroller(t_data *data, int len)
 {
 	int	x;
 
 	x = 0;
-	while (x < len && buffer[x] != '1' && buffer[x] != '0' && \
-		buffer[x] != 'N' && buffer[x] != 'S' && buffer[x] != 'E' && \
-			buffer[x] != 'W')
+	while (x < len && data->buffer[x] != '1' && data->buffer[x] != '0' && \
+		data->buffer[x] != 'N' && data->buffer[x] != 'S' && data->buffer[x] != 'E' && \
+			data->buffer[x] != 'W')
 	{
 		x++;
 	}
 	return (x);
 }
 
-static int	the_map_filler_util(t_data	*data, char	*buffer, int len)
+static int	the_map_filler_util(t_data	*data, int len)
 {
 	int	x;
 
 	x = 0;
-	if ((buffer[0] < 33 || buffer[0] > 126) && (buffer[0] != '\0' && \
-		buffer[0] != '\n'))
+	if ((data->buffer[0] < 33 || data->buffer[0] > 126) && (data->buffer[0] != '\0' && \
+		data->buffer[0] != '\n'))
 	{
-		x = mapfiller_scroller(buffer, len);
+		x = mapfiller_scroller(data, len);
 		if (x == len && data->mapper->high_point == 0)
 			data->mapper->high_point = data->y;
 	}
-	if (len == 1 && (buffer[0] == '\n' && data->mapper->high_point == 0))
+	if (len == 1 && (data->buffer[0] == '\n' && data->mapper->high_point == 0))
 		data->mapper->high_point = data->y;
 	x = 0;
 	if (len == 1)
@@ -58,28 +58,28 @@ static int	the_map_filler_util(t_data	*data, char	*buffer, int len)
 	if (!data->mapper->map[data->y])
 		return (0);
 	data->index++;
-	filler_secondutil(data, buffer, x);
+	filler_secondutil(data, x);
 	return (1);
 }
 
-int	the_map_filler(t_data	*data, char	*buffer)
+int	the_map_filler(t_data	*data)
 {
 	int	len;
 	int	x;
 
 	x = 0;
-	len = ft_strlen(buffer);
+	len = ft_strlen(data->buffer);
 	if (data->mapper->high_point == 0)
 	{
-		if (!the_map_filler_util(data, buffer, len))
+		if (!the_map_filler_util(data, len))
 			return (0);
 	}
 	else
 	{
 		x = 0;
-		while (buffer[x] && buffer[x] != '\n' && buffer[x] != '\0')
+		while (data->buffer[x] && data->buffer[x] != '\n' && data->buffer[x] != '\0')
 		{
-			if (buffer[x] >= 33 && buffer[x] <= 126)
+			if (data->buffer[x] >= 33 && data->buffer[x] <= 126)
 				return (0);
 			x++;
 		}

@@ -36,7 +36,7 @@ int	read_fd(t_data *data, int fd)
 	data->buffer = get_next_line(fd);
 	while (data->buffer && data->fd_section == 0)
 	{
-		if (!to_parse(data, data->buffer))
+		if (!to_parse(data))
 		{
 			the_end(data, 2);
 			return (0);

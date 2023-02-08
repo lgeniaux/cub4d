@@ -3,29 +3,29 @@
 /*                                                        :::      ::::::::   */
 /*   pa_utils.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hmarconn <hmarconn@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lgeniaux <lgeniaux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 19:09:04 by hmarconn          #+#    #+#             */
-/*   Updated: 2023/02/08 13:29:31 by hmarconn         ###   ########.fr       */
+/*   Updated: 2023/02/08 14:04:12 by lgeniaux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../incs/cube.h"
 
-void	toparse_scroll(t_data *data, char *buffer)
+void	toparse_scroll(t_data *data)
 {
-	while (buffer[data->scroller] && buffer[data->scroller] != '\0' \
-		&& (buffer[data->scroller] < 33 || buffer[data->scroller] > 126))
+	while (data->buffer[data->scroller] && data->buffer[data->scroller] != '\0' \
+		&& (data->buffer[data->scroller] < 33 || data->buffer[data->scroller] > 126))
 		data->scroller++;
 }
 
-int	pa_getlen(t_data *data, char *buffer)
+int	pa_getlen(t_data *data)
 {
 	int	len;
 
 	len = 0;
-	while (buffer[data->scroller] && (buffer[data->scroller] >= 33
-			&& buffer[data->scroller] <= 126))
+	while (data->buffer[data->scroller] && (data->buffer[data->scroller] >= 33
+			&& data->buffer[data->scroller] <= 126))
 	{
 		len++;
 		data->scroller++;

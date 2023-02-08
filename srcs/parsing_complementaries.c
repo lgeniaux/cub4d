@@ -3,43 +3,43 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_complementaries.c                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hmarconn <hmarconn@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lgeniaux <lgeniaux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/25 14:00:24 by hmarconn          #+#    #+#             */
-/*   Updated: 2023/02/08 13:36:28 by hmarconn         ###   ########.fr       */
+/*   Updated: 2023/02/08 14:06:20 by lgeniaux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../incs/cube.h"
 
-static int	to_parse_one(t_data	*data, char	*buffer)
+static int	to_parse_one(t_data	*data)
 {
-	if (buffer[data->scroller] == 'N' || buffer[data->scroller] \
+	if (data->buffer[data->scroller] == 'N' || data->buffer[data->scroller] \
 		== 'S' \
-		|| buffer[data->scroller] == 'E' || \
-			buffer[data->scroller] == 'W')
+		|| data->buffer[data->scroller] == 'E' || \
+			data->buffer[data->scroller] == 'W')
 	{
-		if (!pa_wallpapers(data, buffer))
+		if (!pa_wallpapers(data))
 			return (0);
 	}
 	return (1);
 }
 
-static int	to_parse_two(t_data	*data, char	*buffer)
+static int	to_parse_two(t_data	*data)
 {
-	if (buffer[data->scroller] == 'F' || \
-		buffer[data->scroller] == 'C')
+	if (data->buffer[data->scroller] == 'F' || \
+		data->buffer[data->scroller] == 'C')
 	{
-		if (!pa_colors(data, buffer))
+		if (!pa_colors(data))
 			return (0);
 	}
 	return (1);
 }
 
-static int	to_parse_three(t_data	*data, char	*buffer)
+static int	to_parse_three(t_data	*data)
 {
-	if (buffer[data->scroller] >= '0' && \
-		buffer[data->scroller] <= '9')
+	if (data->buffer[data->scroller] >= '0' && \
+		data->buffer[data->scroller] <= '9')
 	{
 		data->fd_section = 1;
 		return (1);
@@ -47,36 +47,36 @@ static int	to_parse_three(t_data	*data, char	*buffer)
 	return (0);
 }
 
-static int	to_parse_four(t_data	*data, char	*buffer)
+static int	to_parse_four(t_data	*data)
 {
-	if (buffer[data->scroller] >= 33 && \
-		buffer[data->scroller] <= 126)
+	if (data->buffer[data->scroller] >= 33 && \
+		data->buffer[data->scroller] <= 126)
 	{
 		return (0);
 	}
 	return (1);
 }
 
-int	to_parse(t_data	*data, char	*buffer)
+int	to_parse(t_data	*data)
 {
 	data->scroller = 0;
 	data->i++;
 	printf("%i\n", data->i);
-	while (buffer[data->scroller] != '\0')
+	while (data->buffer[data->scroller] != '\0')
 	{
 		if (data->fd_section == 0)
 		{
-			toparse_scroll(data, buffer);
-			while (buffer[data->scroller] && (buffer[data->scroller] >= 33 && \
-				buffer[data->scroller] <= 126) && data->fd_section == 0)
+			toparse_scroll(data);
+			while (data->buffer[data->scroller] && (data->buffer[data->scroller] >= 33 && \
+				data->buffer[data->scroller] <= 126) && data->fd_section == 0)
 			{
-				if (!to_parse_one(data, buffer))
+				if (!to_parse_one(data))
 					return (0);
-				else if (!to_parse_two(data, buffer))
+				else if (!to_parse_two(data))
 					return (0);
-				else if (to_parse_three(data, buffer))
+				else if (to_parse_three(data))
 					return (1);
-				else if (!to_parse_four(data, buffer))
+				else if (!to_parse_four(data))
 					return (0);
 			}
 		}

@@ -3,28 +3,28 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hmarconn <hmarconn@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: lgeniaux <lgeniaux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/15 17:26:03 by hmarconn          #+#    #+#             */
-/*   Updated: 2023/01/26 17:46:39 by hmarconn         ###   ########.fr       */
+/*   Updated: 2023/02/08 14:07:19 by lgeniaux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../incs/cube.h"
 
-int	pa_colors(t_data *data, char *buffer)
+int	pa_colors(t_data *data)
 {
-	if (buffer[data->scroller] == 'F')
+	if (data->buffer[data->scroller] == 'F')
 	{
 		data->scroller++;
-		if (!pa_floors(data, buffer))
+		if (!pa_floors(data))
 			return (0);
 		data->mapper->floors = 1;
 	}
-	else if (buffer[data->scroller] == 'C')
+	else if (data->buffer[data->scroller] == 'C')
 	{
 		data->scroller++;
-		if (!pa_ceiling(data, buffer))
+		if (!pa_ceiling(data))
 			return (0);
 	}
 	return (1);
