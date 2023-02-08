@@ -6,11 +6,20 @@
 /*   By: lgeniaux <lgeniaux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 19:09:04 by hmarconn          #+#    #+#             */
-/*   Updated: 2023/02/08 14:45:59 by lgeniaux         ###   ########.fr       */
+/*   Updated: 2023/02/08 15:05:09 by lgeniaux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../incs/cube.h"
+
+int	ft_exit(t_data *data)
+{
+	mlx_destroy_image(data->info->mlx, data->info->img.img);
+	mlx_destroy_window(data->info->mlx, data->info->win);
+	mlx_destroy_display(data->info->mlx);
+	the_end(data, 6);
+	return (0);
+}
 
 void	print_type(int type)
 {

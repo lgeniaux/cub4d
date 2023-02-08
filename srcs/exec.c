@@ -6,7 +6,7 @@
 /*   By: lgeniaux <lgeniaux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/06 13:48:04 by lgeniaux          #+#    #+#             */
-/*   Updated: 2023/02/07 19:57:13 by lgeniaux         ###   ########.fr       */
+/*   Updated: 2023/02/08 14:50:09 by lgeniaux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,15 +89,6 @@ int	main_loop(t_data *data)
 {
 	calc(data);
 	draw(data);
-	return (0);
-}
-
-int	ft_exit(t_data *data)
-{
-	mlx_destroy_image(data->info->mlx, data->info->img.img);
-	mlx_destroy_window(data->info->mlx, data->info->win);
-	mlx_destroy_display(data->info->mlx);
-	the_end(data, 6);
 	return (0);
 }
 

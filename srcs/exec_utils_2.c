@@ -6,7 +6,7 @@
 /*   By: lgeniaux <lgeniaux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/07 15:41:50 by lgeniaux          #+#    #+#             */
-/*   Updated: 2023/02/07 16:36:03 by lgeniaux         ###   ########.fr       */
+/*   Updated: 2023/02/08 14:54:38 by lgeniaux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,24 @@ void	buffer_clear(t_data *data, t_raycast *ray)
 			ray->i++;
 		}
 	}
+}
+
+void	texturing_calc_2(t_data *data, t_raycast *ray)
+{
+	if (ray->side == 0)
+		ray->wall_x = data->info->posY + ray->perp_wall_dist * ray->ray_dir_y;
+	else
+		ray->wall_x = data->info->posX + ray->perp_wall_dist * ray->ray_dir_x;
+	ray->wall_x -= floor(ray->wall_x);
+	ray->texture_x = (int)(ray->wall_x * (double)TEXTURE_WIDTH);
+	if (ray->side == 0 && ray->ray_dir_x > 0)
+		ray->texture_x = TEXTURE_WIDTH - ray->texture_x - 1;
+	if (ray->side == 1 && ray->ray_dir_y < 0)
+		ray->texture_x = TEXTURE_WIDTH - ray->texture_x - 1;
+	ray->step = 1.0 * TEXTURE_HEIGHT / ray->line_height;
+	ray->texture_pos = (ray->draw_start - WINDOW_H / 2 + ray->line_height / 2)
+		* ray->step;
+	ray->y = ray->draw_start;
 }
 
 void	texturing_calc(t_data *data, t_raycast *ray)
@@ -52,20 +70,7 @@ void	texturing_calc(t_data *data, t_raycast *ray)
 		else
 			ray->texture_num = 3;
 	}
-	if (ray->side == 0)
-		ray->wall_x = data->info->posY + ray->perp_wall_dist * ray->ray_dir_y;
-	else
-		ray->wall_x = data->info->posX + ray->perp_wall_dist * ray->ray_dir_x;
-	ray->wall_x -= floor(ray->wall_x);
-	ray->texture_x = (int)(ray->wall_x * (double)TEXTURE_WIDTH);
-	if (ray->side == 0 && ray->ray_dir_x > 0)
-		ray->texture_x = TEXTURE_WIDTH - ray->texture_x - 1;
-	if (ray->side == 1 && ray->ray_dir_y < 0)
-		ray->texture_x = TEXTURE_WIDTH - ray->texture_x - 1;
-	ray->step = 1.0 * TEXTURE_HEIGHT / ray->line_height;
-	ray->texture_pos = (ray->draw_start - WINDOW_H / 2 + ray->line_height / 2)
-		* ray->step;
-	ray->y = ray->draw_start;
+	texturing_calc_2(data, ray);
 }
 
 void	init_ray(t_data *data, t_raycast *ray)

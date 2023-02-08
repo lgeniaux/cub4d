@@ -6,7 +6,7 @@
 /*   By: lgeniaux <lgeniaux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/25 14:00:24 by hmarconn          #+#    #+#             */
-/*   Updated: 2023/02/08 14:06:20 by lgeniaux         ###   ########.fr       */
+/*   Updated: 2023/02/08 15:17:56 by lgeniaux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,8 @@ int	to_parse(t_data	*data)
 		if (data->fd_section == 0)
 		{
 			toparse_scroll(data);
-			while (data->buffer[data->scroller] && (data->buffer[data->scroller] >= 33 && \
+			while (data->buffer[data->scroller] && \
+				(data->buffer[data->scroller] >= 33 && \
 				data->buffer[data->scroller] <= 126) && data->fd_section == 0)
 			{
 				if (!to_parse_one(data))

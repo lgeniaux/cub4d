@@ -30,7 +30,7 @@ int	fd_check(char *doc)
 
 int	read_fd(t_data *data, int fd)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	data->buffer = get_next_line(fd);

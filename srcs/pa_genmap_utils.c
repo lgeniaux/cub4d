@@ -6,11 +6,23 @@
 /*   By: lgeniaux <lgeniaux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/23 16:24:30 by hmarconn          #+#    #+#             */
-/*   Updated: 2023/02/08 13:57:54 by lgeniaux         ###   ########.fr       */
+/*   Updated: 2023/02/08 15:19:22 by lgeniaux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../incs/cube.h"
+
+int	pa_ceiling_steptwo(t_data	*data, int i)
+{
+	if (data->buffer[data->scroller] && \
+		(data->buffer[data->scroller] >= '0' && \
+		data->buffer[data->scroller] <= '9') && i == 3)
+		return (0);
+	else if (i < 3)
+		return (0);
+	data->mapper->ceilings = 1;
+	return (1);
+}
 
 static void	filler_secondutil(t_data	*data, int x)
 {
@@ -29,8 +41,8 @@ static int	mapfiller_scroller(t_data *data, int len)
 
 	x = 0;
 	while (x < len && data->buffer[x] != '1' && data->buffer[x] != '0' && \
-		data->buffer[x] != 'N' && data->buffer[x] != 'S' && data->buffer[x] != 'E' && \
-			data->buffer[x] != 'W')
+		data->buffer[x] != 'N' && data->buffer[x] != 'S' && \
+		data->buffer[x] != 'E' && data->buffer[x] != 'W')
 	{
 		x++;
 	}
@@ -42,8 +54,8 @@ static int	the_map_filler_util(t_data	*data, int len)
 	int	x;
 
 	x = 0;
-	if ((data->buffer[0] < 33 || data->buffer[0] > 126) && (data->buffer[0] != '\0' && \
-		data->buffer[0] != '\n'))
+	if ((data->buffer[0] < 33 || data->buffer[0] > 126) && \
+		(data->buffer[0] != '\0' && data->buffer[0] != '\n'))
 	{
 		x = mapfiller_scroller(data, len);
 		if (x == len && data->mapper->high_point == 0)
@@ -77,7 +89,8 @@ int	the_map_filler(t_data	*data)
 	else
 	{
 		x = 0;
-		while (data->buffer[x] && data->buffer[x] != '\n' && data->buffer[x] != '\0')
+		while (data->buffer[x] && data->buffer[x] != '\n' && \
+			data->buffer[x] != '\0')
 		{
 			if (data->buffer[x] >= 33 && data->buffer[x] <= 126)
 				return (0);
