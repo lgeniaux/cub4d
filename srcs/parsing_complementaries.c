@@ -61,7 +61,6 @@ int	to_parse(t_data	*data)
 {
 	data->scroller = 0;
 	data->i++;
-	printf("%i\n", data->i);
 	while (data->buffer[data->scroller] != '\0')
 	{
 		if (data->fd_section == 0)

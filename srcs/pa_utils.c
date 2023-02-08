@@ -87,7 +87,6 @@ void	the_end(t_data *data, int type)
 
 	y = 0;
 	print_type(type);
-	printf("fin\n");
 	if (data->buffer != NULL)
 		free(data->buffer);
 	free_map(data);

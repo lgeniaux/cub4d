@@ -40,7 +40,6 @@ static int	the_map_maker(t_data *data)
 	i = the_map_maker_util(data, i);
 	free(data->buff);
 	close(data->fd);
-	printf("%d %d\n", data->mapper->height, data->mapper->height);
 	data->mapper->map = malloc(sizeof(char *) * (data->mapper->height + 2));
 	if (!data->mapper->map)
 		return (0);
@@ -95,17 +94,14 @@ int	the_map_parser(t_data	*data)
 	data->fd = open(data->doc, O_RDONLY);
 	if (data->fd <= 0)
 	{
-		printf("1\n");
 		return (0);
 	}
 	if (!tmp_util(data))
 	{
-		printf("2\n");
 		return (0);
 	}
 	if (!the_wall_parser(data))
 	{
-		printf("3\n");
 		return (0);
 	}
 	return (1);

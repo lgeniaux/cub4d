@@ -103,7 +103,6 @@ int	main(int argc, char **argv)
 		the_end(&data, 0);
 	if (!the_map_parser(&data))
 	{
-		printf("test\n");
 		the_end(&data, 3);
 		exit(42);
 	}
