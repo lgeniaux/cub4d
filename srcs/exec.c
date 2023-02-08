@@ -118,9 +118,9 @@ int	exec_start(t_data *data)
 			"mlx");
 	data->info->img.img = mlx_new_image(data->info->mlx, WINDOW_W, WINDOW_H);
 	data->info->img.data = (int *)mlx_get_data_addr(data->info->img.img,
-		&data->info->img.bpp,
-		&data->info->img.size_l,
-		&data->info->img.endian);
+			&data->info->img.bpp,
+			&data->info->img.size_l,
+			&data->info->img.endian);
 	mlx_hook(data->info->win, 17, 1L << 0, &ft_exit, data);
 	mlx_hook(data->info->mlx, 33, 1L << 17, &ft_exit, data);
 	mlx_hook(data->info->win, 2, 1L << 0, &key_press, data);

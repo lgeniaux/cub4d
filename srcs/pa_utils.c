@@ -12,20 +12,20 @@
 
 #include "../incs/cube.h"
 
-void	toparse_scroll(t_data	*data, char	*buffer)
+void	toparse_scroll(t_data *data, char *buffer)
 {
-	while (buffer[data->scroller] && buffer[data->scroller] != '\0' && \
-		(buffer[data->scroller] < 33 || buffer[data->scroller] > 126))
+	while (buffer[data->scroller] && buffer[data->scroller] != '\0' &&
+			(buffer[data->scroller] < 33 || buffer[data->scroller] > 126))
 		data->scroller++;
 }
 
-int	pa_getlen(t_data	*data, char	*buffer)
+int	pa_getlen(t_data *data, char *buffer)
 {
 	int	len;
 
 	len = 0;
-	while (buffer[data->scroller] && (buffer[data->scroller] >= 33 && \
-		buffer[data->scroller] <= 126))
+	while (buffer[data->scroller] && (buffer[data->scroller] >= 33
+			&& buffer[data->scroller] <= 126))
 	{
 		len++;
 		data->scroller++;
@@ -49,7 +49,7 @@ void	print_type(int type)
 		printf("Error\nMap not found\n");
 }
 
-void	the_end(t_data	*data, int type)
+void	the_end(t_data *data, int type)
 {
 	int	y;
 
@@ -68,31 +68,33 @@ void	the_end(t_data	*data, int type)
 	y = 0;
 	while (y < 4)
 	{
-        if (data->mapper->walls[y] != NULL)
-		    free(data->mapper->walls[y]);
+		if (data->mapper->walls[y] != NULL)
+			free(data->mapper->walls[y]);
 		y++;
 	}
-    if (data->mapper->walls)
-            free(data->mapper->walls);
-    if (type == 6)
-    {
-        y = 0;
-        while (y < 8)
-        {
-            if (data->info->texture[y] != NULL)
-                free(data->info->texture[y]);
-            y++;
-        }
-        if (data->info->texture != NULL)
-            free(data->info->texture);
-        if (data->info->mlx)
-            free (data->info->mlx);
-        if (data->info != NULL) {
-            free(data->info);
-        }
-        if (data->raycast != NULL) {
-            free(data->raycast);
-        }
-    }
-    exit(18);
+	if (data->mapper->walls)
+		free(data->mapper->walls);
+	if (type == 6)
+	{
+		y = 0;
+		while (y < 8)
+		{
+			if (data->info->texture[y] != NULL)
+				free(data->info->texture[y]);
+			y++;
+		}
+		if (data->info->texture != NULL)
+			free(data->info->texture);
+		if (data->info->mlx)
+			free(data->info->mlx);
+		if (data->info != NULL)
+		{
+			free(data->info);
+		}
+		if (data->raycast != NULL)
+		{
+			free(data->raycast);
+		}
+	}
+	exit(18);
 }
