@@ -56,20 +56,14 @@ static int	wall_parser_util(t_data	*data, int len, int x, int y)
 	if (data->mapper->map[y][x] == '0')
 	{
 		if (!wall_parser_first(data, len, x, y))
-		{
-			printf("a\n");
 			return (0);
-		}
 	}
 	else if (data->mapper->map[y][x] == 'N' || \
 		data->mapper->map[y][x] == 'S' || data->mapper->map[y][x] \
 			== 'E' || data->mapper->map[y][x] == 'W')
 	{
 		if (!wall_parser_second(data, len, x, y))
-		{
-			printf("b\n");
 			return (0);
-		}
 		set_player(data, x, y);
 	}
 	else if (data->mapper->map[y][x] != '1' && data->mapper->map[y][x] \
