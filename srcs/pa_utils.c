@@ -6,7 +6,7 @@
 /*   By: lgeniaux <lgeniaux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 19:09:04 by hmarconn          #+#    #+#             */
-/*   Updated: 2023/02/08 14:04:12 by lgeniaux         ###   ########.fr       */
+/*   Updated: 2023/02/08 14:45:59 by lgeniaux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ void	free_execution(t_data *data)
 
 void	free_map(t_data	*data)
 {
-	int y;
+	int	y;
 
 	y = 0;
 	if (data->map_exists == 1)
