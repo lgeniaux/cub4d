@@ -6,7 +6,7 @@
 /*   By: lgeniaux <lgeniaux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/07 15:08:41 by lgeniaux          #+#    #+#             */
-/*   Updated: 2023/02/07 16:34:25 by lgeniaux         ###   ########.fr       */
+/*   Updated: 2023/02/08 15:28:38 by lgeniaux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,38 +14,38 @@
 
 static void	north(t_data *data)
 {
-	data->info->dirX = 0.0;
-	data->info->dirY = -1.0;
-	data->info->planeX = 0.66;
-	data->info->planeY = 0.0;
-	data->info->rotSpeed = -0.05;
+	data->info->dir_x = 0.0;
+	data->info->dir_y = -1.0;
+	data->info->plane_x = 0.66;
+	data->info->plane_y = 0.0;
+	data->info->rot_speed = -0.05;
 }
 
 static void	south(t_data *data)
 {
-	data->info->dirX = 0.0;
-	data->info->dirY = 1.0;
-	data->info->planeX = -0.66;
-	data->info->planeY = 0.0;
-	data->info->rotSpeed = 0.05;
+	data->info->dir_x = 0.0;
+	data->info->dir_y = 1.0;
+	data->info->plane_x = -0.66;
+	data->info->plane_y = 0.0;
+	data->info->rot_speed = 0.05;
 }
 
 static void	east(t_data *data)
 {
-	data->info->dirX = 1.0;
-	data->info->dirY = 0.0;
-	data->info->planeX = 0.0;
-	data->info->planeY = 0.66;
-	data->info->rotSpeed = 0.05;
+	data->info->dir_x = 1.0;
+	data->info->dir_y = 0.0;
+	data->info->plane_x = 0.0;
+	data->info->plane_y = 0.66;
+	data->info->rot_speed = 0.05;
 }
 
 static void	west(t_data *data)
 {
-	data->info->dirX = -1.0;
-	data->info->dirY = 0.0;
-	data->info->planeX = 0.0;
-	data->info->planeY = -0.66;
-	data->info->rotSpeed = -0.05;
+	data->info->dir_x = -1.0;
+	data->info->dir_y = 0.0;
+	data->info->plane_x = 0.0;
+	data->info->plane_y = -0.66;
+	data->info->rot_speed = -0.05;
 }
 
 void	player_direction(t_data *data)

@@ -6,7 +6,7 @@
 /*   By: lgeniaux <lgeniaux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/07 15:22:33 by lgeniaux          #+#    #+#             */
-/*   Updated: 2023/02/07 16:35:46 by lgeniaux         ###   ########.fr       */
+/*   Updated: 2023/02/08 15:32:49 by lgeniaux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,22 +14,22 @@
 
 void	move_forward(t_data *data)
 {
-	if (data->mapper->map[(int)(data->info->posY)][(int)(data->info->posX
-			+ data->info->dirX * data->info->moveSpeed)] != '1')
-		data->info->posX += data->info->dirX * data->info->moveSpeed;
-	if (data->mapper->map[(int)(data->info->posY + data->info->dirY
-			* data->info->moveSpeed)][(int)(data->info->posX)] != '1')
-		data->info->posY += data->info->dirY * data->info->moveSpeed;
+	if (data->mapper->map[(int)(data->info->pos_y)][(int)(data->info->pos_x
+			+ data->info->dir_x * data->info->move_speed)] != '1')
+		data->info->pos_x += data->info->dir_x * data->info->move_speed;
+	if (data->mapper->map[(int)(data->info->pos_y + data->info->dir_y
+			* data->info->move_speed)][(int)(data->info->pos_x)] != '1')
+		data->info->pos_y += data->info->dir_y * data->info->move_speed;
 }
 
 void	move_backward(t_data *data)
 {
-	if (data->mapper->map[(int)(data->info->posY)][(int)(data->info->posX
-			- data->info->dirX * data->info->moveSpeed)] != '1')
-		data->info->posX -= data->info->dirX * data->info->moveSpeed;
-	if (data->mapper->map[(int)(data->info->posY - data->info->dirY
-			* data->info->moveSpeed)][(int)(data->info->posX)] != '1')
-		data->info->posY -= data->info->dirY * data->info->moveSpeed;
+	if (data->mapper->map[(int)(data->info->pos_y)][(int)(data->info->pos_x
+			- data->info->dir_x * data->info->move_speed)] != '1')
+		data->info->pos_x -= data->info->dir_x * data->info->move_speed;
+	if (data->mapper->map[(int)(data->info->pos_y - data->info->dir_y
+			* data->info->move_speed)][(int)(data->info->pos_x)] != '1')
+		data->info->pos_y -= data->info->dir_y * data->info->move_speed;
 }
 
 void	rotate_left(t_data *data)
@@ -37,16 +37,17 @@ void	rotate_left(t_data *data)
 	double	old_dir_x;
 	double	old_plane_x;
 
-	old_dir_x = data->info->dirX;
-	data->info->dirX = data->info->dirX * cos(data->info->rotSpeed)
-		- data->info->dirY * sin(data->info->rotSpeed);
-	data->info->dirY = old_dir_x * sin(data->info->rotSpeed) + data->info->dirY
-		* cos(data->info->rotSpeed);
-	old_plane_x = data->info->planeX;
-	data->info->planeX = data->info->planeX * cos(data->info->rotSpeed)
-		- data->info->planeY * sin(data->info->rotSpeed);
-	data->info->planeY = old_plane_x * sin(data->info->rotSpeed)
-		+ data->info->planeY * cos(data->info->rotSpeed);
+	old_dir_x = data->info->dir_x;
+	data->info->dir_x = data->info->dir_x * cos(data->info->rot_speed)
+		- data->info->dir_y * sin(data->info->rot_speed);
+	data->info->dir_y = old_dir_x * sin(data->info->rot_speed)
+		+ data->info->dir_y * cos(data->info->rot_speed);
+	old_plane_x = data->info->plane_x;
+	data->info->plane_x = data->info->plane_x
+		* cos(data->info->rot_speed) - data->info->plane_y
+		* sin(data->info->rot_speed);
+	data->info->plane_y = old_plane_x * sin(data->info->rot_speed)
+		+ data->info->plane_y * cos(data->info->rot_speed);
 }
 
 void	rotate_right(t_data *data)
@@ -54,16 +55,17 @@ void	rotate_right(t_data *data)
 	double	old_dir_x;
 	double	old_plane_x;
 
-	old_dir_x = data->info->dirX;
-	data->info->dirX = data->info->dirX * cos(-data->info->rotSpeed)
-		- data->info->dirY * sin(-data->info->rotSpeed);
-	data->info->dirY = old_dir_x * sin(-data->info->rotSpeed) + data->info->dirY
-		* cos(-data->info->rotSpeed);
-	old_plane_x = data->info->planeX;
-	data->info->planeX = data->info->planeX * cos(-data->info->rotSpeed)
-		- data->info->planeY * sin(-data->info->rotSpeed);
-	data->info->planeY = old_plane_x * sin(-data->info->rotSpeed)
-		+ data->info->planeY * cos(-data->info->rotSpeed);
+	old_dir_x = data->info->dir_x;
+	data->info->dir_x = data->info->dir_x * cos(-data->info->rot_speed)
+		- data->info->dir_y * sin(-data->info->rot_speed);
+	data->info->dir_y = old_dir_x
+		* sin(-data->info->rot_speed) + data->info->dir_y
+		* cos(-data->info->rot_speed);
+	old_plane_x = data->info->plane_x;
+	data->info->plane_x = data->info->plane_x * cos(-data->info->rot_speed)
+		- data->info->plane_y * sin(-data->info->rot_speed);
+	data->info->plane_y = old_plane_x * sin(-data->info->rot_speed)
+		+ data->info->plane_y * cos(-data->info->rot_speed);
 }
 
 int	key_press(int key, t_data *data)

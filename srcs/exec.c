@@ -6,7 +6,7 @@
 /*   By: lgeniaux <lgeniaux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/06 13:48:04 by lgeniaux          #+#    #+#             */
-/*   Updated: 2023/02/08 14:50:09 by lgeniaux         ###   ########.fr       */
+/*   Updated: 2023/02/08 15:28:26 by lgeniaux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,23 +17,23 @@ void	calc_ray(t_data *data, t_raycast *ray)
 	if (ray->ray_dir_x < 0)
 	{
 		ray->step_x = -1;
-		ray->side_dist_x = (data->info->posX - ray->map_x) * ray->delta_dist_x;
+		ray->side_dist_x = (data->info->pos_x - ray->map_x) * ray->delta_dist_x;
 	}
 	else
 	{
 		ray->step_x = 1;
-		ray->side_dist_x = (ray->map_x + 1.0 - data->info->posX)
+		ray->side_dist_x = (ray->map_x + 1.0 - data->info->pos_x)
 			* ray->delta_dist_x;
 	}
 	if (ray->ray_dir_y < 0)
 	{
 		ray->step_y = -1;
-		ray->side_dist_y = (data->info->posY - ray->map_y) * ray->delta_dist_y;
+		ray->side_dist_y = (data->info->pos_y - ray->map_y) * ray->delta_dist_y;
 	}
 	else
 	{
 		ray->step_y = 1;
-		ray->side_dist_y = (ray->map_y + 1.0 - data->info->posY)
+		ray->side_dist_y = (ray->map_y + 1.0 - data->info->pos_y)
 			* ray->delta_dist_y;
 	}
 }
@@ -97,14 +97,14 @@ int	exec_start(t_data *data)
 	data->raycast = malloc(sizeof(t_raycast));
 	data->info = malloc(sizeof(t_info));
 	data->info->mlx = mlx_init();
-	data->info->posX = data->mapper->xplayer + 0.55;
-	data->info->posY = data->mapper->yplayer + 0.55;
+	data->info->pos_x = data->mapper->xplayer + 0.55;
+	data->info->pos_y = data->mapper->yplayer + 0.55;
 	player_direction(data);
 	data->info->re_buf = 0;
 	if (fill_buffer(data) == -1)
 		return (-1);
 	load_texture(data);
-	data->info->moveSpeed = 0.05;
+	data->info->move_speed = 0.05;
 	data->info->win = mlx_new_window(data->info->mlx, WINDOW_W, WINDOW_H,
 			"mlx");
 	data->info->img.img = mlx_new_image(data->info->mlx, WINDOW_W, WINDOW_H);
