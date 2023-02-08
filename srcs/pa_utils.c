@@ -12,27 +12,6 @@
 
 #include "../incs/cube.h"
 
-void	toparse_scroll(t_data *data)
-{
-	while (data->buffer[data->scroller] && data->buffer[data->scroller] != '\0' \
-		&& (data->buffer[data->scroller] < 33 || data->buffer[data->scroller] > 126))
-		data->scroller++;
-}
-
-int	pa_getlen(t_data *data)
-{
-	int	len;
-
-	len = 0;
-	while (data->buffer[data->scroller] && (data->buffer[data->scroller] >= 33
-			&& data->buffer[data->scroller] <= 126))
-	{
-		len++;
-		data->scroller++;
-	}
-	return (len);
-}
-
 void	print_type(int type)
 {
 	if (type == 0)

@@ -63,3 +63,24 @@ int	fill_buffer(t_data *data)
 		return (-1);
 	return (0);
 }
+
+void	toparse_scroll(t_data *data)
+{
+	while (data->buffer[data->scroller] && data->buffer[data->scroller] != '\0' \
+		&& (data->buffer[data->scroller] < 33 || data->buffer[data->scroller] > 126))
+		data->scroller++;
+}
+
+int	pa_getlen(t_data *data)
+{
+	int	len;
+
+	len = 0;
+	while (data->buffer[data->scroller] && (data->buffer[data->scroller] >= 33
+											&& data->buffer[data->scroller] <= 126))
+	{
+		len++;
+		data->scroller++;
+	}
+	return (len);
+}
