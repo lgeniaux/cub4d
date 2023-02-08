@@ -12,68 +12,58 @@
 
 #include "libft.h"
 
-char	*ft_strndup(char	*src, char c)
-{
-	int		len;
-	int		i;
-	char	*tab;
-
-	if (!src)
-		return (NULL);
-	i = 0;
-	len = ft_strlenbis((const char *) src);
-	while (src[i] != '\0' && src[i] != c)
-		i++;
-	if (i < len && c != '\0')
-		len = i + 1;
-	tab = malloc(sizeof(char *) * (len + 1));
-	if (!tab)
-		return (0);
-	i = 0;
-	while (i < len)
-	{
-			tab[i] = src[i];
-			i++;
-	}
-	tab[i] = '\0';
-	return (tab);
-}
-
-size_t	ft_strlenbis(const char	*str)
+size_t	ft_strlcpy_gnl(char *dst, const char *src, size_t dstsize)
 {
 	size_t	i;
 
 	i = 0;
-	while (str && str[i] != 0)
+	if (dstsize > 0)
+	{
+		while (src[i] != '\0' && i < dstsize - 1)
+		{
+			dst[i] = src[i];
 			i++;
-	return (i);
+		}
+	}
+	else
+		return (ft_strlen(src));
+	dst[i] = '\0';
+	return (ft_strlen(src));
 }
 
-char	*ft_strjoingen(char	*s1, char *s2)
+char	*ft_strdup2(const char *s1)
 {
-	int		len;
-	int		b;
-	int		a;
-	char	*s3;
+	char		*str;
+	size_t		len;
+	size_t		i;
 
-	len = 0;
-	b = 0;
-	a = 0;
-	len = ft_strlenbis((const char *)s1) + ft_strlenbis((const char *)s2);
-	s3 = malloc(sizeof(char) * len + 1);
-	if (!s3)
+	i = 0;
+	len = ft_strlen(s1);
+	str = (char *)malloc(sizeof(char) * (len + 1));
+	if (!str)
 		return (NULL);
-	while (s1 && s1[b] != '\0')
+	while (i < len)
 	{
-			s3[b] = s1[b];
-			b++;
+		str[i] = s1[i];
+		i++;
 	}
-	while (s2 && s2[a] != '\0')
-	{
-			s3[b++] = s2[a];
-			a++;
-	}
-	s3[b] = '\0';
-	free (s1);
-	return (s3);
+	str[i] = '\0';
+	return (str);
+}
+
+char	*ft_strjoin_gnl(char const *s1, char const *s2)
+{
+	char	*str;
+	char	*tmp;
+
+	str = (char *)malloc(sizeof(char) * (ft_strlen(s1) + ft_strlen(s2) + 1));
+	if (!str)
+		return (NULL);
+	tmp = str;
+	while (*s1 != '\0')
+		*str++ = *s1++;
+	while (*s2 != '\0')
+		*str++ = *s2++;
+	*str = '\0';
+	return (tmp);
 }

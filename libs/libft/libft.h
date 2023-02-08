@@ -91,6 +91,9 @@ char	*get_next_line(int fd);
 size_t	ft_strlenbis(const char	*str);
 char	*ft_strndup(char	*src, char c);
 char	*ft_strjoingen(char	*s1, char *s2);
+size_t	ft_strlcpy_gnl(char *dst, const char *src, size_t dstsize);
+char	*ft_strdup2(const char *s1);
+char	*ft_strjoin_gnl(char const *s1, char const *s2);
 
 int		ft_hexax_printf(unsigned int nb, char	*base);
 int		ft_putstr_fd_printf(char	*s, int fd);
