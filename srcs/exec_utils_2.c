@@ -39,9 +39,19 @@ void	texturing_calc(t_data *data, t_raycast *ray)
 	if (ray->draw_end >= WINDOW_H)
 		ray->draw_end = WINDOW_H - 1;
 	if (ray->side == 0)
-		ray->texture_num = ray->ray_dir_x > 0 ? 0 : 1;
+	{
+		if (ray->ray_dir_x > 0)
+			ray->texture_num = 0;
+		else
+			ray->texture_num = 1;
+	}
 	else
-		ray->texture_num = ray->ray_dir_y > 0 ? 2 : 3;
+	{
+		if (ray->ray_dir_y > 0)
+			ray->texture_num = 2;
+		else
+			ray->texture_num = 3;
+	}
 	if (ray->side == 0)
 		ray->wall_x = data->info->posY + ray->perp_wall_dist * ray->ray_dir_y;
 	else

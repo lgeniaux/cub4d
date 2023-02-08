@@ -12,12 +12,12 @@
 
 #include "../incs/cube.h"
 
-int fill_buffer_second(t_data *data)
+int	fill_buffer_second(t_data *data)
 {
-    int i;
-    int j;
-    
-    i = 0;
+	int	i;
+	int	j;
+
+	i = 0;
 	while (i < 8)
 	{
 		data->info->texture[i] = (int *)malloc(sizeof(int) * (TEXTURE_HEIGHT
@@ -37,15 +37,15 @@ int fill_buffer_second(t_data *data)
 		}
 		i++;
 	}
-    return(0);
+	return (0);
 }
 
-int fill_buffer(t_data *data)
+int	fill_buffer(t_data *data)
 {
-    int i;
-    int j;
-    
-    i = 0;
+	int	i;
+	int	j;
+
+	i = 0;
 	while (i < WINDOW_H)
 	{
 		j = 0;
@@ -59,7 +59,7 @@ int fill_buffer(t_data *data)
 	data->info->texture = (int **)malloc(sizeof(int *) * 8);
 	if (!data->info->texture)
 		return (-1);
-    if (fill_buffer_second(data) == -1)
-        return (-1);
-    return (0);
+	if (fill_buffer_second(data) == -1)
+		return (-1);
+	return (0);
 }

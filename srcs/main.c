@@ -12,15 +12,15 @@
 
 #include "../incs/cube.h"
 
-int	fd_check(char	*doc)
+int	fd_check(char *doc)
 {
 	int	len;
 
 	if (!doc)
 		return (0);
 	len = ft_strlen(doc);
-	if (doc[len - 1] != 'b' || doc[len - 2] != 'u' || doc[len - 3] != 'c' || \
-		doc[len - 4] != '.')
+	if (doc[len - 1] != 'b' || doc[len - 2] != 'u' || doc[len - 3] != 'c'
+		|| doc[len - 4] != '.')
 	{
 		ft_printf("ERROR\nTHE MAP IS NOT .CUB\n");
 		return (0);
@@ -28,18 +28,18 @@ int	fd_check(char	*doc)
 	return (1);
 }
 
-int	read_fd(t_data	*data, int fd)
+int	read_fd(t_data *data, int fd)
 {
 	data->buffer = get_next_line(fd);
 	while (data->buffer && data->fd_section == 0)
-	{	
+	{
 		if (!to_parse(data, data->buffer))
-        {
-            free(data->buffer);
+		{
+			free(data->buffer);
 			the_end(data, 2);
 			return (0);
 		}
-		free (data->buffer);
+		free(data->buffer);
 		data->buffer = get_next_line(fd);
 	}
 	free(data->buffer);
@@ -48,9 +48,9 @@ int	read_fd(t_data	*data, int fd)
 	return (1);
 }
 
-int	secondhand_main(t_data	*data, char	*doc)
+int	secondhand_main(t_data *data, char *doc)
 {
-	int		fd;
+	int	fd;
 
 	data->buffer = NULL;
 	if (!fd_check(doc))
@@ -60,10 +60,10 @@ int	secondhand_main(t_data	*data, char	*doc)
 	if (fd <= 0)
 	{
 		the_end(data, 1);
-		exit (42);
+		exit(42);
 	}
 	if (!read_fd(data, fd))
-        return (0);
+		return (0);
 	if (data->fd_section == 0)
 	{
 		the_end(data, 5);
@@ -72,12 +72,12 @@ int	secondhand_main(t_data	*data, char	*doc)
 	return (1);
 }
 
-static int	elements_verification(t_data	*data)
+static int	elements_verification(t_data *data)
 {
-	if (data->mapper->floors == 0 || data->mapper->ceilings == 0 || \
-		data->mapper->north_wall == 0 || data->mapper->south_wall == 0 || \
-			data->mapper->east_wall == 0 || data->mapper->west_wall == 0 || \
-				data->mapper->player == 0)
+	if (data->mapper->floors == 0 || data->mapper->ceilings == 0
+		|| data->mapper->north_wall == 0 || data->mapper->south_wall == 0
+		|| data->mapper->east_wall == 0 || data->mapper->west_wall == 0
+		|| data->mapper->player == 0)
 	{
 		the_end(data, 4);
 		return (0);
@@ -85,7 +85,7 @@ static int	elements_verification(t_data	*data)
 	return (1);
 }
 
-int	main(int argc, char	**argv)
+int	main(int argc, char **argv)
 {
 	t_data	data;
 	t_map	mapper;
@@ -99,7 +99,7 @@ int	main(int argc, char	**argv)
 	if (!the_map_parser(&data))
 	{
 		the_end(&data, 3);
-		exit (42);
+		exit(42);
 	}
 	if (!elements_verification(&data))
 		the_end(&data, 0);
@@ -107,5 +107,3 @@ int	main(int argc, char	**argv)
 	the_end(&data, 6);
 	return (0);
 }
-
-
