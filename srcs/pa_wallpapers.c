@@ -67,8 +67,8 @@ int	pa_walls(t_data	*data, int wall)
 		data->buffer = NULL;
 		return (0);
 	}
-	while (data->buffer[data->scroller] && (data->buffer[data->scroller] < 33 || \
-		data->buffer[data->scroller] > 126))
+	while (data->buffer[data->scroller] && (data->buffer[data->scroller] < 33 \
+		|| data->buffer[data->scroller] > 126))
 		data->scroller++;
 	if (data->buffer[data->scroller] && data->buffer[data->scroller] == '.')
 	{
@@ -83,13 +83,17 @@ int	pa_wallpapers(t_data	*data)
 	int	i;
 
 	i = 0;
-	if (data->buffer[data->scroller] == 'N' && data->buffer[data->scroller + 1] == 'O')
+	if (data->buffer[data->scroller] == 'N' && data->buffer[data->scroller + 1] \
+		== 'O')
 		i = pa_walls(data, 0);
-	else if (data->buffer[data->scroller] == 'S' && data->buffer[data->scroller + 1] == 'O')
+	else if (data->buffer[data->scroller] == 'S' \
+		&& data->buffer[data->scroller + 1] == 'O')
 		i = pa_walls(data, 1);
-	else if (data->buffer[data->scroller] == 'W' && data->buffer[data->scroller + 1] == 'E')
+	else if (data->buffer[data->scroller] == 'W' \
+		&& data->buffer[data->scroller + 1] == 'E')
 		i = pa_walls(data, 2);
-	else if  (data->buffer[data->scroller] == 'E' && data->buffer[data->scroller + 1] == 'A')
+	else if (data->buffer[data->scroller] == 'E' \
+		&& data->buffer[data->scroller + 1] == 'A')
 		i = pa_walls(data, 3);
 	else
 		return (0);
