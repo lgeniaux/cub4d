@@ -6,7 +6,7 @@
 /*   By: hmarconn <hmarconn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/23 16:28:38 by hmarconn          #+#    #+#             */
-/*   Updated: 2023/02/04 17:31:55 by hmarconn         ###   ########.fr       */
+/*   Updated: 2023/02/08 13:37:33 by hmarconn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ static int	wall_parser_util(t_data	*data, int len, int x, int y)
 	{
 		if (!wall_parser_first(data, len, x, y))
 		{
-            printf("a\n");
+			printf("a\n");
 			return (0);
 		}
 	}
@@ -66,10 +66,10 @@ static int	wall_parser_util(t_data	*data, int len, int x, int y)
 			== 'E' || data->mapper->map[y][x] == 'W')
 	{
 		if (!wall_parser_second(data, len, x, y))
-        {
-            printf("b\n");
-            return (0);
-        }
+		{
+			printf("b\n");
+			return (0);
+		}
 		set_player(data, x, y);
 	}
 	else if (data->mapper->map[y][x] != '1' && data->mapper->map[y][x] \
@@ -91,7 +91,7 @@ int	the_wall_parser(t_data	*data)
 	len = 0;
 	if (data->mapper->high_point == 0)
 		data->mapper->high_point = data->y;
-    y = 0;
+	y = 0;
 	while (y < data->mapper->high_point)
 	{
 		len = ft_strlen_parsing(data->mapper->map[y]);

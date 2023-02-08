@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pa_wallpapers.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hmarconn <hmarconn@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: hmarconn <hmarconn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 16:54:45 by hmarconn          #+#    #+#             */
-/*   Updated: 2023/01/26 17:35:30 by hmarconn         ###   ########.fr       */
+/*   Updated: 2023/02/08 13:26:01 by hmarconn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,8 +63,8 @@ int	pa_walls(t_data	*data, char	*buffer, int wall)
 	data->scroller += 2;
 	if (!pa_wallsupervision_prequel(data, wall))
 	{
-		free (data->buffer);
-        data->buffer = NULL;
+		free(data->buffer);
+		data->buffer = NULL;
 		return (0);
 	}
 	while (buffer[data->scroller] && (buffer[data->scroller] < 33 || \

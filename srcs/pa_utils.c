@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pa_utils.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lgeniaux <lgeniaux@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hmarconn <hmarconn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 19:09:04 by hmarconn          #+#    #+#             */
-/*   Updated: 2023/02/07 19:42:30 by lgeniaux         ###   ########.fr       */
+/*   Updated: 2023/02/08 13:29:31 by hmarconn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 void	toparse_scroll(t_data *data, char *buffer)
 {
-	while (buffer[data->scroller] && buffer[data->scroller] != '\0' &&
-			(buffer[data->scroller] < 33 || buffer[data->scroller] > 126))
+	while (buffer[data->scroller] && buffer[data->scroller] != '\0' \
+		&& (buffer[data->scroller] < 33 || buffer[data->scroller] > 126))
 		data->scroller++;
 }
 
@@ -55,23 +55,23 @@ void	the_end(t_data *data, int type)
 
 	y = 0;
 	print_type(type);
-    printf("fin\n");
-    if (data->buffer != NULL)
-    {
-        free(data->buffer);
-    }
+	printf("fin\n");
+	if (data->buffer != NULL)
+	{
+		free(data->buffer);
+	}
 	if (data->map_exists == 1)
 	{
-        while (y < data->index)
-        {
-            if (data->mapper->map[y])
-            {
-                free(data->mapper->map[y]);
-            }
-        y++;
-        }
-    free(data->mapper->map);
-    }
+		while (y < data->index)
+		{
+			if (data->mapper->map[y])
+			{
+				free(data->mapper->map[y]);
+			}
+			y++;
+		}
+		free(data->mapper->map);
+	}
 	y = 0;
 	while (y < 4)
 	{

@@ -6,7 +6,7 @@
 /*   By: hmarconn <hmarconn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/22 11:37:43 by hmarconn          #+#    #+#             */
-/*   Updated: 2023/02/04 19:06:24 by hmarconn         ###   ########.fr       */
+/*   Updated: 2023/02/08 13:34:56 by hmarconn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ static int	the_map_maker(t_data *data)
 	i = the_map_maker_util(data, i);
 	free(data->buff);
 	close(data->fd);
-    printf("%d %d\n", data->mapper->height, data->mapper->height);
+	printf("%d %d\n", data->mapper->height, data->mapper->height);
 	data->mapper->map = malloc(sizeof(char *) * (data->mapper->height + 2));
 	if (!data->mapper->map)
 		return (0);
@@ -64,56 +64,48 @@ static int	tmp_util(t_data	*data)
 	int	i;
 
 	i = 1;
-    data->buff = NULL;
+	data->buff = NULL;
 	data->buff = get_next_line(data->fd);
 	while (data->buff)
 	{
 		if (i >= data->i)
-        {
-            if (!the_map_filler(data, data->buff))
-            {
-                free(data->buff);
-                return (0);
-            }
+		{
+			if (!the_map_filler(data, data->buff))
+			{
+				free(data->buff);
+				return (0);
+			}
 		}
 		free(data->buff);
 		data->buff = get_next_line(data->fd);
 		i++;
 	}
-    free(data->buff);
+	free(data->buff);
 	close(data->fd);
 	return (1);
 }
 
 int	the_map_parser(t_data	*data)
 {
-//    int i;
-//
-//    i = 0;
 	if (!the_map_maker(data))
 		return (0);
 	data->buff = NULL;
 	data->fd = 0;
 	data->fd = open(data->doc, O_RDONLY);
 	if (data->fd <= 0)
-    {
-        printf("1\n");
-        return (0);
-    }
+	{
+		printf("1\n");
+		return (0);
+	}
 	if (!tmp_util(data))
-    {
-        printf("2\n");
-        return (0);
-    }
-//    while (data->mapper->map[i])
-//    {
-//        printf("%s\n", data->mapper->map[i]);
-//        i++;
-//    }
+	{
+		printf("2\n");
+		return (0);
+	}
 	if (!the_wall_parser(data))
-    {
-        printf("3\n");
-        return (0);
-    }
+	{
+		printf("3\n");
+		return (0);
+	}
 	return (1);
 }

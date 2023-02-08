@@ -6,7 +6,7 @@
 /*   By: hmarconn <hmarconn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 19:07:04 by hmarconn          #+#    #+#             */
-/*   Updated: 2023/02/04 16:50:09 by hmarconn         ###   ########.fr       */
+/*   Updated: 2023/02/08 13:35:56 by hmarconn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,11 +43,12 @@ static int	pa_floors_firstphase(t_data	*data, char	*buffer)
 		free(buffer);
 		return (0);
 	}
-    if (buffer[data->scroller] >= 'A' && buffer[data->scroller] <= 'Z')
-    {
-        return (0);
-    }
-	while (buffer[data->scroller] && (buffer[data->scroller] < '0' || buffer[data->scroller] > '9'))
+	if (buffer[data->scroller] >= 'A' && buffer[data->scroller] <= 'Z')
+	{
+		return (0);
+	}
+	while (buffer[data->scroller] && (buffer[data->scroller] < '0' \
+		|| buffer[data->scroller] > '9'))
 		data->scroller++;
 	return (1);
 }
@@ -70,8 +71,8 @@ int	test(t_data	*data, char	*buffer, int	*points, char	*tmp)
 		tmp[points[1]] = '\0';
 		if (!pa_floorcolorcheck(data, tmp, points[2]))
 		{
-            free(buffer);
-            buffer = NULL;
+			free(buffer);
+			buffer = NULL;
 			return (0);
 		}
 		tmp = NULL;

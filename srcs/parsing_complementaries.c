@@ -6,7 +6,7 @@
 /*   By: hmarconn <hmarconn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/25 14:00:24 by hmarconn          #+#    #+#             */
-/*   Updated: 2023/02/04 18:59:51 by hmarconn         ###   ########.fr       */
+/*   Updated: 2023/02/08 13:36:28 by hmarconn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,6 @@ static int	to_parse_four(t_data	*data, char	*buffer)
 	if (buffer[data->scroller] >= 33 && \
 		buffer[data->scroller] <= 126)
 	{
-		//free(buffer);
 		return (0);
 	}
 	return (1);
@@ -62,7 +61,7 @@ int	to_parse(t_data	*data, char	*buffer)
 {
 	data->scroller = 0;
 	data->i++;
-    printf("%i\n", data->i);
+	printf("%i\n", data->i);
 	while (buffer[data->scroller] != '\0')
 	{
 		if (data->fd_section == 0)
