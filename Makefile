@@ -1,26 +1,7 @@
-#target name
 NAME = cub3D
 
-#SILENT THE RECIPE
-ifndef VERBOSE
-.SILENT:
-endif
-
-#The Directories, Source, Includes, Objects, Binary and Resources
-SRCDIR      := srcs
-INCDIR      := includes
-BUILDDIR    := obj
-NAMEDIR     := ./
-RESDIR      := lib
-SRCEXT      := c
-DEPEXT      := d
-OBJEXT      := o
-
-#Flags, Libraries and Includes
-CFLAGS      := -Wall -Wextra -Werror -g3 -o3
+CFLAGS      := -Wall -Wextra -Werror -g3 -O3
 #CFLAGS      := -Wall -Wextra -Werror -fsanitize=address -g3
-# SANITIZE    := -fsanitize=address
-# LLDBFLAG    := -g3
 LIBFT_PATH  := ./libs/libft/libft.a
 LIBX 		:= libmlx.a
 LIB         := $(LIBFT_PATH) $(LIBX)
@@ -44,6 +25,7 @@ SRCS = ./srcs/parsing.c \
 	./srcs/exec.c \
 	./srcs/orientation_handler.c \
 	./srcs/movement_handler.c \
+	./srcs/movement_handler_2.c \
 	./srcs/exec_utils.c \
 	./srcs/exec_utils_2.c \
 	./srcs/exec_utils_3.c \
@@ -64,16 +46,6 @@ git:
 	@git add .
 	@printf "Message of the commit: " && read msg && git commit -m "$$msg"
 	@git push
-
-#$(NAME): ${OBJS} $(HEADER) Makefile
-#			@chmod 777 mlx_linux/configure
-#			@ $(MAKE) -C mlx_linux all
-#			$(CC) $(CFLAGS) $(LIBFT_PATH) -o $(NAME) $(OBJS) -Imlx_linux -Lmlx_linux -lmlx -lmlx_Linux -L/usr/lib -lXext -lX11 -lm
-#			/bin/echo -e "\x1b[35m\x1b[34m**********\t\tDONE\t\t**********"
-
-#$(NAME): $(OBJS) $(HEADER) Makefile
-#		$(CC) $(CFLAGS) $(OBJS) $(LIBFT_PATH) -o $(NAME)
-#		/bin/echo -e "\x1b[35m\x1b[34m**********\t\tDONE\t\t**********"
 
 $(NAME): $(OBJS) $(HEADER) Makefile
 		$(CC) $(CFLAGS) $(OBJS) $(LIBX) $(LIBFT_PATH) -o $(NAME) -Ilibs/mlx_linux -Llibs/mlx_linux -lmlx -lmlx_Linux -L/usr/lib -lXext -lX11 -lm
