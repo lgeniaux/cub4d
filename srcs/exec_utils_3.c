@@ -6,7 +6,7 @@
 /*   By: lgeniaux <lgeniaux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/07 19:52:11 by lgeniaux          #+#    #+#             */
-/*   Updated: 2023/02/07 19:57:42 by lgeniaux         ###   ########.fr       */
+/*   Updated: 2023/02/08 14:47:52 by lgeniaux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,25 +62,4 @@ int	fill_buffer(t_data *data)
 	if (fill_buffer_second(data) == -1)
 		return (-1);
 	return (0);
-}
-
-void	toparse_scroll(t_data *data, char *buffer)
-{
-	while (buffer[data->scroller] && buffer[data->scroller] != '\0' \
-		&& (buffer[data->scroller] < 33 || buffer[data->scroller] > 126))
-		data->scroller++;
-}
-
-int	pa_getlen(t_data *data, char *buffer)
-{
-	int	len;
-
-	len = 0;
-	while (buffer[data->scroller] && (buffer[data->scroller] >= 33 \
-		&& buffer[data->scroller] <= 126))
-	{
-		len++;
-		data->scroller++;
-	}
-	return (len);
 }
