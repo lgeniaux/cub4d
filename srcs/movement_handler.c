@@ -54,13 +54,13 @@ int	key_press(int key, t_data *data)
 		move_forward(data);
 	if (key == K_S || key == K_DOWN)
 		move_backward(data);
-	if (key == K_Q || key == K_LEFT)
+	if (key == K_Q)
 		move_left(data);
-	if (key == K_D || key == K_RIGHT)
+	if (key == K_D)
 		move_right(data);
-	if (key == K_A)
+	if (key == K_A || key == K_LEFT)
 		rotate_left(data);
-	if (key == K_E)
+	if (key == K_E || key == K_RIGHT)
 		rotate_right(data);
 	if (key == K_ESC)
 		ft_exit(data);

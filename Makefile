@@ -55,7 +55,7 @@ $(NAME): $(OBJS) $(HEADER) Makefile
 		${CC} ${CFLAGS} -c $< -o ${<:.c=.o}
 
 leslib:
-		$(MAKE) -C libs/mlx_linux/
+		$(MAKE) -C libs/mlx_linux/ -f Makefile.gen all
 		cp libs/mlx_linux/libmlx.a ./
 		${MAKE} -C libs/libft/
 
