@@ -2,12 +2,18 @@
 
 <div align="center">
 
+![Game Demo](demo.gif)
+
+*A Wolfenstein 3D-inspired raycasting engine built from scratch in C*
+
+(we swear the low framerate is due to the GIF format :p )
+  
 ![Language](https://img.shields.io/badge/language-C-blue.svg)
 ![Platform](https://img.shields.io/badge/platform-Linux-lightgrey.svg)
 ![School](https://img.shields.io/badge/school-42-black.svg)
 ![Grade](https://img.shields.io/badge/grade-105%2F100-success.svg)
 
-*A Wolfenstein 3D-inspired raycasting engine built from scratch in C*
+
 
 </div>
 
@@ -18,13 +24,6 @@
 **cub3D** is a 3D graphics project that recreates the fundamental raycasting techniques used in early 3D games like Wolfenstein 3D. This project demonstrates real-time 3D rendering using 2D raycasting algorithms, creating an immersive first-person perspective within a maze-like environment.
 
 Built as part of the 42 school curriculum, this project emphasizes low-level graphics programming, mathematical precision, and performance optimization without relying on modern 3D graphics APIs.
-
-## 🎮 Demo
-
-<div align="center">
-  <img src="demo.gif" alt="cub3D Demo - Raycasting in Action" width="400"/>
-  <p><em>Navigate through textured 3D maze environments with smooth AZERTY controls</br>(we swear the low framerate is due to the GIF format :p )</em></p>
-</div>
 
 ## ✨ Features
 
